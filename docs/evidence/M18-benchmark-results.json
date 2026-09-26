@@ -1,0 +1,95 @@
+{
+  "seed": 26027,
+  "results": [
+    {
+      "scope": "SIMULATED fixed-candidate solver benchmark; not end-to-end or live railway",
+      "request_count": 20,
+      "candidate_count": 60,
+      "input_hash": "bb43e45bb0a733b99bac80434abcda24552a2fdae1b69b66f1db142088893d22",
+      "baseline": {
+        "scheduled": 20,
+        "objective_value": 1804,
+        "measured_elapsed_seconds": 0.001544400118291378
+      },
+      "cp_sat": {
+        "status": "OPTIMAL",
+        "scheduled": 20,
+        "objective_value": 1073,
+        "best_bound": 1073.0,
+        "relative_gap": 0.0,
+        "solver_wall_time_seconds": 0.08365900000000001,
+        "measured_elapsed_seconds": 0.12275999994017184,
+        "branches": 168,
+        "conflicts": 22,
+        "ortools_version": "9.15.6755",
+        "model_hash": "4113750d59c0198059bce0341e5cf68c07054553a9824116cd5290ca35b3485a"
+      },
+      "raw_objective_delta_cp_sat_minus_baseline": -731,
+      "limits": [
+        "OPTIMALITY_ONLY_OVER_GENERATED_CANDIDATE_SET",
+        "NO_TRAIN_DELAY_OR_ASSET_RELIABILITY_CLAIM",
+        "NO_INDEPENDENT_VALIDATION_IN_THIS_SOLVER_BENCHMARK"
+      ]
+    },
+    {
+      "scope": "SIMULATED fixed-candidate solver benchmark; not end-to-end or live railway",
+      "request_count": 100,
+      "candidate_count": 300,
+      "input_hash": "8604943578e465bc29208cb28ecb9387686db8955f9bd45e9eac79b1a3df4d8f",
+      "baseline": {
+        "scheduled": 100,
+        "objective_value": 10806,
+        "measured_elapsed_seconds": 0.025204099947586656
+      },
+      "cp_sat": {
+        "status": "OPTIMAL",
+        "scheduled": 100,
+        "objective_value": 7814,
+        "best_bound": 7814.0,
+        "relative_gap": 0.0,
+        "solver_wall_time_seconds": 0.044082300000000005,
+        "measured_elapsed_seconds": 0.06866359990090132,
+        "branches": 854,
+        "conflicts": 0,
+        "ortools_version": "9.15.6755",
+        "model_hash": "ea7714e8cf1904d7ddcd36811b87235cc6ccc9806a2fc2d664d0d9651f7701d7"
+      },
+      "raw_objective_delta_cp_sat_minus_baseline": -2992,
+      "limits": [
+        "OPTIMALITY_ONLY_OVER_GENERATED_CANDIDATE_SET",
+        "NO_TRAIN_DELAY_OR_ASSET_RELIABILITY_CLAIM",
+        "NO_INDEPENDENT_VALIDATION_IN_THIS_SOLVER_BENCHMARK"
+      ]
+    },
+    {
+      "scope": "SIMULATED fixed-candidate solver benchmark; not end-to-end or live railway",
+      "request_count": 300,
+      "candidate_count": 900,
+      "input_hash": "70a553a797111ba8d032233621404109b900864ba5ecd03367246f43348eff14",
+      "baseline": {
+        "scheduled": 289,
+        "objective_value": 3182434,
+        "measured_elapsed_seconds": 0.2676541998516768
+      },
+      "cp_sat": {
+        "status": "OPTIMAL",
+        "scheduled": 300,
+        "objective_value": 30138,
+        "best_bound": 30138.0,
+        "relative_gap": 0.0,
+        "solver_wall_time_seconds": 0.1330268,
+        "measured_elapsed_seconds": 0.21263780002482235,
+        "branches": 2634,
+        "conflicts": 0,
+        "ortools_version": "9.15.6755",
+        "model_hash": "2dcd41e6dd71087d9e317baa6242d063c325f29242759273b9a2c4daa24262f4"
+      },
+      "raw_objective_delta_cp_sat_minus_baseline": -3152296,
+      "limits": [
+        "OPTIMALITY_ONLY_OVER_GENERATED_CANDIDATE_SET",
+        "NO_TRAIN_DELAY_OR_ASSET_RELIABILITY_CLAIM",
+        "NO_INDEPENDENT_VALIDATION_IN_THIS_SOLVER_BENCHMARK"
+      ]
+    }
+  ]
+}

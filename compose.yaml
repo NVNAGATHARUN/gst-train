@@ -1,0 +1,124 @@
+name: railsync
+
+x-backend: &backend
+  build:
+    context: .
+    dockerfile: Dockerfile
+  restart: unless-stopped
+  environment: &backend-environment
+    RAILSYNC_DATABASE_URL: postgresql+psycopg://railsync:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}@db:5432/railsync
+    RAILSYNC_ENVIRONMENT: ${RAILSYNC_ENVIRONMENT:-production}
+    RAILSYNC_BROWSER_ORIGINS: ${RAILSYNC_BROWSER_ORIGINS:?Set RAILSYNC_BROWSER_ORIGINS to an exact HTTPS origin JSON array}
+    RAILSYNC_SESSION_COOKIE_SECURE: ${RAILSYNC_SESSION_COOKIE_SECURE:-true}
+    RAILSYNC_SESSION_TTL_MINUTES: ${RAILSYNC_SESSION_TTL_MINUTES:-480}
+  depends_on:
+    migration:
+      condition: service_completed_successfully
+  networks: [railsync]
+  read_only: true
+  tmpfs: [/tmp]
+  security_opt: [no-new-privileges:true]
+
+services:
+  db:
+    image: postgres:17.6-bookworm
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: railsync
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+      POSTGRES_DB: railsync
+    volumes:
+      - railsync_pg:/var/lib/postgresql/data
+    networks: [railsync]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U railsync -d railsync"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    security_opt: [no-new-privileges:true]
+
+  migration:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: "no"
+    command: [alembic, upgrade, head]
+    environment: *backend-environment
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [railsync]
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: [no-new-privileges:true]
+
+  api:
+    <<: *backend
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/ready', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  worker:
+    <<: *backend
+    command: [python, -m, railsync.worker]
+    healthcheck:
+      test: [CMD, python, -m, railsync.worker_health]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  web:
+    build:
+      context: web
+      dockerfile: Dockerfile
+      args:
+        RAILSYNC_API_ORIGIN: http://api:8000
+    restart: unless-stopped
+    environment:
+      RAILSYNC_API_ORIGIN: http://api:8000
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "${RAILSYNC_PUBLIC_BIND:-127.0.0.1}:${RAILSYNC_WEB_PORT:-3000}:3000"
+    networks: [railsync]
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:3000/login').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  restore-db:
+    image: postgres:17.6-bookworm
+    profiles: [recovery]
+    environment:
+      POSTGRES_USER: railsync_restore
+      POSTGRES_PASSWORD: ${RESTORE_POSTGRES_PASSWORD:?Set RESTORE_POSTGRES_PASSWORD for the isolated recovery database}
+      POSTGRES_DB: railsync_restore
+    volumes:
+      - railsync_restore_pg:/var/lib/postgresql/data
+    networks: [railsync]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U railsync_restore -d railsync_restore"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    security_opt: [no-new-privileges:true]
+
+networks:
+  railsync:
+    internal: true
+
+volumes:
+  railsync_pg:
+  railsync_restore_pg:

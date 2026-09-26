@@ -1,0 +1,1080 @@
+{
+  "fixture": "SIMULATED source snapshot plus ten-minute train delay, real worker and independent validator",
+  "scenario": {
+    "id": "b89ab5a6-5566-420e-9606-14dfafbe246f",
+    "duplicate": false,
+    "source_snapshot_id": "2cce02fa-4abe-4567-9781-263d0a31be8d",
+    "snapshot_id": "34e0d844-574a-4a72-bc2c-2f5982d3cbdf",
+    "content_hash": "439b82c062e101fa46ffc19f5945d06fd011cb8ebfca2e6b7689f7055fa45274",
+    "payload": {
+      "name": "SIMULATED alternative capacity",
+      "changes": [
+        {
+          "kind": "TRAIN_DELAY",
+          "occupancy_id": "12e08c30-f135-423a-addd-d5fbca651bc7",
+          "delay_minutes": 10
+        }
+      ],
+      "changes_hash": "37ff925ee244b333954d015934e3b0a00f989556c306c4f113938bcb87856723",
+      "request_hash": "2b2748fd60ea2db17b04f78df5685461506d718024be221047c950bbbd9f97ca",
+      "worker_status": "QUEUED",
+      "opportunity_id": "8e1c7a15-215f-4f76-a338-8973fdc59183",
+      "priority_count": 2,
+      "candidate_count": {
+        "bundles": 2,
+        "candidates": 11,
+        "incompatibilities": 49
+      },
+      "coordination_id": "94418b65-f2d5-4d87-af96-db4c6838caa8",
+      "availability_ids": [
+        "3408deaf-3b38-4ca3-a174-999a66b1b3c4"
+      ],
+      "controller_approval": "FORBIDDEN",
+      "source_snapshot_hash": "698a1bcfd0f9716307b8f0c95cb44ce9d4857f445512a3bc714dd9b3cc38c1c4",
+      "scenario_snapshot_hash": "f6f7e5f2a046397b00d53985a928960e67175d8e2b3c80708c0d6f79a07f1d9c"
+    },
+    "baseline_run": {
+      "id": "4516a0d3-9e54-409a-a2fc-4a71d40a0aca",
+      "status": "COMPLETED"
+    },
+    "optimized_run": {
+      "id": "51a74eca-8e55-46b7-829b-98ce2030539d",
+      "status": "COMPLETED"
+    },
+    "authority": "ISOLATED_SIMULATION_ONLY",
+    "approval_permitted": false
+  },
+  "source_occupancy": {
+    "id": "12e08c30-f135-423a-addd-d5fbca651bc7",
+    "run_id": "1443836f-a59d-4f88-b8ec-7dc7c8c9a63d",
+    "exit_at": "2026-09-21T01:20:00+05:30",
+    "enter_at": "2026-09-21T01:00:00+05:30",
+    "sequence": 1,
+    "track_id": "AB",
+    "train_id": "P-BASE",
+    "source_mode": "SIMULATED",
+    "service_date": "2026-09-21T00:00:00+05:30",
+    "timing_source": "SIMULATED",
+    "source_revision": 1
+  },
+  "scenario_occupancy": {
+    "id": "12e08c30-f135-423a-addd-d5fbca651bc7",
+    "run_id": "1443836f-a59d-4f88-b8ec-7dc7c8c9a63d",
+    "exit_at": "2026-09-21T01:30:00+05:30",
+    "enter_at": "2026-09-21T01:10:00+05:30",
+    "sequence": 1,
+    "track_id": "AB",
+    "train_id": "P-BASE",
+    "source_mode": "SIMULATED",
+    "service_date": "2026-09-21T00:00:00+05:30",
+    "timing_source": "SIMULATED",
+    "source_revision": 1
+  },
+  "optimized_run": {
+    "id": "51a74eca-8e55-46b7-829b-98ce2030539d",
+    "snapshot_id": "34e0d844-574a-4a72-bc2c-2f5982d3cbdf",
+    "planner_type": "CP_SAT",
+    "status": "COMPLETED",
+    "config": {
+      "snapshot_id": "34e0d844-574a-4a72-bc2c-2f5982d3cbdf",
+      "planner_type": "CP_SAT",
+      "solver_options": {
+        "weights": {
+          "travel": 1,
+          "freight": 0,
+          "possession": 1,
+          "deferred_utility": 100,
+          "commitment_change": 100
+        },
+        "workers": 1,
+        "random_seed": 26027,
+        "max_time_seconds": 10.0
+      },
+      "coordination_id": "94418b65-f2d5-4d87-af96-db4c6838caa8",
+      "clearance_minutes": 5,
+      "protect_freight_envelope": true
+    },
+    "result": {
+      "counts": {
+        "deferred": 0,
+        "scheduled": 2,
+        "candidates": 11,
+        "unresolved": 0
+      },
+      "options": {
+        "weights": {
+          "travel": 1,
+          "freight": 0,
+          "possession": 1,
+          "deferred_utility": 100,
+          "commitment_change": 100
+        },
+        "workers": 1,
+        "random_seed": 26027,
+        "max_time_seconds": 10.0
+      },
+      "planner": "CP_SAT",
+      "branches": 0,
+      "deferred": [],
+      "conflicts": 0,
+      "best_bound": 80.0,
+      "model_hash": "f4de54700a3c4f1a0ebf367efb278e0fedc8ff4ea63d88225a76274be14e45b3",
+      "assignments": [
+        {
+          "id": "dabc5115a21ba4891eb37d1f",
+          "mode": "ALLOW_PARALLEL",
+          "costs": {
+            "reserved_track_minutes": 80,
+            "forecast_exposure_train_track_seconds": 0,
+            "incremental_travel_minutes_against_fixed_duties": 0
+          },
+          "tasks": [
+            {
+              "work_end": "2026-09-21T02:45:00+05:30",
+              "setup_end": "2026-09-21T01:45:00+05:30",
+              "track_ids": [
+                "AB"
+              ],
+              "department": "ENGINEERING",
+              "issue_type": "INSPECTION",
+              "request_id": "0b7572ae-d40d-44bb-846e-583dd842c511",
+              "work_start": "2026-09-21T01:45:00+05:30",
+              "power_state": "ANY",
+              "restore_end": "2026-09-21T02:55:00+05:30",
+              "setup_start": "2026-09-21T01:35:00+05:30",
+              "requirements": [
+                {
+                  "type": "TRACK_CREW",
+                  "quantity": 1,
+                  "qualification": null
+                }
+              ],
+              "resource_end": "2026-09-21T02:55:00+05:30",
+              "restore_start": "2026-09-21T02:45:00+05:30",
+              "isolation_zone": null,
+              "resource_start": "2026-09-21T01:35:00+05:30",
+              "request_revision": 2,
+              "signalling_state": "ANY",
+              "resource_location": "AB"
+            },
+            {
+              "work_end": "2026-09-21T02:05:00+05:30",
+              "setup_end": "2026-09-21T01:45:00+05:30",
+              "track_ids": [
+                "AB"
+              ],
+              "department": "TRD",
+              "issue_type": "OHE_WORK",
+              "request_id": "2b08f713-546b-4fc5-85a2-562623bc8ae2",
+              "work_start": "2026-09-21T01:45:00+05:30",
+              "power_state": "ANY",
+              "restore_end": "2026-09-21T02:55:00+05:30",
+              "setup_start": "2026-09-21T01:35:00+05:30",
+              "requirements": [
+                {
+                  "type": "OHE_CREW",
+                  "quantity": 1,
+                  "qualification": null
+                }
+              ],
+              "resource_end": "2026-09-21T02:55:00+05:30",
+              "restore_start": "2026-09-21T02:45:00+05:30",
+              "isolation_zone": null,
+              "resource_start": "2026-09-21T01:35:00+05:30",
+              "request_revision": 1,
+              "signalling_state": "ANY",
+              "resource_location": "AB"
+            }
+          ],
+          "rule_ids": [
+            "PAIR-ENG-TRD"
+          ],
+          "track_ids": [
+            "AB"
+          ],
+          "allocations": [
+            {
+              "end_at": "2026-09-21T02:55:00+05:30",
+              "start_at": "2026-09-21T01:35:00+05:30",
+              "track_id": "AB",
+              "department": "TRD",
+              "request_id": "2b08f713-546b-4fc5-85a2-562623bc8ae2",
+              "resource_id": "CREW-2",
+              "qualification": "OHE_WORK",
+              "resource_type": "OHE_CREW"
+            },
+            {
+              "end_at": "2026-09-21T02:55:00+05:30",
+              "start_at": "2026-09-21T01:35:00+05:30",
+              "track_id": "AB",
+              "department": "ENGINEERING",
+              "request_id": "0b7572ae-d40d-44bb-846e-583dd842c511",
+              "resource_id": "CREW-1",
+              "qualification": "INSPECTION",
+              "resource_type": "TRACK_CREW"
+            }
+          ],
+          "request_ids": [
+            "0b7572ae-d40d-44bb-846e-583dd842c511",
+            "2b08f713-546b-4fc5-85a2-562623bc8ae2"
+          ],
+          "possession_end": "2026-09-21T02:55:00+05:30",
+          "possession_start": "2026-09-21T01:35:00+05:30",
+          "policy_revision_id": "29fe4284-a879-42fb-a47c-fbd2df751985",
+          "priority_by_request": {
+            "0b7572ae-d40d-44bb-846e-583dd842c511": 4875,
+            "2b08f713-546b-4fc5-85a2-562623bc8ae2": 4875
+          },
+          "resource_consumption": "SETUP_WORK_RESTORATION; parallel units reserved for whole possession"
+        }
+      ],
+      "diagnostics": {
+        "model_validation": "",
+        "candidate_exclusions": [],
+        "infeasibility_explanation": "NO_MINIMAL_CONFLICT_SET_CLAIMED",
+        "missing_frozen_candidates": [],
+        "mandatory_without_candidates": []
+      },
+      "relative_gap": 0.0,
+      "has_incumbent": true,
+      "model_version": "FIXED_CANDIDATE_CP_SAT_V2",
+      "snapshot_hash": "f6f7e5f2a046397b00d53985a928960e67175d8e2b3c80708c0d6f79a07f1d9c",
+      "solver_status": "OPTIMAL",
+      "objective_terms": {
+        "travel": {
+          "raw": 0,
+          "weight": 1,
+          "weighted": 0
+        },
+        "freight": {
+          "raw": 0,
+          "weight": 0,
+          "weighted": 0
+        },
+        "possession": {
+          "raw": 80,
+          "weight": 1,
+          "weighted": 80
+        },
+        "deferred_utility": {
+          "raw": 0,
+          "weight": 100,
+          "weighted": 0
+        },
+        "commitment_change": {
+          "raw": 0,
+          "weight": 100,
+          "weighted": 0
+        }
+      },
+      "objective_value": 80,
+      "ortools_version": "9.15.6755",
+      "priorities_hash": "ec86ea81f26bff7d40e308b7c08fa764a54aacbe94b42d96323af0eaaaba63a6",
+      "review_blockers": [
+        "INDEPENDENT_VALIDATION_NOT_YET_PERFORMED",
+        "SIMULATED_RULES_NOT_OPERATIONAL_AUTHORITY",
+        "UNRESOLVED_COA_SOURCE_CONFLICT"
+      ],
+      "schedule_status": "DEVELOPMENT_ARTIFACT",
+      "selection_state": "WORK_SELECTED",
+      "candidate_search": {
+        "pruning": [],
+        "configuration": {
+          "max_groups": 500,
+          "max_candidates": 1000,
+          "max_time_plans": 5000,
+          "opportunity_id": "8e1c7a15-215f-4f76-a338-8973fdc59183",
+          "max_bundle_size": 3,
+          "max_assignments_per_plan": 20,
+          "max_resource_slots_per_plan": 100,
+          "max_assignment_nodes_per_plan": 10000
+        },
+        "groups_evaluated": 3,
+        "optimality_scope": "generated_candidate_set",
+        "time_plans_evaluated": 11,
+        "complete_within_declared_search": true
+      },
+      "optimality_scope": "generated_candidate_set",
+      "coordination_hash": "dc53eff567731ee4abf206db90a71bc665eab6c3d40fb2d018a7c32d07d1ca81",
+      "requirements_hash": "e0af9cbe75adb73170b0d8897616d9a17bb03f16b03f3f6d7407ef480915f941",
+      "wall_time_seconds": 0.0015301000000000002,
+      "comparison_eligible": true,
+      "solver_response_stats": "CpSolverResponse summary:\nstatus: OPTIMAL\nobjective: 80\nbest_bound: 80\nintegers: 1\nbooleans: 0\nconflicts: 0\nbranches: 0\npropagations: 0\ninteger_propagations: 1\nrestarts: 0\nlp_iterations: 0\nwalltime: 0.0015301\nusertime: 0.0015301\ndeterministic_time: 5.408e-06\ngap_integral: 0\nsolution_fingerprint: 0x9c8150228a6cc7a2\n",
+      "selected_candidate_ids": [
+        "dabc5115a21ba4891eb37d1f"
+      ],
+      "unresolved_request_ids": []
+    }
+  },
+  "validation": {
+    "id": "af37eda6-1f80-435d-9473-7668c11661ab",
+    "run_id": "51a74eca-8e55-46b7-829b-98ce2030539d",
+    "plan_revision_id": "8b9479da-7a0e-437b-bf86-5b0110add3e6",
+    "snapshot_id": "34e0d844-574a-4a72-bc2c-2f5982d3cbdf",
+    "status": "PASS",
+    "plan_hash": "4134f944fe7bea120ab57bcae3fd1c4b9e3aef8fe0d8f0da74d4baeb6c3f5b31",
+    "snapshot_hash": "f6f7e5f2a046397b00d53985a928960e67175d8e2b3c80708c0d6f79a07f1d9c",
+    "checked_at": "2026-09-20T18:30:00+00:00",
+    "result": {
+      "status": "PASS",
+      "validator_version": "INDEPENDENT_VALIDATOR_V3",
+      "plan_hash": "4134f944fe7bea120ab57bcae3fd1c4b9e3aef8fe0d8f0da74d4baeb6c3f5b31",
+      "snapshot_hash": "f6f7e5f2a046397b00d53985a928960e67175d8e2b3c80708c0d6f79a07f1d9c",
+      "checked_at": "2026-09-21T00:00:00+05:30",
+      "scope": "SIMULATED",
+      "checks": [
+        {
+          "category": "PROVENANCE",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "COVERAGE",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "TIMING",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "INFRASTRUCTURE",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "TRAFFIC",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "COMPATIBILITY",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "RESOURCES",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "COMMITMENTS",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "DATA_QUALITY",
+          "status": "PASS",
+          "findings": []
+        }
+      ],
+      "checks_performed": 123,
+      "current_facts_hash": "25060db4d6817a0cba06b882fb3204b0a69fe8dd3378946dacd09d118996d2fc",
+      "approval_blocked": false,
+      "authority": "CONFIGURED_PROTOTYPE_CONSTRAINTS_ONLY"
+    },
+    "usable_for_review": true,
+    "current_blockers": []
+  },
+  "comparison": {
+    "id": "dd09d155-9fb2-453c-8047-98b3dc13cf9f",
+    "content_hash": "2cc972614605def4d6e47e695a49317d5580e6950a0e40bca794ae75b8794385",
+    "content": {
+      "schema_version": 2,
+      "metric_version": "INTERVAL_KPI_V2",
+      "status": "VALIDATED_COMPARISON",
+      "claims_permitted": true,
+      "snapshot_id": "34e0d844-574a-4a72-bc2c-2f5982d3cbdf",
+      "snapshot_hash": "f6f7e5f2a046397b00d53985a928960e67175d8e2b3c80708c0d6f79a07f1d9c",
+      "scenario_id": "b89ab5a6-5566-420e-9606-14dfafbe246f",
+      "claim_scope": "ISOLATED_SIMULATION_ONLY",
+      "horizon": {
+        "horizon_start": "2026-09-21T00:00:00+05:30",
+        "horizon_end": "2026-09-21T04:00:00+05:30",
+        "track_ids": [
+          "AB"
+        ]
+      },
+      "requirements_hash": "e0af9cbe75adb73170b0d8897616d9a17bb03f16b03f3f6d7407ef480915f941",
+      "coordination_hash": "dc53eff567731ee4abf206db90a71bc665eab6c3d40fb2d018a7c32d07d1ca81",
+      "priorities_hash": "ec86ea81f26bff7d40e308b7c08fa764a54aacbe94b42d96323af0eaaaba63a6",
+      "baseline": {
+        "plan_revision_id": "026b889f-a167-4bbc-bdbf-2fb0c9ee899b",
+        "plan_hash": "a5362a527f06c30fecb681e189e5e2bd77af8ba379aaa8ff2c1a0010b08c4d7e",
+        "planner": "FIRST_FEASIBLE_CANDIDATE_BASELINE",
+        "validation_report_id": "ebdd15e3-0ce2-464e-a0e6-9e3892822976",
+        "report_id": "ebdd15e3-0ce2-464e-a0e6-9e3892822976",
+        "status": "PASS",
+        "usable": true,
+        "blockers": [],
+        "findings_by_code": {},
+        "metrics": {
+          "requests_scheduled": 2,
+          "critical_requests_scheduled": 0,
+          "possession_count": 1,
+          "reserved_track_minutes": 80.0,
+          "task_work_minutes": 80.0,
+          "block_utilization_basis_points": 7500.0,
+          "mandatory_coverage_basis_points": null,
+          "on_time_coverage_basis_points": null,
+          "maintenance_track_availability_basis_points": 6666.666666666666,
+          "forecast_exposure_train_track_seconds": 0.0,
+          "multi_request_possessions": 1,
+          "bundled_extra_tasks": 1,
+          "measured_train_delay_minutes": null,
+          "solver_wall_time_seconds": null,
+          "planned_not_completed": true,
+          "denominators": {
+            "block_utilization_basis_points": {
+              "numerator": 60.0,
+              "denominator": 80.0,
+              "unit": "minutes"
+            },
+            "mandatory_coverage_basis_points": {
+              "numerator": 0,
+              "denominator": 0,
+              "unit": "requests"
+            },
+            "on_time_coverage_basis_points": {
+              "numerator": 0,
+              "denominator": 0,
+              "unit": "requests"
+            },
+            "maintenance_track_availability_basis_points": {
+              "numerator": 160.0,
+              "denominator": 240.0,
+              "unit": "track_minutes"
+            }
+          },
+          "outcome": "COMPUTED_FROM_SAVED_INTERVALS"
+        },
+        "computation_error": null,
+        "schedule_status": "DEVELOPMENT_ARTIFACT",
+        "solver_status": null,
+        "quality": {
+          "objective_value": 80,
+          "objective_terms": {
+            "travel": {
+              "raw": 0,
+              "weight": 1,
+              "weighted": 0
+            },
+            "freight": {
+              "raw": 0,
+              "weight": 0,
+              "weighted": 0
+            },
+            "possession": {
+              "raw": 80,
+              "weight": 1,
+              "weighted": 80
+            },
+            "deferred_utility": {
+              "raw": 0,
+              "weight": 100,
+              "weighted": 0
+            },
+            "commitment_change": {
+              "raw": 0,
+              "weight": 100,
+              "weighted": 0
+            }
+          },
+          "best_bound": null,
+          "relative_gap": null,
+          "candidate_search": {
+            "pruning": [],
+            "configuration": {
+              "max_groups": 500,
+              "max_candidates": 1000,
+              "max_time_plans": 5000,
+              "opportunity_id": "8e1c7a15-215f-4f76-a338-8973fdc59183",
+              "max_bundle_size": 3,
+              "max_assignments_per_plan": 20,
+              "max_resource_slots_per_plan": 100,
+              "max_assignment_nodes_per_plan": 10000
+            },
+            "groups_evaluated": 3,
+            "optimality_scope": "generated_candidate_set",
+            "time_plans_evaluated": 11,
+            "complete_within_declared_search": true
+          }
+        }
+      },
+      "railsync": {
+        "plan_revision_id": "8b9479da-7a0e-437b-bf86-5b0110add3e6",
+        "plan_hash": "4134f944fe7bea120ab57bcae3fd1c4b9e3aef8fe0d8f0da74d4baeb6c3f5b31",
+        "planner": "CP_SAT",
+        "validation_report_id": "af37eda6-1f80-435d-9473-7668c11661ab",
+        "report_id": "af37eda6-1f80-435d-9473-7668c11661ab",
+        "status": "PASS",
+        "usable": true,
+        "blockers": [],
+        "findings_by_code": {},
+        "metrics": {
+          "requests_scheduled": 2,
+          "critical_requests_scheduled": 0,
+          "possession_count": 1,
+          "reserved_track_minutes": 80.0,
+          "task_work_minutes": 80.0,
+          "block_utilization_basis_points": 7500.0,
+          "mandatory_coverage_basis_points": null,
+          "on_time_coverage_basis_points": null,
+          "maintenance_track_availability_basis_points": 6666.666666666666,
+          "forecast_exposure_train_track_seconds": 0.0,
+          "multi_request_possessions": 1,
+          "bundled_extra_tasks": 1,
+          "measured_train_delay_minutes": null,
+          "solver_wall_time_seconds": 0.0015301000000000002,
+          "planned_not_completed": true,
+          "denominators": {
+            "block_utilization_basis_points": {
+              "numerator": 60.0,
+              "denominator": 80.0,
+              "unit": "minutes"
+            },
+            "mandatory_coverage_basis_points": {
+              "numerator": 0,
+              "denominator": 0,
+              "unit": "requests"
+            },
+            "on_time_coverage_basis_points": {
+              "numerator": 0,
+              "denominator": 0,
+              "unit": "requests"
+            },
+            "maintenance_track_availability_basis_points": {
+              "numerator": 160.0,
+              "denominator": 240.0,
+              "unit": "track_minutes"
+            }
+          },
+          "outcome": "COMPUTED_FROM_SAVED_INTERVALS"
+        },
+        "computation_error": null,
+        "schedule_status": "DEVELOPMENT_ARTIFACT",
+        "solver_status": "OPTIMAL",
+        "quality": {
+          "objective_value": 80,
+          "objective_terms": {
+            "travel": {
+              "raw": 0,
+              "weight": 1,
+              "weighted": 0
+            },
+            "freight": {
+              "raw": 0,
+              "weight": 0,
+              "weighted": 0
+            },
+            "possession": {
+              "raw": 80,
+              "weight": 1,
+              "weighted": 80
+            },
+            "deferred_utility": {
+              "raw": 0,
+              "weight": 100,
+              "weighted": 0
+            },
+            "commitment_change": {
+              "raw": 0,
+              "weight": 100,
+              "weighted": 0
+            }
+          },
+          "best_bound": 80.0,
+          "relative_gap": 0.0,
+          "candidate_search": {
+            "pruning": [],
+            "configuration": {
+              "max_groups": 500,
+              "max_candidates": 1000,
+              "max_time_plans": 5000,
+              "opportunity_id": "8e1c7a15-215f-4f76-a338-8973fdc59183",
+              "max_bundle_size": 3,
+              "max_assignments_per_plan": 20,
+              "max_resource_slots_per_plan": 100,
+              "max_assignment_nodes_per_plan": 10000
+            },
+            "groups_evaluated": 3,
+            "optimality_scope": "generated_candidate_set",
+            "time_plans_evaluated": 11,
+            "complete_within_declared_search": true
+          }
+        }
+      },
+      "metrics": {
+        "requests_scheduled": {
+          "unit": "requests",
+          "formula": "Distinct scheduled request IDs",
+          "direction": "HIGHER_IS_BETTER",
+          "baseline": 2,
+          "railsync": 2,
+          "raw_delta": 0,
+          "favorable_change": 0,
+          "percent_change": 0.0,
+          "improvement_percent": 0.0,
+          "percentage_unit": "percent",
+          "status": "AVAILABLE"
+        },
+        "critical_requests_scheduled": {
+          "unit": "requests",
+          "formula": "Scheduled requests with criticality >= 4",
+          "direction": "HIGHER_IS_BETTER",
+          "baseline": 0,
+          "railsync": 0,
+          "raw_delta": 0,
+          "favorable_change": 0,
+          "percent_change": null,
+          "improvement_percent": null,
+          "percentage_unit": "percent",
+          "status": "BASELINE_ZERO_PERCENT_NA"
+        },
+        "possession_count": {
+          "unit": "possessions",
+          "formula": "Distinct selected possession IDs",
+          "direction": "LOWER_IS_BETTER",
+          "baseline": 1,
+          "railsync": 1,
+          "raw_delta": 0,
+          "favorable_change": 0,
+          "percent_change": 0.0,
+          "improvement_percent": 0.0,
+          "percentage_unit": "percent",
+          "status": "AVAILABLE"
+        },
+        "reserved_track_minutes": {
+          "unit": "track_minutes",
+          "formula": "Sum across tracks of union reserved interval duration",
+          "direction": "LOWER_IS_BETTER",
+          "baseline": 80.0,
+          "railsync": 80.0,
+          "raw_delta": 0.0,
+          "favorable_change": 0.0,
+          "percent_change": 0.0,
+          "improvement_percent": 0.0,
+          "percentage_unit": "percent",
+          "status": "AVAILABLE"
+        },
+        "task_work_minutes": {
+          "unit": "task_minutes",
+          "formula": "Sum individual task work durations; parallel tasks may overlap",
+          "direction": "INFORMATIONAL",
+          "baseline": 80.0,
+          "railsync": 80.0,
+          "raw_delta": 0.0,
+          "favorable_change": null,
+          "percent_change": 0.0,
+          "improvement_percent": null,
+          "percentage_unit": "percent",
+          "status": "AVAILABLE"
+        },
+        "block_utilization_basis_points": {
+          "unit": "basis_points",
+          "formula": "Union active work within each possession / total possession duration * 10000",
+          "direction": "HIGHER_IS_BETTER",
+          "baseline": 7500.0,
+          "railsync": 7500.0,
+          "raw_delta": 0.0,
+          "favorable_change": 0.0,
+          "percent_change": 0.0,
+          "improvement_percent": 0.0,
+          "percentage_unit": "percent",
+          "status": "AVAILABLE"
+        },
+        "mandatory_coverage_basis_points": {
+          "unit": "basis_points",
+          "formula": "Scheduled mandatory due requests / all mandatory due requests * 10000",
+          "direction": "HIGHER_IS_BETTER",
+          "baseline": null,
+          "railsync": null,
+          "raw_delta": null,
+          "favorable_change": null,
+          "percent_change": null,
+          "improvement_percent": null,
+          "percentage_unit": "percent",
+          "status": "NOT_AVAILABLE"
+        },
+        "on_time_coverage_basis_points": {
+          "unit": "basis_points",
+          "formula": "Scheduled on-time due requests / all requests due including deferred * 10000",
+          "direction": "HIGHER_IS_BETTER",
+          "baseline": null,
+          "railsync": null,
+          "raw_delta": null,
+          "favorable_change": null,
+          "percent_change": null,
+          "improvement_percent": null,
+          "percentage_unit": "percent",
+          "status": "NOT_AVAILABLE"
+        },
+        "maintenance_track_availability_basis_points": {
+          "unit": "basis_points",
+          "formula": "1 - union maintenance reservation duration / in-scope track-horizon duration; maintenance-only capacity proxy",
+          "direction": "HIGHER_IS_BETTER",
+          "baseline": 6666.666666666666,
+          "railsync": 6666.666666666666,
+          "raw_delta": 0.0,
+          "favorable_change": 0.0,
+          "percent_change": 0.0,
+          "improvement_percent": 0.0,
+          "percentage_unit": "percent",
+          "status": "AVAILABLE"
+        },
+        "forecast_exposure_train_track_seconds": {
+          "unit": "expected_train_track_seconds",
+          "formula": "sum assignment/forecast interval overlap union seconds times expected train count; exposure proxy",
+          "direction": "LOWER_IS_BETTER",
+          "baseline": 0.0,
+          "railsync": 0.0,
+          "raw_delta": 0.0,
+          "favorable_change": 0.0,
+          "percent_change": null,
+          "improvement_percent": null,
+          "percentage_unit": "percent",
+          "status": "BASELINE_ZERO_PERCENT_NA"
+        },
+        "multi_request_possessions": {
+          "unit": "possessions",
+          "formula": "Selected blocks with more than one request",
+          "direction": "INFORMATIONAL",
+          "baseline": 1,
+          "railsync": 1,
+          "raw_delta": 0,
+          "favorable_change": null,
+          "percent_change": 0.0,
+          "improvement_percent": null,
+          "percentage_unit": "percent",
+          "status": "AVAILABLE"
+        },
+        "bundled_extra_tasks": {
+          "unit": "requests",
+          "formula": "Sum selected request count minus one per block",
+          "direction": "INFORMATIONAL",
+          "baseline": 1,
+          "railsync": 1,
+          "raw_delta": 0,
+          "favorable_change": null,
+          "percent_change": 0.0,
+          "improvement_percent": null,
+          "percentage_unit": "percent",
+          "status": "AVAILABLE"
+        },
+        "measured_train_delay_minutes": {
+          "unit": "minutes",
+          "formula": "Unavailable: no actual execution delay feed",
+          "direction": "NOT_MEASURED",
+          "baseline": null,
+          "railsync": null,
+          "raw_delta": null,
+          "favorable_change": null,
+          "percent_change": null,
+          "improvement_percent": null,
+          "percentage_unit": "percent",
+          "status": "NOT_AVAILABLE"
+        },
+        "solver_wall_time_seconds": {
+          "unit": "seconds",
+          "formula": "Actual solver runtime; no CP-SAT runtime for baseline",
+          "direction": "INFORMATIONAL",
+          "baseline": null,
+          "railsync": 0.0015301000000000002,
+          "raw_delta": null,
+          "favorable_change": null,
+          "percent_change": null,
+          "improvement_percent": null,
+          "percentage_unit": "percent",
+          "status": "NOT_AVAILABLE"
+        }
+      },
+      "limits": [
+        "PLANNED_WORK_IS_NOT_COMPLETED_WORK",
+        "FORECAST_EXPOSURE_IS_NOT_MEASURED_TRAIN_DELAY",
+        "MAINTENANCE_ONLY_TRACK_AVAILABILITY_IS_NOT_ASSET_RELIABILITY",
+        "OPTIMALITY_SCOPE_IS_GENERATED_CANDIDATE_SET",
+        "SCENARIO_RESULTS_CANNOT_AUTHORIZE_POSSESSIONS"
+      ],
+      "generated_at": "2026-09-21T00:00:00+05:30"
+    },
+    "created_at": "2026-09-21T00:00:00+05:30",
+    "duplicate": false,
+    "current_claims_permitted": true,
+    "current_validation": {
+      "baseline": {
+        "report_id": "ebdd15e3-0ce2-464e-a0e6-9e3892822976",
+        "status": "PASS",
+        "usable": true,
+        "blockers": [],
+        "findings_by_code": {}
+      },
+      "railsync": {
+        "report_id": "af37eda6-1f80-435d-9473-7668c11661ab",
+        "status": "PASS",
+        "usable": true,
+        "blockers": [],
+        "findings_by_code": {}
+      }
+    },
+    "metric_version_current": true
+  },
+  "impact": {
+    "id": "743ffa29-8e8e-4b89-a94e-0990ce6b2e01",
+    "scenario_id": "b89ab5a6-5566-420e-9606-14dfafbe246f",
+    "content_hash": "e9ffde288e763cdf01f10109fc82cbd3d2fa43c9e052c1c14e5a980f9296692f",
+    "content": {
+      "schema_version": 1,
+      "metric_version": "INTERVAL_KPI_V2",
+      "comparison_type": "INPUT_CHANGED_SCENARIO_IMPACT",
+      "claim_scope": "ISOLATED_SIMULATION_ONLY",
+      "claims_permitted": false,
+      "scenario_id": "b89ab5a6-5566-420e-9606-14dfafbe246f",
+      "scenario_name": "SIMULATED alternative capacity",
+      "changed_inputs": [
+        {
+          "kind": "TRAIN_DELAY",
+          "occupancy_id": "12e08c30-f135-423a-addd-d5fbca651bc7",
+          "delay_minutes": 10
+        }
+      ],
+      "changed_inputs_hash": "37ff925ee244b333954d015934e3b0a00f989556c306c4f113938bcb87856723",
+      "source": {
+        "snapshot_id": "2cce02fa-4abe-4567-9781-263d0a31be8d",
+        "snapshot_hash": "698a1bcfd0f9716307b8f0c95cb44ce9d4857f445512a3bc714dd9b3cc38c1c4",
+        "plan_revision_id": "d55692df-8091-4560-9c89-8d9d0871ebc2",
+        "plan_hash": "ad3e32ac07ad0f0ff2230714a4e27fb4960e7ffa383d2eb2232f796a27d1a116",
+        "validation_report_id": "0d6d8ad4-ff50-4dc3-9b16-5d91051624fa",
+        "metrics": {
+          "requests_scheduled": 2,
+          "critical_requests_scheduled": 0,
+          "possession_count": 1,
+          "reserved_track_minutes": 80.0,
+          "task_work_minutes": 80.0,
+          "block_utilization_basis_points": 7500.0,
+          "mandatory_coverage_basis_points": null,
+          "on_time_coverage_basis_points": null,
+          "maintenance_track_availability_basis_points": 6666.666666666666,
+          "forecast_exposure_train_track_seconds": 0.0,
+          "multi_request_possessions": 1,
+          "bundled_extra_tasks": 1,
+          "measured_train_delay_minutes": null,
+          "solver_wall_time_seconds": 0.0014048,
+          "planned_not_completed": true,
+          "denominators": {
+            "block_utilization_basis_points": {
+              "numerator": 60.0,
+              "denominator": 80.0,
+              "unit": "minutes"
+            },
+            "mandatory_coverage_basis_points": {
+              "numerator": 0,
+              "denominator": 0,
+              "unit": "requests"
+            },
+            "on_time_coverage_basis_points": {
+              "numerator": 0,
+              "denominator": 0,
+              "unit": "requests"
+            },
+            "maintenance_track_availability_basis_points": {
+              "numerator": 160.0,
+              "denominator": 240.0,
+              "unit": "track_minutes"
+            }
+          },
+          "outcome": "COMPUTED_FROM_SAVED_INTERVALS"
+        }
+      },
+      "scenario": {
+        "snapshot_id": "34e0d844-574a-4a72-bc2c-2f5982d3cbdf",
+        "snapshot_hash": "f6f7e5f2a046397b00d53985a928960e67175d8e2b3c80708c0d6f79a07f1d9c",
+        "plan_revision_id": "8b9479da-7a0e-437b-bf86-5b0110add3e6",
+        "plan_hash": "4134f944fe7bea120ab57bcae3fd1c4b9e3aef8fe0d8f0da74d4baeb6c3f5b31",
+        "validation_report_id": "af37eda6-1f80-435d-9473-7668c11661ab",
+        "metrics": {
+          "requests_scheduled": 2,
+          "critical_requests_scheduled": 0,
+          "possession_count": 1,
+          "reserved_track_minutes": 80.0,
+          "task_work_minutes": 80.0,
+          "block_utilization_basis_points": 7500.0,
+          "mandatory_coverage_basis_points": null,
+          "on_time_coverage_basis_points": null,
+          "maintenance_track_availability_basis_points": 6666.666666666666,
+          "forecast_exposure_train_track_seconds": 0.0,
+          "multi_request_possessions": 1,
+          "bundled_extra_tasks": 1,
+          "measured_train_delay_minutes": null,
+          "solver_wall_time_seconds": 0.0015301000000000002,
+          "planned_not_completed": true,
+          "denominators": {
+            "block_utilization_basis_points": {
+              "numerator": 60.0,
+              "denominator": 80.0,
+              "unit": "minutes"
+            },
+            "mandatory_coverage_basis_points": {
+              "numerator": 0,
+              "denominator": 0,
+              "unit": "requests"
+            },
+            "on_time_coverage_basis_points": {
+              "numerator": 0,
+              "denominator": 0,
+              "unit": "requests"
+            },
+            "maintenance_track_availability_basis_points": {
+              "numerator": 160.0,
+              "denominator": 240.0,
+              "unit": "track_minutes"
+            }
+          },
+          "outcome": "COMPUTED_FROM_SAVED_INTERVALS"
+        }
+      },
+      "observed_differences": {
+        "requests_scheduled": {
+          "unit": "requests",
+          "formula": "Distinct scheduled request IDs",
+          "direction": "HIGHER_IS_BETTER",
+          "source": 2,
+          "scenario": 2,
+          "raw_delta": 0,
+          "status": "AVAILABLE"
+        },
+        "critical_requests_scheduled": {
+          "unit": "requests",
+          "formula": "Scheduled requests with criticality >= 4",
+          "direction": "HIGHER_IS_BETTER",
+          "source": 0,
+          "scenario": 0,
+          "raw_delta": 0,
+          "status": "AVAILABLE"
+        },
+        "possession_count": {
+          "unit": "possessions",
+          "formula": "Distinct selected possession IDs",
+          "direction": "LOWER_IS_BETTER",
+          "source": 1,
+          "scenario": 1,
+          "raw_delta": 0,
+          "status": "AVAILABLE"
+        },
+        "reserved_track_minutes": {
+          "unit": "track_minutes",
+          "formula": "Sum across tracks of union reserved interval duration",
+          "direction": "LOWER_IS_BETTER",
+          "source": 80.0,
+          "scenario": 80.0,
+          "raw_delta": 0.0,
+          "status": "AVAILABLE"
+        },
+        "task_work_minutes": {
+          "unit": "task_minutes",
+          "formula": "Sum individual task work durations; parallel tasks may overlap",
+          "direction": "INFORMATIONAL",
+          "source": 80.0,
+          "scenario": 80.0,
+          "raw_delta": 0.0,
+          "status": "AVAILABLE"
+        },
+        "block_utilization_basis_points": {
+          "unit": "basis_points",
+          "formula": "Union active work within each possession / total possession duration * 10000",
+          "direction": "HIGHER_IS_BETTER",
+          "source": 7500.0,
+          "scenario": 7500.0,
+          "raw_delta": 0.0,
+          "status": "AVAILABLE"
+        },
+        "mandatory_coverage_basis_points": {
+          "unit": "basis_points",
+          "formula": "Scheduled mandatory due requests / all mandatory due requests * 10000",
+          "direction": "HIGHER_IS_BETTER",
+          "source": null,
+          "scenario": null,
+          "raw_delta": null,
+          "status": "NOT_AVAILABLE"
+        },
+        "on_time_coverage_basis_points": {
+          "unit": "basis_points",
+          "formula": "Scheduled on-time due requests / all requests due including deferred * 10000",
+          "direction": "HIGHER_IS_BETTER",
+          "source": null,
+          "scenario": null,
+          "raw_delta": null,
+          "status": "NOT_AVAILABLE"
+        },
+        "maintenance_track_availability_basis_points": {
+          "unit": "basis_points",
+          "formula": "1 - union maintenance reservation duration / in-scope track-horizon duration; maintenance-only capacity proxy",
+          "direction": "HIGHER_IS_BETTER",
+          "source": 6666.666666666666,
+          "scenario": 6666.666666666666,
+          "raw_delta": 0.0,
+          "status": "AVAILABLE"
+        },
+        "forecast_exposure_train_track_seconds": {
+          "unit": "expected_train_track_seconds",
+          "formula": "sum assignment/forecast interval overlap union seconds times expected train count; exposure proxy",
+          "direction": "LOWER_IS_BETTER",
+          "source": 0.0,
+          "scenario": 0.0,
+          "raw_delta": 0.0,
+          "status": "AVAILABLE"
+        },
+        "multi_request_possessions": {
+          "unit": "possessions",
+          "formula": "Selected blocks with more than one request",
+          "direction": "INFORMATIONAL",
+          "source": 1,
+          "scenario": 1,
+          "raw_delta": 0,
+          "status": "AVAILABLE"
+        },
+        "bundled_extra_tasks": {
+          "unit": "requests",
+          "formula": "Sum selected request count minus one per block",
+          "direction": "INFORMATIONAL",
+          "source": 1,
+          "scenario": 1,
+          "raw_delta": 0,
+          "status": "AVAILABLE"
+        },
+        "measured_train_delay_minutes": {
+          "unit": "minutes",
+          "formula": "Unavailable: no actual execution delay feed",
+          "direction": "NOT_MEASURED",
+          "source": null,
+          "scenario": null,
+          "raw_delta": null,
+          "status": "NOT_AVAILABLE"
+        },
+        "solver_wall_time_seconds": {
+          "unit": "seconds",
+          "formula": "Actual solver runtime; no CP-SAT runtime for baseline",
+          "direction": "INFORMATIONAL",
+          "source": 0.0014048,
+          "scenario": 0.0015301000000000002,
+          "raw_delta": 0.00012530000000000006,
+          "status": "AVAILABLE"
+        }
+      },
+      "limits": [
+        "INPUTS_DIFFER_SO_DELTAS_ARE_NOT_OPTIMIZER_GAINS",
+        "PLANNED_WORK_IS_NOT_COMPLETED_WORK",
+        "FORECAST_EXPOSURE_IS_NOT_MEASURED_TRAIN_DELAY",
+        "SCENARIO_RESULTS_CANNOT_AUTHORIZE_POSSESSIONS"
+      ],
+      "generated_at": "2026-09-21T00:00:00+05:30"
+    },
+    "created_at": "2026-09-21T00:00:00+05:30",
+    "duplicate": false,
+    "authority": "ISOLATED_SIMULATION_ONLY",
+    "claims_permitted": false
+  },
+  "approval_blocked": {
+    "detail": "SCENARIO_DECISION_FORBIDDEN"
+  }
+}

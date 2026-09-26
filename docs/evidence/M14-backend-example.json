@@ -1,0 +1,247 @@
+{
+  "fixture": "SIMULATED monthly calendar; actual canonical plan and reproducible export metadata",
+  "schedule": {
+    "id": "ec9c4288-8c0f-4e41-a192-5a6f8c9d6bca",
+    "plan_revision_id": "a0d0d165-d009-4180-a729-7b800ad25b21",
+    "schedule_type": "MONTHLY",
+    "timezone": "Asia/Kolkata",
+    "period_start": "2026-09-01T00:00:00+05:30",
+    "period_end": "2026-10-01T00:00:00+05:30",
+    "content_hash": "231dbc25534382d9ac5963bf6700c4a689f79494d6cc6491346c59d2c3497a94",
+    "content": {
+      "schema_version": 1,
+      "schedule_type": "MONTHLY",
+      "timezone": "Asia/Kolkata",
+      "period": {
+        "local_start": "2026-09-01",
+        "local_end_exclusive": "2026-10-01",
+        "start_at": "2026-09-01T00:00:00+05:30",
+        "end_at": "2026-10-01T00:00:00+05:30",
+        "duration_minutes": 43200,
+        "calendar_days": 30
+      },
+      "status": "TENTATIVE_PROPOSAL",
+      "authority": "SOFTWARE_PROPOSAL_ONLY",
+      "plan_revision": {
+        "id": "a0d0d165-d009-4180-a729-7b800ad25b21",
+        "revision": 1,
+        "plan_hash": "9f0518343536df024f6d0bea0fb2b6474ef1e3c125a7d08e803db5436170d236",
+        "snapshot_hash": "b4e8242103357e53f7ba6e08477acb625cb8792db52db1b9f113b730e0292715"
+      },
+      "validation": {
+        "report_id": null,
+        "status": "NOT_RUN",
+        "currently_usable": false,
+        "blockers": [
+          "VALIDATION_REPORT_MISSING"
+        ]
+      },
+      "controller_decision": null,
+      "uncertainty": {
+        "data_valid_until": "2026-09-21T04:00:00+05:30",
+        "freight_coverage_declared_until_by_track": {
+          "AB": "2026-10-01T01:00:00+05:30"
+        }
+      },
+      "assignments": [
+        {
+          "id": "ade3ab6c2ae2c75907b5e864",
+          "mode": "ALLOW_PARALLEL",
+          "costs": {
+            "reserved_track_minutes": 80,
+            "forecast_exposure_train_track_seconds": 0,
+            "incremental_travel_minutes_against_fixed_duties": 0
+          },
+          "tasks": [
+            {
+              "work_end": "2026-09-21T02:35:00+05:30",
+              "setup_end": "2026-09-21T01:35:00+05:30",
+              "track_ids": [
+                "AB"
+              ],
+              "department": "ENGINEERING",
+              "issue_type": "INSPECTION",
+              "request_id": "43c6c7cf-6202-43d7-934c-bfd9d5e33e71",
+              "work_start": "2026-09-21T01:35:00+05:30",
+              "power_state": "ANY",
+              "restore_end": "2026-09-21T02:45:00+05:30",
+              "setup_start": "2026-09-21T01:25:00+05:30",
+              "requirements": [
+                {
+                  "type": "TRACK_CREW",
+                  "quantity": 1,
+                  "qualification": null
+                }
+              ],
+              "resource_end": "2026-09-21T02:45:00+05:30",
+              "restore_start": "2026-09-21T02:35:00+05:30",
+              "isolation_zone": null,
+              "resource_start": "2026-09-21T01:25:00+05:30",
+              "request_revision": 2,
+              "signalling_state": "ANY",
+              "resource_location": "AB"
+            },
+            {
+              "work_end": "2026-09-21T01:55:00+05:30",
+              "setup_end": "2026-09-21T01:35:00+05:30",
+              "track_ids": [
+                "AB"
+              ],
+              "department": "TRD",
+              "issue_type": "OHE_WORK",
+              "request_id": "5f5a6b40-1490-4eba-a998-aa6c4e3990dc",
+              "work_start": "2026-09-21T01:35:00+05:30",
+              "power_state": "ANY",
+              "restore_end": "2026-09-21T02:45:00+05:30",
+              "setup_start": "2026-09-21T01:25:00+05:30",
+              "requirements": [
+                {
+                  "type": "OHE_CREW",
+                  "quantity": 1,
+                  "qualification": null
+                }
+              ],
+              "resource_end": "2026-09-21T02:45:00+05:30",
+              "restore_start": "2026-09-21T02:35:00+05:30",
+              "isolation_zone": null,
+              "resource_start": "2026-09-21T01:25:00+05:30",
+              "request_revision": 1,
+              "signalling_state": "ANY",
+              "resource_location": "AB"
+            }
+          ],
+          "rule_ids": [
+            "PAIR-ENG-TRD"
+          ],
+          "track_ids": [
+            "AB"
+          ],
+          "allocations": [
+            {
+              "end_at": "2026-09-21T02:45:00+05:30",
+              "start_at": "2026-09-21T01:25:00+05:30",
+              "track_id": "AB",
+              "department": "ENGINEERING",
+              "request_id": "43c6c7cf-6202-43d7-934c-bfd9d5e33e71",
+              "resource_id": "CREW-1",
+              "qualification": "INSPECTION",
+              "resource_type": "TRACK_CREW"
+            },
+            {
+              "end_at": "2026-09-21T02:45:00+05:30",
+              "start_at": "2026-09-21T01:25:00+05:30",
+              "track_id": "AB",
+              "department": "TRD",
+              "request_id": "5f5a6b40-1490-4eba-a998-aa6c4e3990dc",
+              "resource_id": "CREW-2",
+              "qualification": "OHE_WORK",
+              "resource_type": "OHE_CREW"
+            }
+          ],
+          "request_ids": [
+            "43c6c7cf-6202-43d7-934c-bfd9d5e33e71",
+            "5f5a6b40-1490-4eba-a998-aa6c4e3990dc"
+          ],
+          "possession_end": "2026-09-21T02:45:00+05:30",
+          "possession_start": "2026-09-21T01:25:00+05:30",
+          "policy_revision_id": "316bd019-3a7e-4d6c-819a-c959394eacdf",
+          "priority_by_request": {
+            "43c6c7cf-6202-43d7-934c-bfd9d5e33e71": 4875,
+            "5f5a6b40-1490-4eba-a998-aa6c4e3990dc": 4875
+          },
+          "resource_consumption": "SETUP_WORK_RESTORATION; parallel units reserved for whole possession",
+          "commitment_status": "TENTATIVE",
+          "reservation_scope": null,
+          "forecast_coverage_status": "DECLARED_COMPLETE"
+        }
+      ],
+      "deferred": [],
+      "planner_evidence": {
+        "planner": "CP_SAT",
+        "solver_status": "OPTIMAL",
+        "optimality_scope": "generated_candidate_set",
+        "candidate_search": {
+          "pruning": [],
+          "configuration": {
+            "max_groups": 500,
+            "max_candidates": 1000,
+            "max_time_plans": 5000,
+            "opportunity_id": "32f30a89-d1e6-483c-9f28-d0074c6332d8",
+            "max_bundle_size": 3,
+            "max_assignments_per_plan": 20,
+            "max_resource_slots_per_plan": 100,
+            "max_assignment_nodes_per_plan": 10000
+          },
+          "groups_evaluated": 3,
+          "optimality_scope": "generated_candidate_set",
+          "time_plans_evaluated": 11,
+          "complete_within_declared_search": true
+        }
+      },
+      "counts": {
+        "assignments": 1,
+        "tasks": 2,
+        "firm": 0,
+        "tentative": 1,
+        "requires_attention": 0,
+        "deferred": 0
+      },
+      "generated_at": "2026-09-21T00:00:00+05:30",
+      "planning_method": "SINGLE_CANONICAL_PLAN"
+    },
+    "created_at": "2026-09-21T00:00:00+05:30",
+    "duplicate": false
+  },
+  "csv_rows": [
+    {
+      "record_type": "ASSIGNMENT",
+      "schedule_type": "MONTHLY",
+      "schedule_status": "TENTATIVE_PROPOSAL",
+      "plan_revision_id": "a0d0d165-d009-4180-a729-7b800ad25b21",
+      "plan_hash": "9f0518343536df024f6d0bea0fb2b6474ef1e3c125a7d08e803db5436170d236",
+      "snapshot_hash": "b4e8242103357e53f7ba6e08477acb625cb8792db52db1b9f113b730e0292715",
+      "candidate_id": "ade3ab6c2ae2c75907b5e864",
+      "request_id": "43c6c7cf-6202-43d7-934c-bfd9d5e33e71",
+      "department": "ENGINEERING",
+      "issue_type": "INSPECTION",
+      "possession_start": "2026-09-21T01:25:00+05:30",
+      "setup_start": "2026-09-21T01:25:00+05:30",
+      "work_start": "2026-09-21T01:35:00+05:30",
+      "work_end": "2026-09-21T02:35:00+05:30",
+      "restore_end": "2026-09-21T02:45:00+05:30",
+      "possession_end": "2026-09-21T02:45:00+05:30",
+      "track_ids": "AB",
+      "resource_ids": "CREW-1",
+      "commitment_status": "TENTATIVE",
+      "reservation_scope": "",
+      "forecast_coverage_status": "DECLARED_COMPLETE",
+      "deferred_reason": "",
+      "authority": "SOFTWARE_PROPOSAL_ONLY"
+    },
+    {
+      "record_type": "ASSIGNMENT",
+      "schedule_type": "MONTHLY",
+      "schedule_status": "TENTATIVE_PROPOSAL",
+      "plan_revision_id": "a0d0d165-d009-4180-a729-7b800ad25b21",
+      "plan_hash": "9f0518343536df024f6d0bea0fb2b6474ef1e3c125a7d08e803db5436170d236",
+      "snapshot_hash": "b4e8242103357e53f7ba6e08477acb625cb8792db52db1b9f113b730e0292715",
+      "candidate_id": "ade3ab6c2ae2c75907b5e864",
+      "request_id": "5f5a6b40-1490-4eba-a998-aa6c4e3990dc",
+      "department": "TRD",
+      "issue_type": "OHE_WORK",
+      "possession_start": "2026-09-21T01:25:00+05:30",
+      "setup_start": "2026-09-21T01:25:00+05:30",
+      "work_start": "2026-09-21T01:35:00+05:30",
+      "work_end": "2026-09-21T01:55:00+05:30",
+      "restore_end": "2026-09-21T02:45:00+05:30",
+      "possession_end": "2026-09-21T02:45:00+05:30",
+      "track_ids": "AB",
+      "resource_ids": "CREW-2",
+      "commitment_status": "TENTATIVE",
+      "reservation_scope": "",
+      "forecast_coverage_status": "DECLARED_COMPLETE",
+      "deferred_reason": "",
+      "authority": "SOFTWARE_PROPOSAL_ONLY"
+    }
+  ]
+}

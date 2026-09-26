@@ -1,0 +1,262 @@
+{
+  "started_at": "2026-09-26T02:45:40.893Z",
+  "scope": "READ_ONLY_CURRENT_BACKEND",
+  "screens": [
+    {
+      "route": "login",
+      "width": 1440,
+      "file": "login-1440.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "login",
+      "width": 390,
+      "file": "login-390.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "dashboard",
+      "width": 1440,
+      "file": "dashboard-1440.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "planning",
+      "width": 1440,
+      "file": "planning-1440.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "corridor",
+      "width": 1440,
+      "file": "corridor-1440.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "evaluation",
+      "width": 1440,
+      "file": "evaluation-1440.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "validation",
+      "width": 1440,
+      "file": "validation-1440.png",
+      "horizontal_page_overflow": false,
+      "states": [
+        "No findings recorded",
+        "Select a finding"
+      ],
+      "alerts": []
+    },
+    {
+      "route": "review",
+      "width": 1440,
+      "file": "review-1440.png",
+      "horizontal_page_overflow": false,
+      "states": [
+        "Explanations not generated"
+      ],
+      "alerts": []
+    },
+    {
+      "route": "dashboard",
+      "width": 1920,
+      "file": "dashboard-1920.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "planning",
+      "width": 1920,
+      "file": "planning-1920.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "corridor",
+      "width": 1920,
+      "file": "corridor-1920.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "evaluation",
+      "width": 1920,
+      "file": "evaluation-1920.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "validation",
+      "width": 1920,
+      "file": "validation-1920.png",
+      "horizontal_page_overflow": false,
+      "states": [
+        "No findings recorded",
+        "Select a finding"
+      ],
+      "alerts": []
+    },
+    {
+      "route": "review",
+      "width": 1920,
+      "file": "review-1920.png",
+      "horizontal_page_overflow": false,
+      "states": [
+        "Explanations not generated"
+      ],
+      "alerts": []
+    },
+    {
+      "route": "dashboard",
+      "width": 390,
+      "file": "dashboard-390.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "planning",
+      "width": 390,
+      "file": "planning-390.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "corridor",
+      "width": 390,
+      "file": "corridor-390.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "evaluation",
+      "width": 390,
+      "file": "evaluation-390.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "validation",
+      "width": 390,
+      "file": "validation-390.png",
+      "horizontal_page_overflow": false,
+      "states": [
+        "No findings recorded",
+        "Select a finding"
+      ],
+      "alerts": []
+    },
+    {
+      "route": "review",
+      "width": 390,
+      "file": "review-390.png",
+      "horizontal_page_overflow": false,
+      "states": [
+        "Explanations not generated"
+      ],
+      "alerts": []
+    }
+  ],
+  "interactions": [
+    "Planning timeline scale changed to 2× and back to Fit",
+    "Selecting an actual interval opens the evidence inspector"
+  ],
+  "browser_errors": [],
+  "console_errors": [
+    "A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\n%s%s https://react.dev/link/hydration-mismatch \n\n  ...\n    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>\n      <LoadingBoundary name=\"login/\" loading={null}>\n        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>\n          <RedirectBoundary>\n            <RedirectErrorBoundary router={{...}}>\n              <InnerLayoutRouter url=\"/login\" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>\n                <SegmentViewNode type=\"page\" pagePath=\"login/page...\">\n                  <SegmentTrieNode>\n                  <ClientPageRoot Component={function LoginPage} serverProvidedParams={{...}}>\n                    <LoginPage params={Promise} searchParams={Promise}>\n                      <div className=\"login-page\">\n                        <div>\n                        <div className=\"login-main\">\n                          <section className=\"login-form...\" aria-labelledby=\"login-title\">\n                            <span>\n                            <span>\n                            <h1>\n                            <p>\n                            <form onSubmit={function submit} autoComplete=\"off\">\n                              <label>\n                              <input\n                                id=\"credential\"\n                                type=\"password\"\n                                name=\"credential\"\n                                value=\"\"\n                                onChange={function onChange}\n                                required={true}\n                                autoComplete=\"off\"\n                                aria-describedby=\"credential-help\"\n-                               style={{caret-color:\"transparent\"}}\n                              >\n                              ...\n                            ...\n                          ...\n                        ...\n                ...\n              ...\n",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "http_errors": [],
+  "expected_navigation_cancellations": [
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots",
+    "/api/v1/workspace/snapshots"
+  ],
+  "expected_absences": [
+    {
+      "path": "/api/v1/plan-revisions/3c5e8c9c-4e57-401e-a2d2-01e97c6289aa/differences",
+      "status": 404,
+      "meaning": "No saved difference artifact for this revision"
+    },
+    {
+      "path": "/api/v1/plan-revisions/3c5e8c9c-4e57-401e-a2d2-01e97c6289aa/differences",
+      "status": 404,
+      "meaning": "No saved difference artifact for this revision"
+    },
+    {
+      "path": "/api/v1/plan-revisions/3c5e8c9c-4e57-401e-a2d2-01e97c6289aa/differences",
+      "status": 404,
+      "meaning": "No saved difference artifact for this revision"
+    }
+  ],
+  "blocked_writes": [],
+  "lifecycle": [
+    "Page closed",
+    "Browser context closed",
+    "Browser disconnected"
+  ],
+  "visual_acceptance": "PENDING_HUMAN_SCREENSHOT_REVIEW",
+  "login_dev_indicator": [
+    "Copy Error Info",
+    "complete Component Stack",
+    "Open in editor",
+    "Show 17 ignore-listed frame(s)",
+    "Open LoginPage in editor",
+    "Mark as helpful",
+    "Mark as not helpful",
+    "Open Next.js Dev Tools",
+    "Open issues overlay",
+    "Collapse issues badge"
+  ],
+  "context": {
+    "snapshot_id": "fa9bcf52-407c-481a-9223-7be30c8342a2",
+    "source_scope": "SIMULATED",
+    "revision_id": "3c5e8c9c-4e57-401e-a2d2-01e97c6289aa",
+    "session_id": null
+  },
+  "planning_status_evidence": {
+    "preparation": "No session recorded",
+    "baseline": "COMPLETED",
+    "cp_sat": "OPTIMAL"
+  },
+  "comparison_coverage": "SAVED_METRICS_VISIBLE",
+  "completed_at": "2026-09-26T02:46:16.589Z",
+  "status": "CAPTURED_REQUIRES_VISUAL_REVIEW"
+}

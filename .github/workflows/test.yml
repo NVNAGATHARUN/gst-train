@@ -1,0 +1,22 @@
+name: backend
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: railsync
+          POSTGRES_PASSWORD: test-only
+          POSTGRES_DB: railsync_test
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 5s --health-retries 10
+    env:
+      RAILSYNC_DATABASE_URL: postgresql+psycopg://railsync:test-only@localhost:5432/railsync_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --locked
+      - run: uv run alembic upgrade head
+      - run: uv run pytest -q

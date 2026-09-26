@@ -1,0 +1,16 @@
+.git
+.github
+.venv
+.tools
+.local
+.env
+web
+docs
+tests
+scripts
+*.pdf
+*.zip
+__pycache__
+*.pyc
+.pytest_cache
+.hypothesis

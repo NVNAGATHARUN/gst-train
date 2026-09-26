@@ -1,0 +1,17 @@
+{
+  "scope": "SIMULATED",
+  "draft_snapshot_id": "69f3e064-09bc-4215-8cdd-7020e3851979",
+  "facts_hash_verified": true,
+  "submitted_request_captured": "7d85a5a5-4922-4681-bf28-f04e91f685dd",
+  "request_count": 3,
+  "mismatched_facts_status": 409,
+  "blocked_session_status": 409,
+  "blocked_session_error": {
+    "detail": "USE_ROLLING_REPLAN_WORKFLOW"
+  },
+  "undeclared_draft_source_state": "BLOCKED",
+  "source_blockers": [
+    "EXECUTION_AWARE_SNAPSHOT_REQUIRED",
+    "VALIDATION_CONTEXT_MISSING"
+  ]
+}

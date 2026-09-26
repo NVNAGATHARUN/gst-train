@@ -1,0 +1,8 @@
+{
+  "scope": "SIMULATED",
+  "planner_capture_status": 403,
+  "controller_capture_status": 409,
+  "controller_error": "REPLANNING_TIME_OUTSIDE_HORIZON",
+  "successful_current_time_handoff": "NOT_VERIFIED; source horizon expired",
+  "backend_rules_bypassed": false
+}

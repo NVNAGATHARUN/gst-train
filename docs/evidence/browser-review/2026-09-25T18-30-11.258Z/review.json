@@ -1,0 +1,20 @@
+{
+  "started_at": "2026-09-25T18:30:11.258Z",
+  "scope": "READ_ONLY_CURRENT_BACKEND",
+  "screens": [],
+  "interactions": [],
+  "browser_errors": [],
+  "http_errors": [],
+  "blocked_writes": [],
+  "visual_acceptance": "PENDING_HUMAN_SCREENSHOT_REVIEW",
+  "context": {
+    "snapshot_id": "fa9bcf52-407c-481a-9223-7be30c8342a2",
+    "source_scope": "SIMULATED",
+    "revision_id": "3c5e8c9c-4e57-401e-a2d2-01e97c6289aa",
+    "session_id": null
+  },
+  "status": "BLOCKED",
+  "error": "locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for getByLabel('Planning snapshot', { exact: true }) to be visible\u001b[22m\n",
+  "failure_diagnostic_error": "locator.allTextContents: Target page, context or browser has been closed",
+  "session_cleanup": "Could not confirm session revocation; browser context closed."
+}

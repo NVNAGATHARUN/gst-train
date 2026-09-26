@@ -1,0 +1,138 @@
+[
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\globals.css",
+    "Hash": "C29B5608267496E2C402656699C6681B2A65CEDB842C10AA9475E6FD9FE28846"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\layout.tsx",
+    "Hash": "24D3FD484697A1F30CB74DC342430B05241AA5DB4742CE1C93DD76F6872C196A"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\operations.css",
+    "Hash": "112F91456FFA601BF64ADB370A37759BAEAD28752AEF55A4449FAC700CAD87EB"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\page.tsx",
+    "Hash": "044430EDEC6A9DF37216D6391C67C5D9F48F6A1DF6E7049DFE6B7ECDC4A06845"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\workspace.css",
+    "Hash": "E8E2FB084701811BF7B56A8B4CCC5D944576E1665F4E2EF82E8CD69F64550D51"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\layout.tsx",
+    "Hash": "9918934D03966E6E32EA41CD1F68B4787F49C2CE6BD44728FD2AE97FF2D7673B"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\admin\\page.tsx",
+    "Hash": "E63D76D93476A1E55C688F8ED380FE5AA3C2072F6C68E36E5AE1B444AB335168"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\changes\\page.tsx",
+    "Hash": "50862DD689A525CD4FCDA85C90A82C685CA4E33D16E15E5940B55E5518369A3F"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\corridor\\page.tsx",
+    "Hash": "9EAB53F2BC0C41C87BAD62FC16CB7B3CADE0D2ECE70F588480D71EA9871AD847"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\dashboard\\page.tsx",
+    "Hash": "A5038D5A2126317251745263466543E8BA2CDD6BC64C7C8F9FDC52C6C037C454"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\data-readiness\\page.tsx",
+    "Hash": "D8BF4883B0540E01E1E98B21AB09BE8C7B87EEC0372184FD5AFFC0C552D49FDB"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\evaluation\\page.tsx",
+    "Hash": "BDEADDA8F7BA313AEB5750F124F93D1EA196114B542CDA2590CFDE66D8980FC4"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\execution\\page.tsx",
+    "Hash": "5654C7351B919677B3466EA58118E047316DC265846CB48B001FC27C4FCA472C"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\maintenance\\page.tsx",
+    "Hash": "4C73DC3D25E7ED9AA72881B49AE34B62D99917AFD5A68910B262C1719FA89043"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\optimization\\page.tsx",
+    "Hash": "7814353E91F1F28C18AE5C37215130819E1CFA2CC92A1AB3F96AE0F2DEDB8E3E"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\planning\\page.tsx",
+    "Hash": "455F4D2D23E18A3E99AB2DE49208DED3A4BBF5001A4B3276B2CCE5C4C0D0C2C3"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\reports\\page.tsx",
+    "Hash": "6A5E2C53F579E004ECFF933E8C314EB8081BCC4A96A52F1FAB4DB843F2A4A78B"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\review\\page.tsx",
+    "Hash": "947735C9BEF22C9EBAA77181F9B7BEA15AC3C6FAE8391370748631652532FAC8"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\schedules\\page.tsx",
+    "Hash": "05888343EFD9C45A5CAEDCEDB04446AFE3DD9E467E3F3F08C083FA6FC7DB6173"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\system\\page.tsx",
+    "Hash": "1368B939812DC12371F2CA61A6280D71CBD775EBBC59CA25A7E2ABD4AF6D6746"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\(work)\\validation\\page.tsx",
+    "Hash": "0643DFD44B4528FFF8489482680BE9742889536CE21D2113B22F5BBBA9483429"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\app\\login\\page.tsx",
+    "Hash": "84338C1CDBC22F55340821FABF393C461A9357A0F04021636068ECEF8B2F1912"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\components\\app-shell.tsx",
+    "Hash": "7A33835B92F176CF1C8CBF4916A67CE354060AE38FFB7ABFBCDA9736C9CC7E8C"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\components\\data-state.tsx",
+    "Hash": "7F114FCEDC95D528520893EA2025037D78DF3D6B0EE31FB03D6F7D82194064EA"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\components\\rail-icon.tsx",
+    "Hash": "68830DA24441C54AB05E5835B4FDE472D5287D1DC0003320123EF96440CF84B9"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\components\\status-badge.tsx",
+    "Hash": "6F58006639DF02AFEBE6800AF514FA8BC67F8BCE4E70A248E5DEEA7C825768B1"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\components\\task-stages.tsx",
+    "Hash": "A55A37E7076B52E064B44624EEE7E70423B8A661857FBE3A3C2CFA7E544E354A"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\components\\time-track-timeline.tsx",
+    "Hash": "0E18F72742FEB9CE8632A5C4A20F8C4499739772BBD79AFEB1DCB9A338443334"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\lib\\api.ts",
+    "Hash": "5FBB2D29188FD58D2BB942375518BC4D9E108B34835B224AA642F60906F1380E"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\lib\\session.tsx",
+    "Hash": "255266CE492BBD44485737C259018AD50F7063EA3381C31616EE06FCC0F0F2CD"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\lib\\timeline-layout.ts",
+    "Hash": "8B44F477DC935A8EFD8E63060AE766D4DACED93E661C7C0150AE35FC9918C849"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\lib\\timeline.ts",
+    "Hash": "A07E18D1549AF60414F6DC3129709730F04F16A50D40197EE2BC1AB595E88B6B"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\lib\\types.ts",
+    "Hash": "30B7488FC351F8A456F2BCFF75AE0531E84AE73E6CF6931D9ADA048ECB4A0D96"
+  },
+  {
+    "Path": "E:\\sih_codex_train\\web\\src\\lib\\use-workspace.ts",
+    "Hash": "38A370D1400C0808A9DB26FB9B21EA7F0D0A59AF8F30E75B85E436A75472A034"
+  }
+]

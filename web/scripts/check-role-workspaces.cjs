@@ -1,0 +1,16 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),ts=require('typescript');
+const source=fs.readFileSync('src/lib/role-workspace.ts','utf8');
+const code=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText;
+const sandbox={exports:{}};vm.runInNewContext(code,sandbox);
+const {canOpenPage,roleDashboard}=sandbox.exports;
+for(const role of ['DEPARTMENT','PLANNER','CONTROLLER','AUDITOR','ADMIN'])assert(canOpenPage(role,'/dashboard'));
+for(const path of ['/planning','/optimization','/review','/execution','/system','/admin'])assert(!canOpenPage('DEPARTMENT',path));
+assert(canOpenPage('DEPARTMENT','/maintenance'));assert(canOpenPage('DEPARTMENT','/data-readiness'));
+assert(canOpenPage('PLANNER','/optimization'));assert(!canOpenPage('PLANNER','/system'));
+assert(canOpenPage('CONTROLLER','/execution'));assert(!canOpenPage('CONTROLLER','/optimization'));
+assert(canOpenPage('AUDITOR','/reports'));assert(!canOpenPage('AUDITOR','/changes'));
+assert(canOpenPage('ADMIN','/system'));assert(!canOpenPage('ADMIN','/optimization'));
+for(const role of [undefined,'UNKNOWN','department'])assert(!canOpenPage(role,'/dashboard'));
+assert(!canOpenPage('DEPARTMENT','/review?role=CONTROLLER'));assert(!canOpenPage('DEPARTMENT','/maintenance/../review'));
+for(const [role,view] of Object.entries(roleDashboard))assert(canOpenPage(role,view.href));
+console.log('Role workspace boundaries and dashboard action checks passed for all five roles.');

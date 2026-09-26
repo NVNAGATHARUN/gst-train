@@ -1,0 +1,14 @@
+{
+  "scope": "SIMULATED",
+  "request_id": "7d85a5a5-4922-4681-bf28-f04e91f685dd",
+  "states": [
+    "RAISED",
+    "VALIDATED",
+    "PENDING_PLANNING"
+  ],
+  "live_register_visible": true,
+  "existing_snapshot_unchanged": true,
+  "existing_snapshot_excludes_new_request": true,
+  "snapshot_id": "155f3364-bdc9-47bc-a97f-1fb3bebf39f2",
+  "planning_status": "NOT_SCHEDULED; new snapshot and validation required"
+}

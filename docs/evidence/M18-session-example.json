@@ -1,0 +1,31 @@
+{
+  "scope": "SIMULATED test identity; no railway authority",
+  "user": {
+    "id": "3c422529-b0c6-4b66-a9be-a8a417924271",
+    "name": "PLANNER",
+    "role": "PLANNER",
+    "department": null
+  },
+  "session_flags": [
+    "HttpOnly",
+    "Secure",
+    "SameSite=strict",
+    "Path=/"
+  ],
+  "plaintext_session_stored": false,
+  "cache_control": "no-store",
+  "role_denial": {
+    "detail": "ROLE_FORBIDDEN"
+  },
+  "csrf_denial": {
+    "detail": "CSRF_TOKEN_INVALID"
+  },
+  "persisted_station": {
+    "id": "M18-C",
+    "kind": "station",
+    "revision": 1,
+    "name": "C"
+  },
+  "logout_status": 204,
+  "revoked_session_read_status": 401
+}

@@ -1,0 +1,189 @@
+{
+  "started_at": "2026-09-25T18:34:36.495Z",
+  "scope": "READ_ONLY_CURRENT_BACKEND",
+  "screens": [
+    {
+      "route": "planning",
+      "width": 1440,
+      "file": "planning-1440.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "corridor",
+      "width": 1440,
+      "file": "corridor-1440.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "evaluation",
+      "width": 1440,
+      "file": "evaluation-1440.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "validation",
+      "width": 1440,
+      "file": "validation-1440.png",
+      "horizontal_page_overflow": false,
+      "states": [
+        "No findings recorded",
+        "Select a finding"
+      ],
+      "alerts": []
+    },
+    {
+      "route": "review",
+      "width": 1440,
+      "file": "review-1440.png",
+      "horizontal_page_overflow": false,
+      "states": [
+        "Explanations not generated"
+      ],
+      "alerts": []
+    },
+    {
+      "route": "planning",
+      "width": 1920,
+      "file": "planning-1920.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "corridor",
+      "width": 1920,
+      "file": "corridor-1920.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "evaluation",
+      "width": 1920,
+      "file": "evaluation-1920.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "validation",
+      "width": 1920,
+      "file": "validation-1920.png",
+      "horizontal_page_overflow": false,
+      "states": [
+        "No findings recorded",
+        "Select a finding"
+      ],
+      "alerts": []
+    },
+    {
+      "route": "review",
+      "width": 1920,
+      "file": "review-1920.png",
+      "horizontal_page_overflow": false,
+      "states": [
+        "Explanations not generated"
+      ],
+      "alerts": []
+    },
+    {
+      "route": "planning",
+      "width": 390,
+      "file": "planning-390.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "corridor",
+      "width": 390,
+      "file": "corridor-390.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "evaluation",
+      "width": 390,
+      "file": "evaluation-390.png",
+      "horizontal_page_overflow": false,
+      "states": [],
+      "alerts": []
+    },
+    {
+      "route": "validation",
+      "width": 390,
+      "file": "validation-390.png",
+      "horizontal_page_overflow": false,
+      "states": [
+        "No findings recorded",
+        "Select a finding"
+      ],
+      "alerts": []
+    },
+    {
+      "route": "review",
+      "width": 390,
+      "file": "review-390.png",
+      "horizontal_page_overflow": false,
+      "states": [
+        "Explanations not generated"
+      ],
+      "alerts": []
+    }
+  ],
+  "interactions": [
+    "Planning timeline scale changed to 2× and back to Fit",
+    "Selecting an actual interval opens the evidence inspector"
+  ],
+  "browser_errors": [
+    "API request failed: /api/v1/workspace/snapshots · net::ERR_ABORTED",
+    "API request failed: /api/v1/workspace/snapshots · net::ERR_ABORTED",
+    "API request failed: /api/v1/workspace/snapshots · net::ERR_ABORTED",
+    "API request failed: /api/v1/workspace/snapshots · net::ERR_ABORTED",
+    "API request failed: /api/v1/workspace/snapshots · net::ERR_ABORTED",
+    "API request failed: /api/v1/workspace/snapshots · net::ERR_ABORTED",
+    "API request failed: /api/v1/workspace/snapshots · net::ERR_ABORTED",
+    "API request failed: /api/v1/workspace/snapshots · net::ERR_ABORTED",
+    "API request failed: /api/v1/workspace/snapshots · net::ERR_ABORTED",
+    "API request failed: /api/v1/workspace/snapshots · net::ERR_ABORTED",
+    "API request failed: /api/v1/workspace/snapshots · net::ERR_ABORTED",
+    "API request failed: /api/v1/workspace/snapshots · net::ERR_ABORTED"
+  ],
+  "http_errors": [
+    {
+      "path": "/api/v1/plan-revisions/3c5e8c9c-4e57-401e-a2d2-01e97c6289aa/differences",
+      "status": 404
+    },
+    {
+      "path": "/api/v1/plan-revisions/3c5e8c9c-4e57-401e-a2d2-01e97c6289aa/differences",
+      "status": 404
+    },
+    {
+      "path": "/api/v1/plan-revisions/3c5e8c9c-4e57-401e-a2d2-01e97c6289aa/differences",
+      "status": 404
+    }
+  ],
+  "blocked_writes": [],
+  "lifecycle": [
+    "Page closed",
+    "Browser context closed",
+    "Browser disconnected"
+  ],
+  "visual_acceptance": "PENDING_HUMAN_SCREENSHOT_REVIEW",
+  "context": {
+    "snapshot_id": "fa9bcf52-407c-481a-9223-7be30c8342a2",
+    "source_scope": "SIMULATED",
+    "revision_id": "3c5e8c9c-4e57-401e-a2d2-01e97c6289aa",
+    "session_id": null
+  },
+  "comparison_coverage": "SAVED_METRICS_VISIBLE",
+  "completed_at": "2026-09-25T18:35:14.990Z",
+  "status": "REVIEW_ISSUES_FOUND"
+}

@@ -1,0 +1,20 @@
+{
+  "fixture": "SIMULATED M10 compatibility-disabled variant",
+  "candidate_count": 9,
+  "bundle_count": 0,
+  "exclusions": [
+    {
+      "request_ids": [
+        "63f6dfb9-887e-4432-834b-b96c6aa2058a",
+        "6e00d3ac-930e-49cf-844d-a4454b389177"
+      ],
+      "code": "COMPATIBILITY_UNKNOWN",
+      "rule_ids": []
+    }
+  ],
+  "review_blockers": [
+    "INDEPENDENT_VALIDATION_NOT_YET_PERFORMED",
+    "SIMULATED_RULES_NOT_OPERATIONAL_AUTHORITY",
+    "UNRESOLVED_COA_SOURCE_CONFLICT"
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "scope": "READ_ONLY_ISOLATED_SIMULATED_ROLE_REVIEW",
+  "started_at": "2026-09-26T08:10:41.966Z",
+  "roles": [
+    {
+      "role": "DEPARTMENT",
+      "department": "ENGINEERING",
+      "links": [
+        "/dashboard",
+        "/maintenance",
+        "/data-readiness"
+      ],
+      "screens": [
+        {
+          "file": "department-1440.png",
+          "width": 1440,
+          "horizontal_page_overflow": false
+        },
+        {
+          "file": "department-390.png",
+          "width": 390,
+          "horizontal_page_overflow": false
+        }
+      ],
+      "denied_route": "/review",
+      "direct_route_denied": true
+    },
+    {
+      "role": "PLANNER",
+      "department": null,
+      "links": [
+        "/dashboard",
+        "/planning",
+        "/maintenance",
+        "/corridor",
+        "/optimization",
+        "/evaluation",
+        "/validation",
+        "/review",
+        "/schedules",
+        "/changes",
+        "/reports",
+        "/data-readiness"
+      ],
+      "screens": [
+        {
+          "file": "planner-1440.png",
+          "width": 1440,
+          "horizontal_page_overflow": false
+        },
+        {
+          "file": "planner-390.png",
+          "width": 390,
+          "horizontal_page_overflow": false
+        }
+      ],
+      "denied_route": "/system",
+      "direct_route_denied": true
+    },
+    {
+      "role": "CONTROLLER",
+      "department": null,
+      "links": [
+        "/dashboard",
+        "/planning",
+        "/maintenance",
+        "/corridor",
+        "/validation",
+        "/review",
+        "/schedules",
+        "/changes",
+        "/execution",
+        "/reports",
+        "/data-readiness"
+      ],
+      "screens": [
+        {
+          "file": "controller-1440.png",
+          "width": 1440,
+          "horizontal_page_overflow": false
+        },
+        {
+          "file": "controller-390.png",
+          "width": 390,
+          "horizontal_page_overflow": false
+        }
+      ],
+      "denied_route": "/optimization",
+      "direct_route_denied": true
+    },
+    {
+      "role": "AUDITOR",
+      "department": null,
+      "links": [
+        "/dashboard",
+        "/planning",
+        "/maintenance",
+        "/corridor",
+        "/evaluation",
+        "/validation",
+        "/review",
+        "/schedules",
+        "/execution",
+        "/reports",
+        "/data-readiness"
+      ],
+      "screens": [
+        {
+          "file": "auditor-1440.png",
+          "width": 1440,
+          "horizontal_page_overflow": false
+        },
+        {
+          "file": "auditor-390.png",
+          "width": 390,
+          "horizontal_page_overflow": false
+        }
+      ],
+      "denied_route": "/changes",
+      "direct_route_denied": true
+    },
+    {
+      "role": "ADMIN",
+      "department": null,
+      "links": [
+        "/dashboard",
+        "/reports",
+        "/data-readiness",
+        "/admin",
+        "/system"
+      ],
+      "screens": [
+        {
+          "file": "admin-1440.png",
+          "width": 1440,
+          "horizontal_page_overflow": false
+        },
+        {
+          "file": "admin-390.png",
+          "width": 390,
+          "horizontal_page_overflow": false
+        }
+      ],
+      "denied_route": "/optimization",
+      "direct_route_denied": true
+    }
+  ],
+  "errors": [],
+  "blocked_writes": [],
+  "visual_acceptance": "PENDING_SCREENSHOT_INSPECTION",
+  "status": "CAPTURED_REQUIRES_VISUAL_REVIEW",
+  "completed_at": "2026-09-26T08:10:57.355Z"
+}

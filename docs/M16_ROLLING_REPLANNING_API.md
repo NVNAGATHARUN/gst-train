@@ -1,0 +1,22 @@
+# M16 source-event reconciliation and rolling replacement proposals
+
+This workflow is limited to the explicitly **SIMULATED** scope. It creates a software proposal, not a railway movement authority or possession grant. A controller must still review an independently validated plan revision and explicitly approve it.
+
+## Sequence
+
+1. Record a disruption with `POST /api/v1/disruption-events`. The event invalidates affected snapshots and supersedes unfinished jobs. It does not edit source facts or release reservations.
+2. Update the relevant source through the existing maintenance, train-run, freight, resource-profile or network API. A source update must have a real new revision or a new request/restriction record.
+3. After the batch debounce, call `GET /api/v1/rolling-replans/preview/{source_plan_revision_id}`. The optional `horizon_end` query parameter may extend the source horizon by at most 30 days. The original start and all history are retained, so frozen or executed work is not truncated. The preview gives the current batch generation, a SHA256 hash of effective source facts, event-to-source matches and blockers.
+4. A controller calls `POST /api/v1/rolling-replans` with a UUID `idempotency_key`, source plan ID/hash, expected operational revision and batch generation, the preview's `expected_base_facts_hash`, optional `horizon_end`, and a fresh `validation_context` declaration **without** `facts_hash`. The server computes and binds the final snapshot facts hash. The context must identify SIMULATED source coverage, COA semantics, clearance, freight policy, commitments and validity; asymmetric clearance is currently rejected because the baseline uses one margin.
+5. Under the controller scope lock and publication lock, a repeatable-read transaction reconciles every latest event to changed source facts, captures the current approval/execution ledger, saves the immutable snapshot, computes rule priority, capacity windows, opportunities and coordinated candidates, and queues both a first-feasible baseline and CP-SAT run. An unresolved event, stale preview, capture blocker or blocked coordination rolls back the entire proposal. One source plan and batch generation can produce one prepared proposal. An identical idempotent retry returns its original IDs.
+6. The durable worker solves both queued runs. `GET /api/v1/rolling-replans/{id}` reports their actual statuses. The controller then materializes a plan revision, requests independent validation and reviews the difference before controlled supersession. No decision or reservation is written by the preparation endpoint.
+
+## Reconciliation evidence and limits
+
+`TRAIN_DELAY` requires a higher train-run revision with a later occupancy on an affected track. `FREIGHT_CHANGE` requires a higher forecast revision with a changed envelope/count/confidence. `RESOURCE_OUTAGE` requires reduced availability, removed qualification/calendar, or a new duty in the horizon for an affected resource. `URGENT_DEFECT` requires a new pending mandatory or high-severity/urgency request on an affected track. `RESTRICTION_CHANGE` requires a new/revised restriction intersecting the horizon and affected track. Each match records the source ID and revision where available. Effective source versions are selected before horizon filtering so an older revision cannot reappear when a new revision moves outside the horizon.
+
+The event record names affected tracks/resources, but does not carry an authoritative train or forecast identity. Reconciliation therefore proves that matching source facts changed on the declared footprint; it does not authenticate the external dispatcher's causal claim. Source completeness, COA interpretation and operating rules are explicit declarations in this prototype. Unknown or conflicting facts remain visible, and the independent validator and approval gate fail closed. No live TMS, SMMS or TDMS connection is claimed.
+
+## Verification
+
+`tests/test_m16_rolling.py` checks unchanged event blocking, source reconciliation for all five kinds, source/batch staleness, duplicate preparation, asymmetric clearance, a 30-day-bounded horizon extension, no fabricated assignment after a train/frozen-work conflict, and an actual urgent-defect replacement through worker solving, independent PASS validation and controller approval. The cumulative gate and saved backend response are recorded in `docs/evidence/M16-rolling.md`.

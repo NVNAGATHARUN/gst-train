@@ -1,0 +1,118 @@
+{
+  "fixture": "SIMULATED actual solved, validated and approved proposal; event intake only",
+  "event": {
+    "id": "2b75001c-1c4f-4e2e-8ad5-93f7f3ba0298",
+    "scope": "SIMULATED",
+    "kind": "TRAIN_DELAY",
+    "payload": {
+      "source": "SYNTHETIC_CONTROL_OFFICE",
+      "external_id": "delay-01",
+      "source_revision": 1,
+      "scope": "SIMULATED",
+      "kind": "TRAIN_DELAY",
+      "occurred_at": "2026-09-21T00:00:00+05:30",
+      "track_ids": [
+        "AB"
+      ],
+      "resource_ids": [],
+      "evidence_reference": "SYNTHETIC M16 event fixture",
+      "description": "Delay observed; updated occupancy and new validation required"
+    },
+    "payload_hash": "51a7ed531076fdd98e0cf3894c6e1e462d0287db47f2d424f9f8c68bccb3d470",
+    "occurred_at": "2026-09-21T00:00:00+05:30",
+    "received_at": "2026-09-21T00:00:00+05:30",
+    "result": {
+      "status": "NEW_SNAPSHOT_REQUIRED",
+      "batch_generation": 1,
+      "ready_at": "2026-09-21T00:00:05+05:30",
+      "invalidated_snapshot_ids": [
+        "6944b347-4af5-4f56-a9cb-dcb2fdd99d56"
+      ],
+      "superseded_run_ids": [],
+      "operational_revision": 2,
+      "source_facts_applied": false,
+      "authority": "SOFTWARE_PROPOSAL_ONLY"
+    },
+    "duplicate": false
+  },
+  "plan_state": {
+    "status": "STALE_REQUIRES_ATTENTION",
+    "disruption_event_ids": [
+      "2b75001c-1c4f-4e2e-8ad5-93f7f3ba0298"
+    ]
+  },
+  "validation": {
+    "id": "83b8b983-8906-4d30-b236-d02acdfff14e",
+    "run_id": "8fac9e83-2009-4af7-b7f2-0b1100b17f9a",
+    "plan_revision_id": "2c7678e4-448f-465e-922f-a9844a12b539",
+    "snapshot_id": "6944b347-4af5-4f56-a9cb-dcb2fdd99d56",
+    "status": "PASS",
+    "plan_hash": "0d137ffd050981bdd506ed2d9c46cf85059bf80471faa522b8e031525184656e",
+    "snapshot_hash": "d888e61a9f4e1ed55069e22a5b7c5298961d72b2bec7fb818a6c3d9fdcc604b9",
+    "checked_at": "2026-09-20T18:30:00+00:00",
+    "result": {
+      "scope": "SIMULATED",
+      "checks": [
+        {
+          "status": "PASS",
+          "category": "PROVENANCE",
+          "findings": []
+        },
+        {
+          "status": "PASS",
+          "category": "COVERAGE",
+          "findings": []
+        },
+        {
+          "status": "PASS",
+          "category": "TIMING",
+          "findings": []
+        },
+        {
+          "status": "PASS",
+          "category": "INFRASTRUCTURE",
+          "findings": []
+        },
+        {
+          "status": "PASS",
+          "category": "TRAFFIC",
+          "findings": []
+        },
+        {
+          "status": "PASS",
+          "category": "COMPATIBILITY",
+          "findings": []
+        },
+        {
+          "status": "PASS",
+          "category": "RESOURCES",
+          "findings": []
+        },
+        {
+          "status": "PASS",
+          "category": "COMMITMENTS",
+          "findings": []
+        },
+        {
+          "status": "PASS",
+          "category": "DATA_QUALITY",
+          "findings": []
+        }
+      ],
+      "status": "PASS",
+      "authority": "CONFIGURED_PROTOTYPE_CONSTRAINTS_ONLY",
+      "plan_hash": "0d137ffd050981bdd506ed2d9c46cf85059bf80471faa522b8e031525184656e",
+      "checked_at": "2026-09-21T00:00:00+05:30",
+      "snapshot_hash": "d888e61a9f4e1ed55069e22a5b7c5298961d72b2bec7fb818a6c3d9fdcc604b9",
+      "approval_blocked": false,
+      "checks_performed": 123,
+      "validator_version": "INDEPENDENT_VALIDATOR_V1",
+      "current_facts_hash": "b24bd0357fb2f1afb3baafb9c5897e7d2385607782f7afc15675809caaec4d91"
+    },
+    "usable_for_review": false,
+    "current_blockers": [
+      "SNAPSHOT_INVALIDATED_BY_EVENT"
+    ]
+  },
+  "reservations_preserved": true
+}

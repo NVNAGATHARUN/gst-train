@@ -1,0 +1,62 @@
+{
+  "fixture": "SIMULATED approved source ENG/TRD shared work preserved exactly in CP-SAT replacement",
+  "source_revision_id": "cafbdb17-3765-4279-8dd5-6bc31ea6cc3c",
+  "replacement_revision_id": "7b53e867-9b86-47fc-9143-1ecbaeeec0b6",
+  "captured_source_decision_id": "33f8b49a-44a1-463b-99a1-46cd35dc636c",
+  "replacement_decision_id": "ae1c3782-27a6-4798-a398-17bf2c2d1342",
+  "observation": {
+    "id": "062ff272-dd03-44ad-ad46-30738989dac3",
+    "plan_revision_id": "7b53e867-9b86-47fc-9143-1ecbaeeec0b6",
+    "decision_id": "ae1c3782-27a6-4798-a398-17bf2c2d1342",
+    "request_id": "1981bf7c-0c0f-4eb7-8c5f-ad2f00a6797a",
+    "candidate_id": "e3388a3fee2804400e6f775a",
+    "assignment_hash": "50394ce8be68b6a19b3d572b034e11e1e631d2805063f6052e333de006c790b6",
+    "scope": "SIMULATED",
+    "sequence": 2,
+    "status": "COMPLETED",
+    "observed_at": "2026-09-21T02:35:00+05:30",
+    "received_at": "2026-09-21T02:35:00+05:30",
+    "payload": {
+      "idempotency_key": "b369e29a-4f7c-41f8-8aea-d0da7679c60b",
+      "decision_id": "ae1c3782-27a6-4798-a398-17bf2c2d1342",
+      "expected_plan_hash": "d5dfb1f80206dfb1c3615afa15c8cde2fce34cebe606e0e22064357c59d38426",
+      "candidate_id": "e3388a3fee2804400e6f775a",
+      "expected_assignment_hash": "50394ce8be68b6a19b3d572b034e11e1e631d2805063f6052e333de006c790b6",
+      "request_id": "1981bf7c-0c0f-4eb7-8c5f-ad2f00a6797a",
+      "expected_sequence": 1,
+      "expected_operational_revision": 5,
+      "status": "COMPLETED",
+      "observed_at": "2026-09-21T02:35:00+05:30",
+      "remaining_work_minutes": 0,
+      "verified": true,
+      "evidence_reference": "SYNTHETIC controller work log",
+      "note": "Observed task execution in prototype fixture"
+    },
+    "result": {
+      "authority": "SOFTWARE_OBSERVATION_ONLY",
+      "execution_authorized": false,
+      "reservations_released": false,
+      "source_plan_stale": true,
+      "outside_planned_work_interval": false,
+      "remaining_work_known": true,
+      "requires_execution_aware_replan": true,
+      "operational_revision": 6,
+      "track_ids": [
+        "AB"
+      ],
+      "resource_ids": [
+        "CREW-1",
+        "CREW-2"
+      ],
+      "continuation": {
+        "kind": "PRESERVED_ASSIGNMENT",
+        "source_decision_id": "33f8b49a-44a1-463b-99a1-46cd35dc636c",
+        "source_execution_record_id": "90222d4f-30b5-4468-9c52-e55b08a911cf",
+        "source_assignment_hash": "50394ce8be68b6a19b3d572b034e11e1e631d2805063f6052e333de006c790b6",
+        "release_id": null,
+        "reconciliation_id": null
+      }
+    },
+    "duplicate": false
+  }
+}

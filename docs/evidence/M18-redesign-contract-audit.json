@@ -1,0 +1,7 @@
+{
+  "scope": "STATIC_API_CALL_PRESERVATION",
+  "files_reviewed": 28,
+  "api_fetch_calls": 95,
+  "changed_call_sites": [],
+  "live_http_integration": "NOT_RUN_PREVIEW_UNREACHABLE"
+}

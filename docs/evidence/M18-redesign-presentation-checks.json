@@ -1,0 +1,64 @@
+{
+  "scope": "FRONTEND_PRESENTATION_ONLY",
+  "fixture": "archived SIMULATED backend workspace; not current approval evidence",
+  "checks": [
+    {
+      "name": "Half-open touching intervals reuse a visual row",
+      "status": "PASS"
+    },
+    {
+      "name": "Nested and concurrent occupancy remains separately selectable",
+      "status": "PASS"
+    },
+    {
+      "name": "Packing is deterministic for reordered API inputs",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid, zero-length and out-of-horizon intervals do not create marks",
+      "status": "PASS"
+    },
+    {
+      "name": "Clipping never mutates source intervals",
+      "status": "PASS"
+    },
+    {
+      "name": "Midnight ticks retain dates and exact horizon endpoints",
+      "status": "PASS"
+    },
+    {
+      "name": "Archived backend occupancy and proposal intervals survive projection exactly",
+      "status": "PASS"
+    },
+    {
+      "name": "Timeline renders actual saved evidence with an exact-time register",
+      "status": "PASS"
+    },
+    {
+      "name": "Missing artifacts remain unknown rather than showing computed capacity",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid saved horizon has a visible error state",
+      "status": "PASS"
+    },
+    {
+      "name": "Saved task phases render without recalculate or rounding",
+      "status": "PASS"
+    },
+    {
+      "name": "Untrusted train labels are escaped by production components",
+      "status": "PASS"
+    },
+    {
+      "name": "Shared and operational styles parse",
+      "status": "PASS"
+    },
+    {
+      "name": "Archived comparison matches only its exact snapshot and saved plan pair",
+      "status": "PASS"
+    }
+  ],
+  "passed": 14,
+  "browser_visual_acceptance": "NOT_COVERED"
+}

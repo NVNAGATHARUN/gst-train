@@ -1,0 +1,38 @@
+"use client";
+import {useEffect,useState} from 'react';
+import Link from 'next/link';
+import {api,messageFor,shortId} from '@/lib/api';
+import {useSession} from '@/lib/session';
+import type {SnapshotDetail,SnapshotSummary} from '@/lib/types';
+type CaptureInput={horizon_start:string;horizon_end:string;track_ids:string[];require_freight_forecast:boolean;coordination_policy_id?:string;replanning_capture_id?:string};
+type Saved={id:string;content_hash:string;counts:Record<string,number>;duplicate:boolean};
+const iso=(value:string)=>{const date=new Date(value+':00+05:30');if(!Number.isFinite(date.getTime()))throw new Error('Enter valid IST dates.');return date.toISOString();};
+export function SnapshotPreparation({onSaved}:{onSaved:(snapshot:SnapshotSummary)=>void}){
+ const {value:session}=useSession();
+ const [start,setStart]=useState(''),[end,setEnd]=useState(''),[tracks,setTracks]=useState(''),[policy,setPolicy]=useState(''),[capture,setCapture]=useState(''),[freight,setFreight]=useState(true);
+ const [draft,setDraft]=useState<{input:CaptureInput;detail:SnapshotDetail}|null>(null),[declaration,setDeclaration]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState<string|null>(null),[notice,setNotice]=useState<string|null>(null);
+ useEffect(()=>{const id=new URLSearchParams(window.location.search).get('replanning_capture_id');if(id)setCapture(id);},[]);
+ if(session?.user.role!=='PLANNER')return null;
+ async function prepare(){if(!session)return;setBusy(true);setError(null);setNotice(null);setDraft(null);
+  try{const input:CaptureInput={horizon_start:iso(start),horizon_end:iso(end),track_ids:tracks.split(',').map(x=>x.trim()).filter(Boolean),require_freight_forecast:freight,...(policy.trim()?{coordination_policy_id:policy.trim()}:{}),...(capture.trim()?{replanning_capture_id:capture.trim()}:{})};
+   if(!input.track_ids.length||new Date(input.horizon_end)<=new Date(input.horizon_start))throw new Error('Select tracks and a positive horizon.');
+   if(input.replanning_capture_id){const captured=await api<{status:string;current:boolean;payload:{blockers:string[]}}>(`/replanning-captures/${encodeURIComponent(input.replanning_capture_id)}`);if(captured.status!=='CAPTURED'||!captured.current||captured.payload.blockers.length)throw new Error('Execution capture is blocked or stale. Ask the controller to inspect and recapture the approved source revision.');}
+   const saved=await api<Saved>('/snapshots',{method:'POST',csrf:session.csrf_token,body:input});const detail=await api<SnapshotDetail>(`/snapshots/${saved.id}`);
+   setDraft({input,detail});setNotice('Draft captured. Source declarations are missing, so it is not ready for planning or approval.');
+  }catch(cause){setError(messageFor(cause))}finally{setBusy(false)}
+ }
+ async function selectSaved(saved:Saved,input:CaptureInput,scope:SnapshotSummary['source_scope']){try{const persisted=await api<SnapshotDetail>(`/snapshots/${saved.id}`);onSaved({id:persisted.id,content_hash:persisted.content_hash,created_at:persisted.created_at,horizon_start:input.horizon_start,horizon_end:input.horizon_end,track_ids:input.track_ids,scenario_id:null,source_scope:scope});}catch(cause){setError(messageFor(cause));throw cause;}}
+ async function publish(){if(!session||!draft)return;setBusy(true);setError(null);setNotice(null);
+  try{if(!/^[a-f0-9]{64}$/.test(draft.detail.facts_hash))throw new Error('Backend facts hash is unavailable. Restart the updated backend and recapture the draft.');
+   const reviewed=JSON.parse(declaration) as Record<string,unknown>;
+   if(!reviewed||Array.isArray(reviewed)||!['SIMULATED','IMPORTED'].includes(String(reviewed.scope)))throw new Error('Supply a reviewed SIMULATED or IMPORTED source declaration object.');
+   const saved=await api<Saved>('/snapshots',{method:'POST',csrf:session.csrf_token,body:{...draft.input,validation_context:{...reviewed,facts_hash:draft.detail.facts_hash}}});
+   await selectSaved(saved,draft.input,reviewed.scope as 'SIMULATED'|'IMPORTED');setNotice(draft.input.replanning_capture_id?'Replacement snapshot saved for inspection. Use the rolling-replan workflow to generate replacement runs; ordinary planning sessions cannot use execution captures.':'Snapshot saved and selected. Inspect current source blockers before starting a planning session.');setDraft(null);
+  }catch(cause){setError(messageFor(cause))}finally{setBusy(false)}
+ }
+ return <section className="panel"><details><summary className="panel-header">⚙️ Advanced: Manually Draft New Custom Snapshot (Optional — or select saved corridor above)</summary><div className="readiness-editor"><p>Capture submitted demand and operating facts. Old snapshots and plans remain unchanged. For replacement planning, obtain an execution-aware capture from Replan & what-if first.</p>
+ <div className="planning-context"><label className="field">Horizon start (IST)<input type="datetime-local" value={start} onChange={e=>setStart(e.target.value)} disabled={busy}/></label><label className="field">Horizon end (IST)<input type="datetime-local" value={end} onChange={e=>setEnd(e.target.value)} disabled={busy}/></label><label className="field">Track IDs, comma separated<input value={tracks} onChange={e=>setTracks(e.target.value)} disabled={busy} placeholder="Enter existing track IDs"/></label><label className="field">Coordination policy ID (if applicable)<input value={policy} onChange={e=>setPolicy(e.target.value)} disabled={busy}/></label><label className="field">Replanning capture ID (for replacement work)<input value={capture} onChange={e=>setCapture(e.target.value)} disabled={busy}/></label></div>
+ <p><Link href="/changes?mode=replan">Open execution-aware replacement workflow →</Link></p><label><input type="checkbox" checked={freight} onChange={e=>setFreight(e.target.checked)} disabled={busy}/> Require freight forecast coverage</label><button className="button button-outline" disabled={busy||!start||!end||!tracks.trim()} onClick={()=>void prepare()}>{busy?'Saving…':'Capture draft facts'}</button>
+ {draft&&<><p>Draft {shortId(draft.detail.id)} · {draft.detail.manifest.counts.requests??0} captured request(s). Facts hash: <code>{draft.detail.facts_hash??'Unavailable'}</code>. Declarations will bind to this captured input, not subsequent form edits.</p><details><summary>Inspect captured request revisions</summary><pre>{JSON.stringify(draft.detail.manifest.facts.requests,null,2)}</pre></details><label className="field">Reviewed source declaration JSON<textarea rows={12} value={declaration} onChange={e=>setDeclaration(e.target.value)} placeholder="Provide scope, received_at, valid_until, coverage, coa_semantics, clearance_before_minutes, clearance_after_minutes, protect_freight_envelope, commitments_known_empty and rule_reference. Backend binds facts_hash."/></label><p>Coverage requires source, track_id for traffic sources, start_at, end_at, complete and evidence_reference. Do not declare completeness or empty commitments without evidence. No previous declaration is copied automatically.</p><div className="page-actions"><button className="button button-primary" disabled={busy||!declaration.trim()} onClick={()=>void publish()}>Save reviewed snapshot</button><button className="button button-outline" disabled={busy} onClick={()=>void selectSaved({id:draft.detail.id,content_hash:draft.detail.content_hash,counts:draft.detail.manifest.counts,duplicate:false},draft.input,'UNKNOWN').catch(()=>{})}>Inspect blocked draft</button></div></>}
+ {error&&<div className="inline-alert" role="alert">{error}</div>}{notice&&<p role="status">{notice}</p>}</div></details></section>;
+}

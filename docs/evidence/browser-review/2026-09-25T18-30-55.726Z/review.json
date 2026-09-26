@@ -1,0 +1,35 @@
+{
+  "started_at": "2026-09-25T18:30:55.726Z",
+  "scope": "READ_ONLY_CURRENT_BACKEND",
+  "screens": [],
+  "interactions": [],
+  "browser_errors": [],
+  "http_errors": [],
+  "blocked_writes": [],
+  "visual_acceptance": "PENDING_HUMAN_SCREENSHOT_REVIEW",
+  "context": {
+    "snapshot_id": "fa9bcf52-407c-481a-9223-7be30c8342a2",
+    "source_scope": "SIMULATED",
+    "revision_id": "3c5e8c9c-4e57-401e-a2d2-01e97c6289aa",
+    "session_id": null
+  },
+  "status": "BLOCKED",
+  "error": "locator.waitFor: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Planning snapshot', { exact: true }) to be visible\u001b[22m\n",
+  "failure_context": {
+    "url": "http://127.0.0.1:3000/planning",
+    "headings": [
+      "Planning desk",
+      "Proposal & decision",
+      "Delivery & records",
+      "Data & configuration",
+      "Planning workspace"
+    ],
+    "alerts": [
+      ""
+    ],
+    "data_states": [
+      "Select a planning snapshot"
+    ],
+    "snapshot_options": []
+  }
+}

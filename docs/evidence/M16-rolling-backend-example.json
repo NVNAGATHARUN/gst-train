@@ -1,0 +1,565 @@
+{
+  "fixture": "SIMULATED urgent defect after event; actual source update, candidate generation, worker solves, validator and controller approval",
+  "event": {
+    "id": "869cca76-f940-4927-92a3-ab993ccdd827",
+    "scope": "SIMULATED",
+    "kind": "URGENT_DEFECT",
+    "payload": {
+      "source": "SYNTHETIC_CONTROL_OFFICE",
+      "external_id": "urgent-01",
+      "source_revision": 1,
+      "scope": "SIMULATED",
+      "kind": "URGENT_DEFECT",
+      "occurred_at": "2026-09-21T00:00:00+05:30",
+      "track_ids": [
+        "AB"
+      ],
+      "resource_ids": [],
+      "evidence_reference": "SYNTHETIC M16 event fixture",
+      "description": "Delay observed; updated occupancy and new validation required"
+    },
+    "payload_hash": "9851ec429f4eb0794e9017f852481d8840e8dfb50a3a5e3f34adf35837e832a5",
+    "occurred_at": "2026-09-21T00:00:00+05:30",
+    "received_at": "2026-09-21T00:00:00+05:30",
+    "result": {
+      "status": "NEW_SNAPSHOT_REQUIRED",
+      "batch_generation": 1,
+      "ready_at": "2026-09-21T00:00:05+05:30",
+      "invalidated_snapshot_ids": [
+        "30648f34-dd43-44fe-8c71-7790d76bbe9b"
+      ],
+      "superseded_run_ids": [],
+      "operational_revision": 3,
+      "source_facts_applied": false,
+      "authority": "SOFTWARE_PROPOSAL_ONLY"
+    },
+    "duplicate": false
+  },
+  "preview": {
+    "source_plan_revision_id": "6796b25c-4f0b-48ee-a09f-118cc966ac07",
+    "source_snapshot_id": "30648f34-dd43-44fe-8c71-7790d76bbe9b",
+    "batch_generation": 1,
+    "ready_at": "2026-09-21T00:00:05+05:30",
+    "base_facts_hash": "dea19e93b1c649498c72ab4c4043a7ca56d4964381a0c2743bda9b2f94624792",
+    "events": [
+      {
+        "event_id": "869cca76-f940-4927-92a3-ab993ccdd827",
+        "kind": "URGENT_DEFECT",
+        "matches": [
+          {
+            "source_id": "84247c7d-1e02-41d4-81f9-c4a664ae62d0",
+            "request_revision": 1,
+            "track_ids": [
+              "AB"
+            ]
+          }
+        ],
+        "status": "RECONCILED"
+      }
+    ],
+    "blockers": [],
+    "status": "READY",
+    "authority": "SOFTWARE_PROPOSAL_ONLY"
+  },
+  "reconciliation": {
+    "id": "88ffa204-06a5-4085-960b-b5acb0dfced4",
+    "duplicate": false,
+    "payload_hash": "a0570d115ca07ec3a3beced51517db7cc79eee1ba27a00b03c68348a18b9af43",
+    "payload": {
+      "events": [
+        {
+          "kind": "URGENT_DEFECT",
+          "status": "RECONCILED",
+          "matches": [
+            {
+              "source_id": "84247c7d-1e02-41d4-81f9-c4a664ae62d0",
+              "track_ids": [
+                "AB"
+              ],
+              "request_revision": 1
+            }
+          ],
+          "event_id": "869cca76-f940-4927-92a3-ab993ccdd827"
+        }
+      ],
+      "capture_hash": "af6642b9358c12128fa442393a8befafcfa17e7476e843d99fba6d30c011e595",
+      "request_hash": "79707163f6a405a7cdeb0eb6f2284b8f4d810a90b340da345cb14a262841a55f",
+      "snapshot_hash": "a5d35fcf914673a1c0b78704a11e18e79bb63e812b4b0b1dbfb318d6d13ea0d6",
+      "worker_status": "QUEUED",
+      "opportunity_id": "e5007a7e-0545-4acb-9c82-545f0b542891",
+      "priority_count": 3,
+      "base_facts_hash": "dea19e93b1c649498c72ab4c4043a7ca56d4964381a0c2743bda9b2f94624792",
+      "candidate_count": {
+        "bundles": 9,
+        "candidates": 31,
+        "incompatibilities": 363
+      },
+      "coordination_id": "13961276-5323-4acd-bdd3-dfe0a3247a7f",
+      "availability_ids": [
+        "0dd972f5-b924-4a94-8af9-81adfd5f74e4"
+      ],
+      "controller_approval": "REQUIRED",
+      "source_snapshot_hash": "0e6940cca2feeb58df9574f4084cc8ad63495206b9bae34fe302a3086f6f885f"
+    },
+    "capture_id": "4d2cd641-a19a-4462-95e2-41693a140ff2",
+    "snapshot_id": "b482c626-97ec-4848-bb1b-0bb5185237e5",
+    "baseline_run": {
+      "id": "19279386-7217-4033-b076-4d7f8657ccd6",
+      "status": "COMPLETED"
+    },
+    "optimized_run": {
+      "id": "ca205d64-a064-4c58-b316-7fb5cf3cd17f",
+      "status": "COMPLETED"
+    },
+    "authority": "SOFTWARE_PROPOSAL_ONLY"
+  },
+  "optimized_run": {
+    "id": "ca205d64-a064-4c58-b316-7fb5cf3cd17f",
+    "snapshot_id": "b482c626-97ec-4848-bb1b-0bb5185237e5",
+    "planner_type": "CP_SAT",
+    "status": "COMPLETED",
+    "config": {
+      "snapshot_id": "b482c626-97ec-4848-bb1b-0bb5185237e5",
+      "planner_type": "CP_SAT",
+      "solver_options": {
+        "weights": {
+          "travel": 1,
+          "freight": 0,
+          "possession": 1,
+          "deferred_utility": 100,
+          "commitment_change": 100
+        },
+        "workers": 1,
+        "random_seed": 26027,
+        "max_time_seconds": 10.0
+      },
+      "coordination_id": "13961276-5323-4acd-bdd3-dfe0a3247a7f",
+      "clearance_minutes": 5,
+      "protect_freight_envelope": true
+    },
+    "result": {
+      "counts": {
+        "deferred": 0,
+        "scheduled": 3,
+        "candidates": 31,
+        "unresolved": 0
+      },
+      "options": {
+        "weights": {
+          "travel": 1,
+          "freight": 0,
+          "possession": 1,
+          "deferred_utility": 100,
+          "commitment_change": 100
+        },
+        "workers": 1,
+        "random_seed": 26027,
+        "max_time_seconds": 10.0
+      },
+      "planner": "CP_SAT",
+      "branches": 0,
+      "deferred": [],
+      "conflicts": 0,
+      "best_bound": 95.0,
+      "model_hash": "5645fd7a5830b5e04aa37aecaeae982326d8a3fc6a11977f12f53eb532b3ca98",
+      "assignments": [
+        {
+          "id": "003ce337424fc17a698eb939",
+          "mode": "SINGLE",
+          "costs": {
+            "reserved_track_minutes": 15,
+            "forecast_exposure_train_track_seconds": 0,
+            "incremental_travel_minutes_against_fixed_duties": 0
+          },
+          "tasks": [
+            {
+              "work_end": "2026-09-21T03:55:00+05:30",
+              "setup_end": "2026-09-21T03:50:00+05:30",
+              "track_ids": [
+                "AB"
+              ],
+              "department": "ENGINEERING",
+              "issue_type": "INSPECTION",
+              "request_id": "84247c7d-1e02-41d4-81f9-c4a664ae62d0",
+              "work_start": "2026-09-21T03:50:00+05:30",
+              "power_state": "ANY",
+              "restore_end": "2026-09-21T04:00:00+05:30",
+              "setup_start": "2026-09-21T03:45:00+05:30",
+              "requirements": [
+                {
+                  "type": "TRACK_CREW",
+                  "quantity": 1,
+                  "qualification": null
+                }
+              ],
+              "resource_end": "2026-09-21T04:00:00+05:30",
+              "restore_start": "2026-09-21T03:55:00+05:30",
+              "isolation_zone": null,
+              "resource_start": "2026-09-21T03:45:00+05:30",
+              "request_revision": 1,
+              "signalling_state": "ANY",
+              "resource_location": "AB"
+            }
+          ],
+          "rule_ids": [],
+          "track_ids": [
+            "AB"
+          ],
+          "allocations": [
+            {
+              "end_at": "2026-09-21T04:00:00+05:30",
+              "start_at": "2026-09-21T03:45:00+05:30",
+              "track_id": "AB",
+              "department": "ENGINEERING",
+              "request_id": "84247c7d-1e02-41d4-81f9-c4a664ae62d0",
+              "resource_id": "CREW-1",
+              "qualification": "INSPECTION",
+              "resource_type": "TRACK_CREW"
+            }
+          ],
+          "request_ids": [
+            "84247c7d-1e02-41d4-81f9-c4a664ae62d0"
+          ],
+          "possession_end": "2026-09-21T04:00:00+05:30",
+          "possession_start": "2026-09-21T03:45:00+05:30",
+          "policy_revision_id": "d5510595-33a9-4db7-b73b-3bc4df6936d5",
+          "priority_by_request": {
+            "84247c7d-1e02-41d4-81f9-c4a664ae62d0": 4875
+          },
+          "resource_consumption": "SETUP_WORK_RESTORATION; parallel units reserved for whole possession"
+        },
+        {
+          "id": "2a5bf5382f7d4749d4b5f81c",
+          "mode": "ALLOW_PARALLEL",
+          "costs": {
+            "reserved_track_minutes": 80,
+            "forecast_exposure_train_track_seconds": 0,
+            "incremental_travel_minutes_against_fixed_duties": 0
+          },
+          "tasks": [
+            {
+              "work_end": "2026-09-21T02:35:00+05:30",
+              "setup_end": "2026-09-21T01:35:00+05:30",
+              "track_ids": [
+                "AB"
+              ],
+              "department": "ENGINEERING",
+              "issue_type": "INSPECTION",
+              "request_id": "43191b32-26e9-4989-913e-eaaca0865b1e",
+              "work_start": "2026-09-21T01:35:00+05:30",
+              "power_state": "ANY",
+              "restore_end": "2026-09-21T02:45:00+05:30",
+              "setup_start": "2026-09-21T01:25:00+05:30",
+              "requirements": [
+                {
+                  "type": "TRACK_CREW",
+                  "quantity": 1,
+                  "qualification": null
+                }
+              ],
+              "resource_end": "2026-09-21T02:45:00+05:30",
+              "restore_start": "2026-09-21T02:35:00+05:30",
+              "isolation_zone": null,
+              "resource_start": "2026-09-21T01:25:00+05:30",
+              "request_revision": 2,
+              "signalling_state": "ANY",
+              "resource_location": "AB"
+            },
+            {
+              "work_end": "2026-09-21T01:55:00+05:30",
+              "setup_end": "2026-09-21T01:35:00+05:30",
+              "track_ids": [
+                "AB"
+              ],
+              "department": "TRD",
+              "issue_type": "OHE_WORK",
+              "request_id": "63247385-416c-472a-8fde-0087e326aca7",
+              "work_start": "2026-09-21T01:35:00+05:30",
+              "power_state": "ANY",
+              "restore_end": "2026-09-21T02:45:00+05:30",
+              "setup_start": "2026-09-21T01:25:00+05:30",
+              "requirements": [
+                {
+                  "type": "OHE_CREW",
+                  "quantity": 1,
+                  "qualification": null
+                }
+              ],
+              "resource_end": "2026-09-21T02:45:00+05:30",
+              "restore_start": "2026-09-21T02:35:00+05:30",
+              "isolation_zone": null,
+              "resource_start": "2026-09-21T01:25:00+05:30",
+              "request_revision": 1,
+              "signalling_state": "ANY",
+              "resource_location": "AB"
+            }
+          ],
+          "rule_ids": [
+            "PAIR-ENG-TRD"
+          ],
+          "track_ids": [
+            "AB"
+          ],
+          "allocations": [
+            {
+              "end_at": "2026-09-21T02:45:00+05:30",
+              "start_at": "2026-09-21T01:25:00+05:30",
+              "track_id": "AB",
+              "department": "TRD",
+              "request_id": "63247385-416c-472a-8fde-0087e326aca7",
+              "resource_id": "CREW-2",
+              "qualification": "OHE_WORK",
+              "resource_type": "OHE_CREW"
+            },
+            {
+              "end_at": "2026-09-21T02:45:00+05:30",
+              "start_at": "2026-09-21T01:25:00+05:30",
+              "track_id": "AB",
+              "department": "ENGINEERING",
+              "request_id": "43191b32-26e9-4989-913e-eaaca0865b1e",
+              "resource_id": "CREW-1",
+              "qualification": "INSPECTION",
+              "resource_type": "TRACK_CREW"
+            }
+          ],
+          "request_ids": [
+            "43191b32-26e9-4989-913e-eaaca0865b1e",
+            "63247385-416c-472a-8fde-0087e326aca7"
+          ],
+          "possession_end": "2026-09-21T02:45:00+05:30",
+          "possession_start": "2026-09-21T01:25:00+05:30",
+          "policy_revision_id": "d5510595-33a9-4db7-b73b-3bc4df6936d5",
+          "priority_by_request": {
+            "43191b32-26e9-4989-913e-eaaca0865b1e": 4875,
+            "63247385-416c-472a-8fde-0087e326aca7": 4875
+          },
+          "resource_consumption": "SETUP_WORK_RESTORATION; parallel units reserved for whole possession"
+        }
+      ],
+      "diagnostics": {
+        "model_validation": "",
+        "candidate_exclusions": [
+          {
+            "code": "COMPATIBILITY_UNKNOWN",
+            "rule_ids": [],
+            "request_ids": [
+              "43191b32-26e9-4989-913e-eaaca0865b1e",
+              "84247c7d-1e02-41d4-81f9-c4a664ae62d0"
+            ]
+          },
+          {
+            "code": "COMPATIBILITY_UNKNOWN",
+            "rule_ids": [
+              "PAIR-ENG-TRD"
+            ],
+            "request_ids": [
+              "43191b32-26e9-4989-913e-eaaca0865b1e",
+              "63247385-416c-472a-8fde-0087e326aca7",
+              "84247c7d-1e02-41d4-81f9-c4a664ae62d0"
+            ]
+          }
+        ],
+        "infeasibility_explanation": "NO_MINIMAL_CONFLICT_SET_CLAIMED",
+        "missing_frozen_candidates": [],
+        "mandatory_without_candidates": []
+      },
+      "relative_gap": 0.0,
+      "has_incumbent": true,
+      "model_version": "FIXED_CANDIDATE_CP_SAT_V2",
+      "snapshot_hash": "a5d35fcf914673a1c0b78704a11e18e79bb63e812b4b0b1dbfb318d6d13ea0d6",
+      "solver_status": "OPTIMAL",
+      "objective_terms": {
+        "travel": {
+          "raw": 0,
+          "weight": 1,
+          "weighted": 0
+        },
+        "freight": {
+          "raw": 0,
+          "weight": 0,
+          "weighted": 0
+        },
+        "possession": {
+          "raw": 95,
+          "weight": 1,
+          "weighted": 95
+        },
+        "deferred_utility": {
+          "raw": 0,
+          "weight": 100,
+          "weighted": 0
+        },
+        "commitment_change": {
+          "raw": 0,
+          "weight": 100,
+          "weighted": 0
+        }
+      },
+      "objective_value": 95,
+      "ortools_version": "9.15.6755",
+      "priorities_hash": "7f7a4753fea74f4d41a54fe9c9f5fc4f9c7879fb43f835375926dfe022858ade",
+      "review_blockers": [
+        "INDEPENDENT_VALIDATION_NOT_YET_PERFORMED",
+        "SIMULATED_RULES_NOT_OPERATIONAL_AUTHORITY",
+        "UNRESOLVED_COA_SOURCE_CONFLICT"
+      ],
+      "schedule_status": "DEVELOPMENT_ARTIFACT",
+      "selection_state": "WORK_SELECTED",
+      "candidate_search": {
+        "pruning": [],
+        "configuration": {
+          "max_groups": 500,
+          "max_candidates": 1000,
+          "max_time_plans": 5000,
+          "opportunity_id": "e5007a7e-0545-4acb-9c82-545f0b542891",
+          "max_bundle_size": 3,
+          "max_assignments_per_plan": 20,
+          "max_resource_slots_per_plan": 100,
+          "max_assignment_nodes_per_plan": 10000
+        },
+        "groups_evaluated": 7,
+        "optimality_scope": "generated_candidate_set",
+        "time_plans_evaluated": 31,
+        "complete_within_declared_search": true
+      },
+      "optimality_scope": "generated_candidate_set",
+      "coordination_hash": "7733c5ad8d6251edfb0ebc74ff4f77647061c63351f6a61d08e7fb679e88ac94",
+      "requirements_hash": "0964c8e03b0d6a3e4f290ff67c937a1430140059efc0f197d6acf4fb8bcd18bd",
+      "wall_time_seconds": 0.0024583,
+      "comparison_eligible": true,
+      "solver_response_stats": "CpSolverResponse summary:\nstatus: OPTIMAL\nobjective: 95\nbest_bound: 95\nintegers: 1\nbooleans: 0\nconflicts: 0\nbranches: 0\npropagations: 0\ninteger_propagations: 1\nrestarts: 0\nlp_iterations: 0\nwalltime: 0.0024583\nusertime: 0.0024584\ndeterministic_time: 1e-08\ngap_integral: 0\nsolution_fingerprint: 0x8b540c56693323a8\n",
+      "selected_candidate_ids": [
+        "003ce337424fc17a698eb939",
+        "2a5bf5382f7d4749d4b5f81c"
+      ],
+      "unresolved_request_ids": []
+    }
+  },
+  "validation": {
+    "id": "6cb28ac1-5aca-47ac-a076-6428a54cb870",
+    "run_id": "ca205d64-a064-4c58-b316-7fb5cf3cd17f",
+    "plan_revision_id": "d596f149-fc48-4e63-8357-e83d783a9803",
+    "snapshot_id": "b482c626-97ec-4848-bb1b-0bb5185237e5",
+    "status": "PASS",
+    "plan_hash": "75371a122e685d84fe91206aad65c49b554552543aa68f63e7dff3d5e4e5581d",
+    "snapshot_hash": "a5d35fcf914673a1c0b78704a11e18e79bb63e812b4b0b1dbfb318d6d13ea0d6",
+    "checked_at": "2026-09-20T18:30:06+00:00",
+    "result": {
+      "status": "PASS",
+      "validator_version": "INDEPENDENT_VALIDATOR_V3",
+      "plan_hash": "75371a122e685d84fe91206aad65c49b554552543aa68f63e7dff3d5e4e5581d",
+      "snapshot_hash": "a5d35fcf914673a1c0b78704a11e18e79bb63e812b4b0b1dbfb318d6d13ea0d6",
+      "checked_at": "2026-09-21T00:00:06+05:30",
+      "scope": "SIMULATED",
+      "checks": [
+        {
+          "category": "PROVENANCE",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "COVERAGE",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "TIMING",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "INFRASTRUCTURE",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "TRAFFIC",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "COMPATIBILITY",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "RESOURCES",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "COMMITMENTS",
+          "status": "PASS",
+          "findings": []
+        },
+        {
+          "category": "DATA_QUALITY",
+          "status": "PASS",
+          "findings": []
+        }
+      ],
+      "checks_performed": 200,
+      "current_facts_hash": "96612bc4a0ed8fc5aa061f54ab602a5837bd5bc847668bef5e851336444e986a",
+      "approval_blocked": false,
+      "authority": "CONFIGURED_PROTOTYPE_CONSTRAINTS_ONLY"
+    },
+    "usable_for_review": true,
+    "current_blockers": []
+  },
+  "replacement_decision": {
+    "id": "ae80d549-2555-44f6-820f-15dd8cd8ecc0",
+    "idempotency_key": "8b27d4ad-4527-499e-8d82-4adad6ee2f9c",
+    "plan_revision_id": "d596f149-fc48-4e63-8357-e83d783a9803",
+    "validation_report_id": "6cb28ac1-5aca-47ac-a076-6428a54cb870",
+    "action": "APPROVE",
+    "scope": "SIMULATED",
+    "expected_operational_revision": 3,
+    "resulting_operational_revision": 4,
+    "reason": "Controller test decision",
+    "result": {
+      "authority": "SOFTWARE_PROPOSAL_ONLY",
+      "reservation_scope": "SIMULATED",
+      "operational_reservation_written": false,
+      "simulation_isolated": true,
+      "request_fingerprint": "b58621482f014a884210e659b3cdf27c913deb0e651b3c38b809f91fbcaf6b8f",
+      "replacement": {
+        "source_decision_id": "0d7af438-9bf3-46ee-a07d-24884cac83c8",
+        "source_plan_revision_id": "6796b25c-4f0b-48ee-a09f-118cc966ac07",
+        "difference_hash": "c766bf813cc7f4b655667d112c25386ff5f26e3c70a75b2a74623cbff725c49c",
+        "capture_id": "4d2cd641-a19a-4462-95e2-41693a140ff2"
+      }
+    },
+    "created_at": "2026-09-18T14:30:38.840340+00:00",
+    "authority": "SOFTWARE_PROPOSAL_ONLY",
+    "reservations": [
+      {
+        "id": "635d4004-141e-47cb-ba90-44b1e3d53111",
+        "scope": "SIMULATED",
+        "track_ids": [
+          "AB"
+        ],
+        "resource_ids": [
+          "CREW-1"
+        ],
+        "start_at": "2026-09-21T03:45:00+05:30",
+        "end_at": "2026-09-21T04:00:00+05:30",
+        "active": true
+      },
+      {
+        "id": "e6a81254-40c9-44ac-a651-d2cc5c75e863",
+        "scope": "SIMULATED",
+        "track_ids": [
+          "AB"
+        ],
+        "resource_ids": [
+          "CREW-1",
+          "CREW-2"
+        ],
+        "start_at": "2026-09-21T01:25:00+05:30",
+        "end_at": "2026-09-21T02:45:00+05:30",
+        "active": true
+      }
+    ]
+  },
+  "urgent_request_id": "84247c7d-1e02-41d4-81f9-c4a664ae62d0"
+}
