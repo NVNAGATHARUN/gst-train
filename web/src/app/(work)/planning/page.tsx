@@ -14,6 +14,10 @@ import {DepartmentBadge, StatusBadge} from "@/components/status-badge";
 import {timelineItems} from "@/lib/timeline";
 import type {Focus} from "@/lib/timeline";
 import {TimeTrackTimeline} from "@/components/time-track-timeline";
+import {CorridorOverviewHeader} from "@/components/corridor-overview-header";
+import {CorridorSchematic} from "@/components/corridor-schematic";
+import {SelectedBlockInspector} from "@/components/selected-block-inspector";
+import {PlanComparisonCard} from "@/components/plan-comparison-card";
 import type {Candidate, Page, PlanningSession, RunIndexItem, SnapshotSummary, WorkspaceView} from "@/lib/types";
 function Detail({label,children}:{label:string;children:React.ReactNode}){return <div className="evidence-detail"><span>{label}</span><strong>{children}</strong></div>}
 function CandidateDetails({candidate}:{candidate:Candidate}){return <>
@@ -59,7 +63,7 @@ function EvidenceInspector({view,focus}:{view:WorkspaceView;focus:Focus|null}){
   </aside>;
 }
 export default function PlanningPage(){
-  const [inspectorTab,setInspectorTab]=useState<"demand"|"evidence">("demand");
+  const [inspectorTab,setInspectorTab]=useState<"block"|"demand"|"evidence">("block");
   const [demandQuery,setDemandQuery]=useState("");
   const [department,setDepartment]=useState("ALL");
   const {value:session,invalidate}=useSession();const selectedCase=useCase();
@@ -122,13 +126,13 @@ export default function PlanningPage(){
   const sourceBlocked=workspace?.source_state!=="CURRENT";
   const visibleDemands=workspace?.demands.filter(d=>(department==="ALL"||d.request.department===department)&&`${d.request_id} ${d.request.issue_type} ${d.request.asset_id} ${d.request.footprint.join(" ")}`.toLowerCase().includes(demandQuery.toLowerCase()))??[];
   function inspect(next:Focus){setFocus(next);setInspectorTab("evidence")}
-  return <div className="content-flow planning-page"><div className="page-heading"><div><span className="eyebrow">INTEGRATED BLOCK PLANNING</span><h1>Planning workspace</h1><p>Maintenance demand, railway capacity and proposed blocks in one saved context.</p></div>
-    <div className="page-actions"><button className="button button-outline" onClick={reload} disabled={busy}>Refresh evidence</button>
-      <button className="button button-primary" disabled={!canPlan||!chosen||sourceBlocked||busy||!!chosen.scenario_id} title={chosen?.scenario_id?"Scenarios use the isolated what-if workflow":undefined}
+  return <div className="content-flow planning-page"><div className="page-heading"><div><span className="eyebrow">INTEGRATED BLOCK PLANNING</span><h1>Planning Workspace</h1><p>Integrated view of train movements, maintenance demand, railway capacity and proposed blocks.</p></div>
+    <div className="page-actions"><button className="button button-outline" onClick={reload} disabled={busy}><RailIcon name="report" size={14} /> Refresh evidence</button>
+      <button className="button button-primary button-generate" disabled={!canPlan||!chosen||sourceBlocked||busy||!!chosen.scenario_id} title={chosen?.scenario_id?"Scenarios use the isolated what-if workflow":undefined}
         onClick={()=>void perform("Planning session queued. Worker progress is shown below.",async()=>{
           const next=await api<PlanningSession>("/planning-sessions",{method:"POST",csrf:session!.csrf_token,body:{idempotency_key:crypto.randomUUID(),snapshot_id:chosen!.id,expected_snapshot_hash:chosen!.content_hash}});
           selectedCase.selectSession(next.id);setSessions(previous=>[next,...previous]);setRunId(null);
-        })}>Start planning session</button></div></div>
+        })}>+ Generate Optimized Plan</button></div></div>
     {error&&<div className="inline-alert" role="alert">{error}</div>}{actionMessage&&<div className="inline-success" role="status">{actionMessage}</div>}
     <div className="planning-context panel"><label className="field">Planning snapshot<select value={selectedCase.snapshotId??""} onChange={e=>{selectedCase.selectSnapshot(e.target.value||null);setRunId(null)}}>
       <option value="">Select a saved corridor snapshot</option>{snapshots.map(x=>{
@@ -144,7 +148,15 @@ export default function PlanningPage(){
         <option key={`run:${x.id}`} value={`run:${x.id}`}>{x.planner_type==="CP_SAT"?"✨ AI Shadow Plan (CP-SAT)":"⏱️ Baseline Plan"} · {x.job_status} · {shortId(x.id)}</option>,
         ...x.revision_ids.map(id=><option key={`revision:${id}`} value={`revision:${id}`}>Saved Proposal · {x.planner_type==="CP_SAT"?"✨ AI Plan":"⏱️ Baseline"} · {shortId(id)}</option>)])}</select></label>
       <div className="context-stamp"><span>Current evidence</span><strong>{chosen?.source_scope??"NONE"}</strong><small>{chosen?`${dateTimeAt(chosen.horizon_start)} – ${dateTimeAt(chosen.horizon_end)}`:"Choose a snapshot"}</small></div></div>
-    <SnapshotPreparation onSaved={snapshot=>{setSnapshots(previous=>[snapshot,...previous.filter(item=>item.id!==snapshot.id)]);selectedCase.selectSnapshot(snapshot.id);setRunId(null);reload();}}/>
+
+    {workspace && (
+      <>
+        <CorridorOverviewHeader view={workspace} />
+        <CorridorSchematic view={workspace} />
+      </>
+    )}
+
+    <SnapshotPreparation defaults={chosen?{horizon_start:chosen.horizon_start,horizon_end:chosen.horizon_end,track_ids:chosen.track_ids}:undefined} onSaved={snapshot=>{setSnapshots(previous=>[snapshot,...previous.filter(item=>item.id!==snapshot.id)]);selectedCase.selectSnapshot(snapshot.id);setRunId(null);reload();}}/>
     <LiveMaintenanceIntake captured={workspace?.demands.map(item=>({id:item.request_id,revision:item.revision}))??[]}/>
     {loading?<div className="panel"><DataState title="Loading snapshots" detail="Reading saved planning contexts from the backend…"/></div>:
     !chosen?<div className="panel"><DataState title={snapshots.length?"Select a planning snapshot":"No snapshots available"} detail={snapshots.length?"Choose a snapshot to inspect recorded occupancy and maintenance demand.":"Create a snapshot through the backend planning flow before using this workspace."}/></div>:
@@ -154,7 +166,13 @@ export default function PlanningPage(){
       <div className="planning-status"><div><span>Snapshot</span><strong className="mono">{shortId(chosen.id)}</strong></div><div><span>Source state</span><StatusBadge value={workspace.source_state}/></div>
         <div><span>Session</span><StatusBadge value={sessionStatus}/></div><div><span>Solver</span><StatusBadge value={solverStatus}/></div>
         <div><span>Independent validation</span><StatusBadge value={workspace.validation?.status??"NOT_RUN"}/></div><div><span>Authority</span><strong>Software proposal</strong></div></div>
-      <div className="planning-grid"><div className="planning-rail-tabs segmented-control" aria-label="Planning side panel"><button type="button" aria-pressed={inspectorTab==="demand"} onClick={()=>setInspectorTab("demand")}><RailIcon name="work" size={16}/>Work queue <span>{workspace.demands.length}</span></button><button type="button" aria-pressed={inspectorTab==="evidence"} onClick={()=>setInspectorTab("evidence")}><RailIcon name="search" size={16}/>Evidence</button></div>
+      <div className="planning-grid">
+        <div className="planning-rail-tabs segmented-control" aria-label="Planning side panel">
+          <button type="button" aria-pressed={inspectorTab==="block"} onClick={()=>setInspectorTab("block")}><RailIcon name="corridor" size={16}/>Selected block</button>
+          <button type="button" aria-pressed={inspectorTab==="demand"} onClick={()=>setInspectorTab("demand")}><RailIcon name="work" size={16}/>Work queue <span>{workspace.demands.length}</span></button>
+          <button type="button" aria-pressed={inspectorTab==="evidence"} onClick={()=>setInspectorTab("evidence")}><RailIcon name="search" size={16}/>Evidence</button>
+        </div>
+        {inspectorTab==="block"&&<SelectedBlockInspector view={workspace} focus={focus} onInspect={inspect}/>}
         {inspectorTab==="demand"&&<section className="panel demand-panel"><div className="panel-header"><div><h2>Maintenance demand</h2><p>{visibleDemands.length} of {workspace.demands.length} requests · {workspace.demands.filter(d=>d.request.mandatory).length} mandatory</p></div></div>
         <div className="demand-filters"><label className="field"><span className="sr-only">Search work queue</span><input type="search" placeholder="Find work, asset or track…" value={demandQuery} onChange={event=>setDemandQuery(event.target.value)}/></label><label className="field"><span className="sr-only">Department</span><select value={department} onChange={event=>setDepartment(event.target.value)}><option value="ALL">All departments</option><option value="ENGINEERING">Engineering</option><option value="TRD">TRD</option><option value="SNT">S&amp;T</option></select></label></div>
         {workspace.demands.length===0?<DataState title="No requests in snapshot" detail="No maintenance demand was captured for this planning horizon."/>:visibleDemands.length===0?<DataState title="No matching demand" detail="Try another asset, track or department."/>:<div className="demand-list">{visibleDemands.map(d=><button key={d.request_id} type="button"
@@ -165,7 +183,9 @@ export default function PlanningPage(){
           <span className="demand-card-bottom"><StatusBadge value={d.readiness.status}/>{d.priority?<span>{d.priority.priority_band} · {(d.priority.score_basis_points/100).toFixed(1)}</span>:<span>Priority not assessed</span>}</span>
           <span className="demand-card-bottom"><span>Line {d.access_requirements.line_block}</span><span>Power {d.access_requirements.power_block}</span></span>
         </button>)}</div>}</section>}
-        <div className="planning-center"><TimeTrackTimeline view={workspace} focus={focus} onFocus={inspect}/>
+        <div className="planning-center">
+          <TimeTrackTimeline view={workspace} focus={focus} onFocus={inspect}/>
+          <PlanComparisonCard view={workspace} />
           <section className="panel session-panel"><div className="panel-header"><div><h2>Planning session and proposal</h2><p>Saved worker and solver evidence</p></div></div>
             <div className="session-content"><div className="session-metrics"><div><span>Preparation</span><strong>{preparationStatus}</strong></div>
               <div><span>Baseline</span><strong>{baselineStatus}</strong></div>

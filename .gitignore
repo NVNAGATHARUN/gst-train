@@ -3,6 +3,8 @@
 .cache/
 .local/
 .env
+.env*.local
+*.zip
 __pycache__/
 *.pyc
 .pytest_cache/
