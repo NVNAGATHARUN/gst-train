@@ -1,10 +1,11 @@
 services:
-  # Backend API
+  # Backend API & Worker combined on Render Free Tier ($0/month)
   - type: web
     name: railsync-api
     runtime: python
+    plan: free
     buildCommand: pip install -r requirements.txt && python -m alembic upgrade head && python scripts/seed_cloud.py
-    startCommand: uvicorn railsync.main:app --app-dir backend --host 0.0.0.0 --port $PORT
+    startCommand: sh -c "python -m railsync.worker & uvicorn railsync.main:app --app-dir backend --host 0.0.0.0 --port $PORT"
     envVars:
       - key: PYTHONPATH
         value: backend
@@ -17,24 +18,11 @@ services:
       - key: RAILSYNC_SESSION_COOKIE_SECURE
         value: "true"
       - key: RAILSYNC_BROWSER_ORIGINS
-        sync: false # Set to your Vercel or frontend URL, e.g. ["https://railsync.vercel.app"]
-
-  # Background Optimization Worker
-  - type: worker
-    name: railsync-worker
-    runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python -m railsync.worker
-    envVars:
-      - key: PYTHONPATH
-        value: backend
-      - key: RAILSYNC_DATABASE_URL
-        fromDatabase:
-          name: railsync-db
-          property: connectionString
+        value: '["https://web-nine-mocha-73.vercel.app","https://web-nqcfea9w7-n-v-naga-tharuns-projects.vercel.app"]'
 
 databases:
   - name: railsync-db
     databaseName: railsync
     user: railsync
     plan: free
+
