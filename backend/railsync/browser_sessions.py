@@ -47,6 +47,22 @@ def throttle_login(request, db, now):
     db.commit()  # Failed credentials must still consume a durable attempt.
 
 
+CREDENTIAL_ALIASES = {
+    'S&T': 'SNT',
+    'NT': 'SNT',
+    'ST': 'SNT',
+    'SIG': 'SNT',
+    'TELECOM': 'SNT',
+    'SIGNAL': 'SNT',
+    'ENG': 'ENGINEERING',
+    'TRACK': 'ENGINEERING',
+    'PWAY': 'ENGINEERING',
+    'OHE': 'TRD',
+    'CONTROL': 'CONTROLLER',
+    'PLAN': 'PLANNER',
+    'ROOT': 'ADMIN',
+}
+
 @router.post('/session', status_code=201)
 def login(body: SessionLogin, request: Request, response: Response,
         db=Depends(session_dependency), now=Depends(session_now)):
@@ -57,9 +73,8 @@ def login(body: SessionLogin, request: Request, response: Response,
     raw = body.credential.get_secret_value().strip()
     user = db.scalar(select(User).where(User.token_hash == token_hash(raw), User.active.is_(True)))
     if not user:
-        normalized = raw.upper()
-        if normalized == 'S&T':
-            normalized = 'SNT'
+        normalized = raw.upper().replace(' ', '').replace('-', '')
+        normalized = CREDENTIAL_ALIASES.get(normalized, normalized)
         user = db.scalar(select(User).where(User.token_hash == token_hash(normalized), User.active.is_(True)))
     if not user:
         raise HTTPException(401, 'INVALID_CREDENTIAL')

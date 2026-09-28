@@ -15,7 +15,10 @@ export default function LoginPage() {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); setBusy(true); setError(null);
     try {
-      const signedIn = await signIn(credential.trim());
+      const raw = credential.trim();
+      const upper = raw.toUpperCase().replace(/\s+/g, "");
+      const normalized = (upper === "NT" || upper === "S&T" || upper === "ST") ? "SNT" : raw;
+      const signedIn = await signIn(normalized);
       setCredential("");
       router.replace(signedIn.user.role === "PLANNER" ? "/planning" : "/dashboard");
     } catch (cause) {
@@ -43,12 +46,19 @@ export default function LoginPage() {
         <form onSubmit={submit} autoComplete="off">
           <label htmlFor="credential">R-MAPS access credential</label>
           <input id="credential" type="text" name="credential" value={credential} onChange={event => setCredential(event.target.value)} required
-            autoComplete="off" placeholder="e.g. ADMIN, PLANNER, SNT" aria-describedby="credential-help" />
+            autoComplete="off" placeholder="e.g. SNT, NT, ADMIN, PLANNER" aria-describedby="credential-help" />
           <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", margin: "10px 0 14px" }}>
             <span style={{ fontSize: "11px", width: "100%", color: "var(--muted, #666)" }}>Quick role select:</span>
-            {["ADMIN", "PLANNER", "CONTROLLER", "ENGINEERING", "TRD", "SNT"].map(r => (
-              <button key={r} type="button" className="button button-outline" style={{ padding: "4px 8px", fontSize: "11px", height: "auto" }} onClick={() => pickRole(r)}>
-                {r}
+            {[
+              { label: "ADMIN", val: "ADMIN" },
+              { label: "PLANNER", val: "PLANNER" },
+              { label: "CONTROLLER", val: "CONTROLLER" },
+              { label: "ENGINEERING", val: "ENGINEERING" },
+              { label: "TRD", val: "TRD" },
+              { label: "SNT / NT", val: "SNT" },
+            ].map(r => (
+              <button key={r.label} type="button" className="button button-outline" style={{ padding: "4px 8px", fontSize: "11px", height: "auto" }} onClick={() => pickRole(r.val)}>
+                {r.label}
               </button>
             ))}
           </div>
