@@ -54,10 +54,16 @@ def login(body: SessionLogin, request: Request, response: Response,
     if request.headers.get('authorization'):
         raise HTTPException(400, 'USE_SESSION_CREDENTIAL_BODY')
     throttle_login(request, db, now)
-    user = db.scalar(select(User).where(User.token_hash == token_hash(body.credential.get_secret_value()),
-        User.active.is_(True)))
+    raw = body.credential.get_secret_value().strip()
+    user = db.scalar(select(User).where(User.token_hash == token_hash(raw), User.active.is_(True)))
+    if not user:
+        normalized = raw.upper()
+        if normalized == 'S&T':
+            normalized = 'SNT'
+        user = db.scalar(select(User).where(User.token_hash == token_hash(normalized), User.active.is_(True)))
     if not user:
         raise HTTPException(401, 'INVALID_CREDENTIAL')
+
     old_secret = request.cookies.get(COOKIE_NAME)
     if old_secret:
         old = db.scalar(select(BrowserSession).where(BrowserSession.secret_hash == token_hash(old_secret)))

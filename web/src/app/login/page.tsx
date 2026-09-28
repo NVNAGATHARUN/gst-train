@@ -15,7 +15,7 @@ export default function LoginPage() {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); setBusy(true); setError(null);
     try {
-      const signedIn = await signIn(credential);
+      const signedIn = await signIn(credential.trim());
       setCredential("");
       router.replace(signedIn.user.role === "PLANNER" ? "/planning" : "/dashboard");
     } catch (cause) {
@@ -23,26 +23,42 @@ export default function LoginPage() {
       setError(messageFor(cause));
     } finally { setBusy(false); }
   }
+
+  function pickRole(token: string) {
+    setCredential(token);
+    setError(null);
+  }
+
   return <div className="login-page">
-    <div className="login-brand"><span className="brand-mark"><RailIcon name="rail" size={26}/></span><strong>RailSync <span className="login-ai">AI</span></strong><span>SIH 2026 <b>PS26027 · PROTOTYPE</b></span></div>
+    <div className="login-brand"><span className="brand-mark"><RailIcon name="rail" size={26}/></span><strong>R-MAPS</strong><span>SIH 2026 <b>PS26027 · PROTOTYPE</b></span></div>
     <div className="login-main">
       <section className="login-form-panel" aria-labelledby="login-title">
         <span className="login-access-icon"><RailIcon name="review" size={24}/></span>
         <span className="eyebrow">YOUR PLANNING DESK</span>
-        <h1 id="login-title">Welcome to RailSync</h1>
+        <h1 id="login-title">Welcome to R-MAPS</h1>
+        <p className="login-product-name">Railway Maintenance Allocation &amp; Planning System</p>
         <p>Sign in to your department’s maintenance planning workspace.</p>
         {status === "authenticated" ? <div className="inline-note">You already have a session. <a href="/planning">Open Planning Workspace</a></div> : null}
         {status === "offline" ? <div className="inline-alert" role="alert">Backend unavailable. <button type="button" onClick={() => void refresh()}>Retry connection</button></div> : null}
         <form onSubmit={submit} autoComplete="off">
-          <label htmlFor="credential">RailSync access credential</label>
-          <input id="credential" type="password" name="credential" value={credential} onChange={event => setCredential(event.target.value)} required
-            autoComplete="off" aria-describedby="credential-help" />
+          <label htmlFor="credential">R-MAPS access credential</label>
+          <input id="credential" type="text" name="credential" value={credential} onChange={event => setCredential(event.target.value)} required
+            autoComplete="off" placeholder="e.g. ADMIN, PLANNER, SNT" aria-describedby="credential-help" />
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", margin: "10px 0 14px" }}>
+            <span style={{ fontSize: "11px", width: "100%", color: "var(--muted, #666)" }}>Quick role select:</span>
+            {["ADMIN", "PLANNER", "CONTROLLER", "ENGINEERING", "TRD", "SNT"].map(r => (
+              <button key={r} type="button" className="button button-outline" style={{ padding: "4px 8px", fontSize: "11px", height: "auto" }} onClick={() => pickRole(r)}>
+                {r}
+              </button>
+            ))}
+          </div>
           <small id="credential-help">Enter the credential assigned by your project administrator. Your role is determined by that credential.</small>
           {error && <div className="inline-alert" role="alert">{error}</div>}
           <button className="button button-primary login-submit" disabled={busy} type="submit">{busy ? "Signing in…" : "Open workspace"}<RailIcon name="arrow" size={18}/></button>
         </form>
         <div className="login-security"><RailIcon name="validate" size={16}/><span>Credentials are not saved in browser storage.</span></div>
       </section>
+
       <aside className="login-context"><span className="context-kicker">INTEGRATED MAINTENANCE PLANNING</span>
         <h2>Coordinate the work.<br/>Respect the railway.</h2>
         <p className="login-intro">One shared planning state for Engineering, TRD and S&amp;T. Bring maintenance demand, corridor capacity and resources into a proposal your controller can review.</p>
@@ -57,6 +73,6 @@ export default function LoginPage() {
         <p className="login-authority">Planning decision support. Railway operating authority remains external.</p>
       </aside>
     </div>
-    <div className="login-foot"><span>RailSync AI · Integrated block planning</span><span>Engineering · TRD · S&amp;T</span></div>
+    <div className="login-foot"><span>R-MAPS · Railway Maintenance Allocation &amp; Planning System</span><span>Engineering · TRD · S&amp;T</span></div>
   </div>;
 }
