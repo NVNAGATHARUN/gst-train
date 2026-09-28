@@ -24,10 +24,19 @@ def csrf_token(secret):
 
 
 def require_origin(request: Request):
-    if request.headers.get('origin') not in settings().browser_origins:
+    origin = request.headers.get('origin')
+    if not origin:
+        return
+    allowed = settings().browser_origins
+    from urllib.parse import urlsplit
+    parsed = urlsplit(origin)
+    is_vercel = bool(parsed.hostname and (parsed.hostname.endswith('.vercel.app') or parsed.hostname == 'vercel.app'))
+    is_local = parsed.hostname in ('localhost', '127.0.0.1', '::1')
+    if origin not in allowed and not is_vercel and not is_local:
         raise HTTPException(403, 'BROWSER_ORIGIN_FORBIDDEN')
-    if request.headers.get('sec-fetch-site') == 'cross-site':
+    if request.headers.get('sec-fetch-site') == 'cross-site' and not is_vercel:
         raise HTTPException(403, 'CROSS_SITE_REQUEST_FORBIDDEN')
+
 
 
 def browser_identity(request: Request, db, now):

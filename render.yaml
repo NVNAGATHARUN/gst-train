@@ -18,7 +18,7 @@ services:
       - key: RAILSYNC_SESSION_COOKIE_SECURE
         value: "true"
       - key: RAILSYNC_BROWSER_ORIGINS
-        value: '["https://web-nine-mocha-73.vercel.app","https://web-nqcfea9w7-n-v-naga-tharuns-projects.vercel.app"]'
+        value: '["https://gst-train.vercel.app","https://web-nine-mocha-73.vercel.app","https://web-nqcfea9w7-n-v-naga-tharuns-projects.vercel.app"]'
 
 databases:
   - name: railsync-db

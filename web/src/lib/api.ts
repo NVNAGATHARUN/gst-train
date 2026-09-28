@@ -38,12 +38,17 @@ export function messageFor(error: unknown): string {
       if (error.detail === "INVALID_CREDENTIAL") return "Credential not recognized. Check your assigned role credential and try again.";
       return "Your session expired. Sign in again.";
     }
-    if (error.status === 403) return "Your role cannot perform this action.";
+    if (error.status === 403) {
+      if (error.detail === "BROWSER_ORIGIN_FORBIDDEN" || error.detail === "CROSS_SITE_REQUEST_FORBIDDEN") {
+        return "Access denied: Browser origin not permitted by security policy.";
+      }
+      return "Your role cannot perform this action.";
+    }
     if (error.status === 409) return `The planning state changed: ${error.message}. Refresh the evidence before acting.`;
     if (error.status === 429) return "Too many sign-in attempts. Wait and try again.";
     return error.message;
   }
-  return "RailSync could not reach the API. Check the backend connection and retry.";
+  return "R-MAPS could not reach the API. Check the backend connection and retry.";
 }
 
 export function shortId(id: string | null | undefined): string {
