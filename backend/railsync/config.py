@@ -13,6 +13,14 @@ class Settings(BaseSettings):
     session_ttl_minutes: int = Field(default=480, ge=5, le=1440)
 
     @model_validator(mode='after')
+    def normalize_database_url(self):
+        if self.database_url.startswith("postgresql://"):
+            self.database_url = self.database_url.replace("postgresql://", "postgresql+psycopg://", 1)
+        elif self.database_url.startswith("postgres://"):
+            self.database_url = self.database_url.replace("postgres://", "postgresql+psycopg://", 1)
+        return self
+
+    @model_validator(mode='after')
     def browser_security(self):
         if not self.browser_origins:
             raise ValueError('At least one explicit browser origin is required')
