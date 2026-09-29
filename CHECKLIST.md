@@ -1,6 +1,8 @@
-# RailSync AI — implementation checklist
+# R-MAPS — implementation checklist
 
-Status: M1–M17 gates passed; M18 is in progress; design approved with four amendments. Git commits remain blocked by host permissions. A checkbox means automated tests passed and backend output was verified; implementation alone is not completion.
+**Railway Maintenance Allocation & Planning System**
+
+Status: M1–M17 gates passed; M18 is in progress. The R-MAPS version 2.0 SRS/build contract is current. The complete backend suite passes 215 tests; frontend typecheck and lint pass. A checkbox means automated tests passed and backend output was verified; implementation alone is not completion.
 
 - [x] M1 · P0 — Repository, PostgreSQL, migrations, configuration, auth skeleton and test harness (3 tests; evidence in docs/evidence/M01.md)
 - [x] M2 · P0 — Maintenance requests, revisions, lifecycle and idempotent imports
@@ -21,6 +23,8 @@ Status: M1–M17 gates passed; M18 is in progress; design approved with four ame
 - [x] M17 · P3 — Isolated what-if scenarios
 - [ ] M18 · P3 — Complete frontend, deployment, benchmark and demo evidence
 - [ ] M19 · P3 optional — Forecasting, only with suitable data and evaluation
+
+Final contract: `docs/R-MAPS_FINAL_SRS_BUILD_CONTRACT.md`, with matching DOCX and PDF editions. It supersedes the historical RailSync SRS files for implementation and presentation.
 
 ## M16 progress (complete SIMULATED prototype gate)
 
@@ -80,7 +84,7 @@ The user's implementation request and detailed Build Contract govern. The earlie
 - [x] Optimization State: actual durable session stages and saved baseline/CP-SAT metrics; no inferred progress or solver results.
 - [x] H1/H2 browser interaction review at the available viewport: request/train inspectors, historical capacity run selection, actual calculated windows and stale-source blockers verified on 2026-09-24.
 - [ ] H1/H2 final visual acceptance at 1440px/1920px.
-- [x] H3 technical implementation: Baseline vs RailSync comparison, same-snapshot run pairing, independent validation, versioned KPI evidence, responsive timelines and browser integration verified with a labeled simulated fixture.
+- [x] H3 technical implementation: Baseline vs R-MAPS comparison, same-snapshot run pairing, independent validation, versioned KPI evidence, responsive timelines and browser integration verified with a labeled simulated fixture.
 - [ ] H3 final user visual approval at 1440px/1920px.
 - [x] H4 technical implementation: Validation Center, saved PASS/FAIL/ERROR reports, current review blockers, source-linked findings, explicit revalidation and JSON export; TypeScript, lint, build, targeted backend tests and local browser flow verified.
 - [ ] H4 final user visual approval at 1440px/1920px.
@@ -103,7 +107,7 @@ The user's implementation request and detailed Build Contract govern. The earlie
 - [x] Access & System Health Administration technical implementation: ADMIN-only current API/database state, migration revision, observed worker heartbeat, queue counts, read-only user roster and session facts. Migration 026; 30 focused backend tests, TypeScript and lint pass.
 - [ ] Access & System Health Administration browser interaction and wide-screen visual acceptance.
 - [x] Focused 2026-09-25 source/layout audit found and corrected health-badge semantics: `RESPONSIVE`/`ACTIVE` good, `DEGRADED`/`ABSENT`/`INACTIVE` bad. Targeted TypeScript and ESLint checks pass.
-- [ ] M18 browser acceptance at 1440px/1920px remains open: the user-run read-only harness captured all five hero screens at 1440/1920/390 on a stale SIMULATED case. Its old report included expected navigation cancellations and handled difference 404s; the corrected H1 status and harness need a new capture. Role/failure/accessibility and supporting-screen review remain open.
+- [ ] M18 final browser acceptance remains open: the read-only harness captured the five hero screens at 1440/1920/390 and a 720 CSS-pixel reflow proxy with no page overflow, and verified keyboard skip/timeline interactions on a labeled SIMULATED case. Five-role navigation and direct-route denial were also captured. Native 200% zoom, failure/recovery, supporting-screen review and current-data approval remain open.
 - [ ] Supporting Tier B/C experiences, deployment, benchmark, backup/restore and complete M18 gate.
 - [x] Deployment/recovery package technical implementation: pinned non-root backend and Next.js standalone images; PostgreSQL/migration/API/worker/web Compose stack; internal network and health ordering; worker heartbeat probe; checksum-bound backup; isolated non-empty-target-safe restore profile. Eight focused tests pass.
 - [ ] Live deployment and recovery acceptance: Docker is unavailable on this host, so image build/start, HTTPS browser session, container health, actual backup and isolated restore remain unverified.
@@ -129,9 +133,9 @@ The user authorized a new visual/UX direction while protecting the existing back
 - [x] Apply the common visual system across supporting screens and rebuild the sign-in experience.
 - [x] Verify backend/migration hashes unchanged and all 95 existing API/fetch call sites preserved.
 - [x] TypeScript, ESLint and 14 production-component/presentation checks pass. Presentation fixtures come from archived SIMULATED backend evidence.
-- [ ] Final browser interaction/visual acceptance: 15 real-backend hero screenshots have been inspected from `docs/evidence/browser-review/2026-09-25T18-34-36.495Z/`. One real H1 status contradiction was corrected; the post-fix capture and broader state/role/accessibility checks remain open.
+- [x] Final corrected hero recapture: 25 real-backend views in `docs/evidence/browser-review/2026-09-26T03-09-17.603Z/` cover desktop, mobile and a reflow proxy with no page overflow, browser exceptions or unhandled HTTP errors. Keyboard skip-link, timeline selection and scale interactions were exercised.
 - [ ] Full production build: source compilation passes; the host still rejects the Next TypeScript child process with `spawn EPERM`.
-- [ ] Per-screen 1440px/1920px review, 390px navigation and 200% zoom; one stale SIMULATED PLANNER case has 15 captures, no page overflow, working timeline/evidence/mobile navigation and saved H3 metrics. Post-fix recapture, error/failure states, other roles and zoom remain open.
+- [ ] Per-screen final acceptance: 1440px/1920px, 390px and 720 CSS-pixel reflow captures exist for the five hero screens. Native browser 200% zoom, fresh failure/recovery states and supporting pages remain open.
 
 This rebuild is not yet visually accepted. M18 and the integrated SIH judge demonstration remain open.
 
@@ -168,7 +172,7 @@ This rebuild is not yet visually accepted. M18 and the integrated SIH judge demo
 - [ ] Five-role browser harness `review-roles.mjs --isolated-demo`: verifies login destination, dashboard heading, navigation, mobile primary action, direct-page denial and read-only behavior. Execution/visual inspection pending.
 
 - [x] Five-role navigation/mobile/direct-route denial verified in `role-review/2026-09-26T08-10-41.965Z`: no exceptions, writes or page overflow.
-- [ ] Role visual acceptance: visible punctuation corrected; planner/controller/auditor populated-case capture added. Updated browser capture remains pending.
+- [x] Five-role capture `role-review/2026-09-26T08-15-36.442Z` verifies populated planner/controller/auditor cases, department/admin workspaces, mobile layouts, role-specific navigation and direct-route denial with no errors, writes or page overflow. Final supporting-screen visual sign-off remains part of M18.
 
 - [x] Maintenance submission UI: department Validate/Submit controls use revision-checked backend lifecycle APIs.
 - [x] Planning live intake: current request register, 30-second/focus/manual refresh, explicit unsubmitted and uncaptured states; saved snapshot demand remains separate. TypeScript and targeted ESLint passed.

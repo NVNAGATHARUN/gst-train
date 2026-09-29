@@ -48,7 +48,7 @@ export function useCase() {
   return value;
 }
 
-function RailSyncMark() { return <span className="brand-mark"><RailIcon name="rail" size={26}/></span>; }
+function RMapsMark() { return <span className="brand-mark"><RailIcon name="rail" size={26}/></span>; }
 
 type NavItem = {label:string; href:string; icon:IconName; adminOnly?:boolean};
 const navigation: {label:string; items:NavItem[]}[] = [
@@ -86,8 +86,6 @@ function WorkShell({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const visibleNavigation = navigation.map(group=>({...group,items:group.items.filter(item=>canOpenPage(value?.user.role,item.href))})).filter(group=>group.items.length);
   const allowed = canOpenPage(value?.user.role,pathname);
-  const activeGroup = visibleNavigation.find(group=>group.items.some(item=>pathname===item.href));
-  const activePage = activeGroup?.items.find(item=>pathname===item.href);
   async function leaveSession(){
     try { await signOut(); router.replace("/login"); }
     catch { setSignOutError("Could not sign out. Retry before leaving this device."); }
@@ -95,23 +93,19 @@ function WorkShell({ children }: { children: React.ReactNode }) {
   return <div className={`app-root ${menuOpen?"navigation-open":""}`}>
     <a className="skip-link" href="#main-content">Skip to workspace</a>
     <header className="app-topbar">
-      <div className="brand-lockup"><button type="button" className="mobile-menu icon-button" aria-label={menuOpen?"Close navigation":"Open navigation"} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={()=>setMenuOpen(!menuOpen)}><RailIcon name={menuOpen?"close":"menu"}/></button><RailSyncMark /><div><strong>RailSync <span className="brand-ai">AI</span></strong><span>Integrated Maintenance Planning</span></div></div>
+      <div className="brand-lockup"><button type="button" className="mobile-menu icon-button" aria-label={menuOpen?"Close navigation":"Open navigation"} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={()=>setMenuOpen(!menuOpen)}><RailIcon name={menuOpen?"close":"menu"}/></button><RMapsMark /><div><strong>R-MAPS</strong><span>Railway Maintenance Allocation &amp; Planning System</span></div></div>
       <div className="topbar-corridor-badge">
         <div className="corridor-text-group">
-          <strong>🚆 NCR Trunk Corridor (GZB – ALJN)</strong>
-          <small>26 Sept 2026 – 27 Sept 2026 · 22:00 – 04:00 IST</small>
+          <strong>Planning context</strong>
+          <small>{selection.snapshotId ? `Snapshot ${selection.snapshotId.slice(0, 8)}` : "Select a saved snapshot"}</small>
         </div>
-        <span className="scope-tag">SIMULATED</span>
+        <span className="scope-tag">PROTOTYPE</span>
       </div>
       <div className="topbar-tagline">
         <span className="tagline-bullet">●</span>
         <span>Safety · Reliability · Higher Throughput</span>
       </div>
       <div className="topbar-right">
-        <div className="topbar-bell" title="3 Active Notices">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-          <span className="bell-badge">3</span>
-        </div>
         <span className="prototype-tag">SIH 2026 <span>PROTOTYPE</span></span>
         <span className="user-role-badge">{value?.user.role.replaceAll("_"," ")}</span>
         <details className="account-menu"><summary aria-label="Account and sign out"><span className="avatar">{value?.user.name.slice(0, 1).toUpperCase()}</span></summary><div><strong>{value?.user.name}</strong><span>{value?.user.role}</span><button type="button" className="button button-outline" onClick={()=>void leaveSession()}>Sign out</button>{signOutError&&<p role="alert">{signOutError}</p>}</div></details>
@@ -135,15 +129,15 @@ function WorkShell({ children }: { children: React.ReactNode }) {
       </aside>
       <main className="main-area" id="main-content" tabIndex={-1}>{allowed?children:<section className="panel"><DataState title="Page outside your role workspace" detail="Use your role dashboard to open the maintenance, planning, review or administration tools assigned to you." action="Open your dashboard" onAction={()=>router.push("/dashboard")}/></section>}</main>
     </div>
-    <footer className="app-footer"><span>RailSync · PS26027</span><span>Decision support prototype · Railway operating authority remains external</span><span>All planning times in IST</span></footer>
+    <footer className="app-footer"><span>R-MAPS · PS26027</span><span>Decision support prototype · Railway operating authority remains external</span><span>All planning times in IST</span></footer>
   </div>;
 }
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const session = useSession();
   const router = useRouter();
-  if (session.status === "loading") return <div className="access-state"><RailSyncMark /><DataState title="Checking session" detail="Connecting to RailSync…" /></div>;
-  if (session.status === "offline") return <div className="access-state"><RailSyncMark /><DataState title="Backend unavailable" detail="RailSync could not read your session. Start or reconnect the API, then retry." action="Retry" onAction={() => void session.refresh()} /></div>;
-  if (session.status !== "authenticated" || !session.value) return <div className="access-state"><RailSyncMark /><DataState title="Sign in required" detail="Your RailSync session is missing or expired." action="Open sign in" onAction={() => router.push("/login")} /></div>;
+  if (session.status === "loading") return <div className="access-state"><RMapsMark /><DataState title="Checking session" detail="Connecting to R-MAPS…" /></div>;
+  if (session.status === "offline") return <div className="access-state"><RMapsMark /><DataState title="Backend unavailable" detail="R-MAPS could not read your session. Start or reconnect the API, then retry." action="Retry" onAction={() => void session.refresh()} /></div>;
+  if (session.status !== "authenticated" || !session.value) return <div className="access-state"><RMapsMark /><DataState title="Sign in required" detail="Your R-MAPS session is missing or expired." action="Open sign in" onAction={() => router.push("/login")} /></div>;
   return <CaseProvider userId={session.value.user.id}><WorkShell>{children}</WorkShell></CaseProvider>;
 }

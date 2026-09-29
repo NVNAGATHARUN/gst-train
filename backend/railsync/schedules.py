@@ -198,6 +198,6 @@ def export_schedule(id:uuid.UUID,format:Literal['json','csv']=Query('json'),user
         media='application/json';suffix='json'
     else:
         data=csv_export(row.content).encode('utf-8-sig');media='text/csv; charset=utf-8';suffix='csv'
-    filename=f"railsync-{row.schedule_type.lower()}-{row.id}.{suffix}"
+    filename=f"rmaps-{row.schedule_type.lower()}-{row.id}.{suffix}"
     return Response(data,media_type=media,headers={'Content-Disposition':f'attachment; filename="{filename}"',
-        'X-RailSync-Content-Hash':row.content_hash,'X-RailSync-Authority':AUTHORITY})
+        'X-RMAPS-Content-Hash':row.content_hash,'X-RMAPS-Authority':AUTHORITY})

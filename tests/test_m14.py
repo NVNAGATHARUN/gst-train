@@ -127,7 +127,7 @@ def test_monthly_json_and_csv_exports_are_deterministic_labeled_and_safe(client)
     first=client.get(f'/api/v1/planning-schedules/{sid}/export?format=json',headers=auth('AUDITOR'))
     second=client.get(f'/api/v1/planning-schedules/{sid}/export?format=json',headers=auth('AUDITOR'))
     assert first.content==second.content
-    assert first.headers['x-railsync-content-hash']==schedule['content_hash']
+    assert first.headers['x-rmaps-content-hash']==schedule['content_hash']
     assert json.loads(first.content)==schedule['content']
     exported=client.get(f'/api/v1/planning-schedules/{sid}/export?format=csv',headers=auth('AUDITOR'))
     rows=list(csv.DictReader(io.StringIO(exported.content.decode('utf-8-sig'))))

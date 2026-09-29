@@ -1,1 +1,1 @@
-"""RailSync application."""
+"""R-MAPS application."""

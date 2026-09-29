@@ -20,6 +20,20 @@ function localInputToIso(value: string): string {
   return date.toISOString();
 }
 
+function nextIstNightWindow(): { earliest: string; deadline: string } {
+  const istNow = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+  const start = new Date(istNow);
+  start.setHours(22, 30, 0, 0);
+  if (start <= istNow) start.setDate(start.getDate() + 1);
+  const end = new Date(start);
+  end.setHours(end.getHours() + 5);
+  const format = (value: Date) => {
+    const pad = (part: number) => String(part).padStart(2, "0");
+    return `${value.getFullYear()}-${pad(value.getMonth() + 1)}-${pad(value.getDate())}T${pad(value.getHours())}:${pad(value.getMinutes())}`;
+  };
+  return { earliest: format(start), deadline: format(end) };
+}
+
 function RequestForm({ assets, department, csrf, onDone, onClose }: {
   assets: Asset[]; department: Department; csrf: string; onDone: () => void; onClose: () => void;
 }) {
@@ -45,11 +59,46 @@ function RequestForm({ assets, department, csrf, onDone, onClose }: {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const asset = assets.find(a => a.id === assetId);
+  function fillSample() {
+    const window = nextIstNightWindow();
+    setEarliest(window.earliest);
+    setDeadline(window.deadline);
+    setWorkMinutes(60);
+    setSetupMinutes(10);
+    setRestoreMinutes(10);
+    setSeverity(3);
+    setUrgency(4);
+    if (department === "ENGINEERING") {
+      setIssue("TRACK_TAMPING");
+      setDescription("Plain track mechanized tamping with CSM machine on Down line");
+      setLineBlock(true);
+      setPowerBlock(false);
+      setResourceType("TAMPING_MACHINE");
+    } else if (department === "TRD") {
+      setIssue("OHE_INSPECTION");
+      setDescription("Contact wire height/stagger adjustment and dropper replacement");
+      setLineBlock(true);
+      setPowerBlock(true);
+      setIsolationZone("SEC_DER_KRJ_DN");
+      setResourceType("TOWER_WAGON");
+    } else {
+      setIssue("POINT_MACHINE_OVERHAUL");
+      setDescription("Quarterly point machine maintenance and motor cleaning");
+      setLineBlock(true);
+      setPowerBlock(false);
+      setSignallingState("DISCONNECTED");
+      setResourceType("SNT_TECH");
+    }
+  }
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); setError(null); setBusy(true);
     try {
       if (!asset) throw new Error("Select a valid department asset.");
       if (powerBlock && !isolationZone.trim()) throw new Error("Enter the known isolation zone for a power block.");
+      if (earliest >= deadline) {
+        throw new Error("Earliest start must precede the deadline. For a cross-midnight window, use the following calendar date for the deadline.");
+      }
       const payload = {
         department, asset_id: asset.id, footprint: asset.footprint,
         issue_type: issue.trim(), description: description.trim(), severity, urgency,
@@ -68,7 +117,11 @@ function RequestForm({ assets, department, csrf, onDone, onClose }: {
   }
   return <section className="panel request-form-panel" aria-labelledby="request-form-title">
     <div className="panel-header"><div><h2 id="request-form-title">New simulated requirement</h2><p>{department} · department submission</p></div>
-      <button type="button" className="button button-text" onClick={onClose}>Close</button></div>
+      <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+        <button type="button" className="button button-outline" style={{ fontSize: "11px", padding: "4px 10px" }} onClick={fillSample}>Fill simulated {department} sample</button>
+        <button type="button" className="button button-text" onClick={onClose}>Close</button>
+      </div>
+    </div>
     <form className="request-form-grid" onSubmit={submit}>
       <label className="field">Asset<select value={assetId} onChange={event => setAssetId(event.target.value)} required>
         {assets.map(item => <option key={item.id} value={item.id}>{item.id} · {item.asset_type}</option>)}</select></label>
@@ -80,8 +133,20 @@ function RequestForm({ assets, department, csrf, onDone, onClose }: {
       <label className="field">Work minutes<input type="number" min={1} max={10080} value={workMinutes} onChange={event => setWorkMinutes(Number(event.target.value))} required /></label>
       <label className="field">Setup minutes<input type="number" min={0} max={1440} value={setupMinutes} onChange={event => setSetupMinutes(Number(event.target.value))} required /></label>
       <label className="field">Restoration minutes<input type="number" min={0} max={1440} value={restoreMinutes} onChange={event => setRestoreMinutes(Number(event.target.value))} required /></label>
-      <label className="field">Earliest start (IST)<input type="datetime-local" value={earliest} onChange={event => setEarliest(event.target.value)} required /></label>
-      <label className="field">Deadline (IST)<input type="datetime-local" value={deadline} onChange={event => setDeadline(event.target.value)} required /></label>
+      <label className="field">
+        <span style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span>Earliest start (IST)</span>
+          <button type="button" style={{ background: "none", border: "none", color: "var(--accent, #0284c7)", cursor: "pointer", fontSize: "10px", padding: 0 }}
+            onClick={() => { const window = nextIstNightWindow(); setEarliest(window.earliest); setDeadline(window.deadline); }}>
+            Set next night window
+          </button>
+        </span>
+        <input type="datetime-local" value={earliest} onChange={event => setEarliest(event.target.value)} required />
+      </label>
+      <label className="field">
+        <span>Deadline (IST) <small style={{ color: "var(--muted, #666)" }}>(past midnight = next day)</small></span>
+        <input type="datetime-local" value={deadline} onChange={event => setDeadline(event.target.value)} required />
+      </label>
       <label className="field">Isolation zone, if required<input value={isolationZone} onChange={event => setIsolationZone(event.target.value)} disabled={!powerBlock} /></label>
       <label className="field">Power state<select value={powerBlock ? "OFF" : powerState} disabled={powerBlock} onChange={event => setPowerState(event.target.value)}><option value="UNKNOWN">Unknown</option><option value="ANY">Either state permitted</option><option value="ON">Power on required</option><option value="OFF">Power off required</option></select></label>
       <label className="field">S&amp;T state<select value={signallingState} onChange={event => setSignallingState(event.target.value)}><option value="UNKNOWN">Unknown</option><option value="ANY">Either state permitted</option><option value="CONNECTED">Connected required</option><option value="DISCONNECTED">Disconnection required</option></select></label>

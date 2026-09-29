@@ -157,6 +157,6 @@ def export(id: uuid.UUID, user=Depends(current_user), now=Depends(utc_now), db=D
         raise HTTPException(404, 'PLAN_COMPARISON_NOT_FOUND')
     current = row_json(db, row, now)
     return Response(json.dumps(row.content, sort_keys=True, separators=(',',':')), media_type='application/json',
-        headers={'Content-Disposition': f'attachment; filename="railsync-comparison-{id}.json"',
-            'X-RailSync-Content-Hash': row.content_hash,
-            'X-RailSync-Current-Claims-Permitted': str(current['current_claims_permitted']).lower()})
+        headers={'Content-Disposition': f'attachment; filename="rmaps-comparison-{id}.json"',
+            'X-RMAPS-Content-Hash': row.content_hash,
+            'X-RMAPS-Current-Claims-Permitted': str(current['current_claims_permitted']).lower()})

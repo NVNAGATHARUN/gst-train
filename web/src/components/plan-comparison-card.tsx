@@ -1,105 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { shortId } from "@/lib/api";
 import type { WorkspaceView } from "@/lib/types";
 
-export function PlanComparisonCard({ view }: { view: WorkspaceView }) {
-  const [selectedPlan, setSelectedPlan] = useState<"railsync" | "baseline">("railsync");
+function possessionMinutes(start: string, end: string) {
+  const value = Math.round((Date.parse(end) - Date.parse(start)) / 60_000);
+  return Number.isFinite(value) && value >= 0 ? value : null;
+}
 
+export function PlanComparisonCard({ view }: { view: WorkspaceView }) {
   const plan = view.selected_revision?.content ?? view.selected_run?.result;
   const assignments = plan?.assignments ?? [];
-  const hasPlan = assignments.length > 0;
-
-  // Real or dynamically computed operational metrics
-  const isOptimized = selectedPlan === "railsync";
+  const requestIds = new Set(assignments.flatMap((assignment) => assignment.request_ids));
+  const totalMinutes = assignments.reduce<number | null>((sum, assignment) => {
+    const minutes = possessionMinutes(assignment.possession_start, assignment.possession_end);
+    return sum === null || minutes === null ? null : sum + minutes;
+  }, 0);
+  const status = plan?.solver_status ?? view.selected_run?.status ?? "No saved result";
 
   return (
-    <div className="panel plan-comparison-card" aria-label="Plan comparison card">
+    <section className="panel plan-comparison-card" aria-label="Selected proposal evidence">
       <div className="comparison-card-header">
         <div className="comparison-header-left">
-          <h3>Plan comparison <span className="text-muted">(within analysis window)</span></h3>
-          <p>Real-time operational impact of multi-department block consolidation</p>
+          <h3>Selected proposal evidence</h3>
+          <p>Values below come from the selected saved run or plan revision. Open Baseline comparison for a same-snapshot KPI comparison.</p>
         </div>
-        <div className="segmented-control comparison-toggle" aria-label="Selected plan view">
-          <button
-            type="button"
-            aria-pressed={selectedPlan === "baseline"}
-            onClick={() => setSelectedPlan("baseline")}
-          >
-            Baseline disjoint
-          </button>
-          <button
-            type="button"
-            aria-pressed={selectedPlan === "railsync"}
-            onClick={() => setSelectedPlan("railsync")}
-            className="toggle-active-btn"
-          >
-            RailSync optimized
-          </button>
-        </div>
+        <Link href="/evaluation" className="button button-outline">Open Baseline comparison</Link>
       </div>
 
       <div className="comparison-metrics-grid">
-        {/* Metric 1: Maintenance Blocks */}
-        <div className="comp-metric-box">
-          <span className="comp-metric-label">No. of maintenance blocks</span>
-          <div className="comp-metric-values">
-            <span className="comp-baseline-val">3</span>
-            <span className="comp-arrow">→</span>
-            <strong className="comp-optimized-val">{isOptimized ? "1" : "3"}</strong>
-            {isOptimized && <span className="comp-pill-good">↓ 67%</span>}
-          </div>
-          <small className="comp-subtext">{isOptimized ? "Multi-dept co-located" : "Disjoint single blocks"}</small>
-        </div>
-
-        {/* Metric 2: Total Block Hours */}
-        <div className="comp-metric-box">
-          <span className="comp-metric-label">Total possession hours</span>
-          <div className="comp-metric-values">
-            <span className="comp-baseline-val">3.5 h</span>
-            <span className="comp-arrow">→</span>
-            <strong className="comp-optimized-val">{isOptimized ? "1.3 h" : "3.5 h"}</strong>
-            {isOptimized && <span className="comp-pill-good">↓ 63%</span>}
-          </div>
-          <small className="comp-subtext">{isOptimized ? "130 min track closure" : "210 min cumulative closure"}</small>
-        </div>
-
-        {/* Metric 3: Passenger Trains Affected */}
-        <div className="comp-metric-box">
-          <span className="comp-metric-label">Trains affected (PAX)</span>
-          <div className="comp-metric-values">
-            <span className="comp-baseline-val">3</span>
-            <span className="comp-arrow">→</span>
-            <strong className="comp-optimized-val">{isOptimized ? "0" : "3"}</strong>
-            {isOptimized && <span className="comp-pill-good">↓ 100%</span>}
-          </div>
-          <small className="comp-subtext">{isOptimized ? "Zero passenger disruption" : "Rajdhani & Duronto delayed"}</small>
-        </div>
-
-        {/* Metric 4: Freight Trains Affected */}
-        <div className="comp-metric-box">
-          <span className="comp-metric-label">Trains affected (Freight)</span>
-          <div className="comp-metric-values">
-            <span className="comp-baseline-val">1</span>
-            <span className="comp-arrow">→</span>
-            <strong className="comp-optimized-val">{isOptimized ? "0" : "1"}</strong>
-            {isOptimized && <span className="comp-pill-good">↓ 100%</span>}
-          </div>
-          <small className="comp-subtext">{isOptimized ? "EDFC interchange protected" : "Freight envelope punctured"}</small>
-        </div>
-
-        {/* Metric 5: Corridor Capacity */}
-        <div className="comp-metric-box">
-          <span className="comp-metric-label">Available night capacity</span>
-          <div className="comp-metric-values">
-            <span className="comp-baseline-val">68%</span>
-            <span className="comp-arrow">→</span>
-            <strong className="comp-optimized-val">{isOptimized ? "88%" : "68%"}</strong>
-            {isOptimized && <span className="comp-pill-good">↑ +20%</span>}
-          </div>
-          <small className="comp-subtext">{isOptimized ? "Throughput maximized" : "Restricted night capacity"}</small>
-        </div>
+        <div className="comp-metric-box"><span className="comp-metric-label">Saved assignments</span><div className="comp-metric-values"><strong className="comp-optimized-val">{assignments.length}</strong></div><small className="comp-subtext">Concrete candidates in this proposal</small></div>
+        <div className="comp-metric-box"><span className="comp-metric-label">Requests covered</span><div className="comp-metric-values"><strong className="comp-optimized-val">{requestIds.size}</strong></div><small className="comp-subtext">Unique request IDs in saved assignments</small></div>
+        <div className="comp-metric-box"><span className="comp-metric-label">Possession minutes</span><div className="comp-metric-values"><strong className="comp-optimized-val">{totalMinutes ?? "N/A"}</strong></div><small className="comp-subtext">Sum of saved possession intervals</small></div>
+        <div className="comp-metric-box"><span className="comp-metric-label">Run status</span><div className="comp-metric-values"><strong className="comp-optimized-val">{status}</strong></div><small className="comp-subtext">Reported by the planning backend</small></div>
+        <div className="comp-metric-box"><span className="comp-metric-label">Evidence identity</span><div className="comp-metric-values"><strong className="comp-optimized-val mono">{shortId(view.selected_revision?.id ?? view.selected_run?.id)}</strong></div><small className="comp-subtext">Selected revision or run</small></div>
       </div>
-    </div>
+    </section>
   );
 }

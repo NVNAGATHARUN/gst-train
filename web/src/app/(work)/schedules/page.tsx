@@ -80,9 +80,9 @@ export default function SchedulesPage(){
     try{
       const response=await fetch(`/api/v1/planning-schedules/${encodeURIComponent(schedule.id)}/export?format=${format}`,{credentials:"same-origin",cache:"no-store"});
       if(!response.ok){let detail:unknown=`HTTP ${response.status}`;try{detail=(await response.json()).detail??detail}catch{}throw new ApiError(response.status,detail)}
-      if(response.headers.get("X-RailSync-Content-Hash")!==schedule.content_hash)throw new Error("Export hash does not match the displayed schedule. Refresh the artifact before exporting.");
+      if(response.headers.get("X-RMAPS-Content-Hash")!==schedule.content_hash)throw new Error("Export hash does not match the displayed schedule. Refresh the artifact before exporting.");
       const url=URL.createObjectURL(await response.blob());
-      const anchor=document.createElement("a");anchor.href=url;anchor.download=`railsync-${schedule.schedule_type.toLowerCase()}-${schedule.id}.${format}`;
+      const anchor=document.createElement("a");anchor.href=url;anchor.download=`rmaps-${schedule.schedule_type.toLowerCase()}-${schedule.id}.${format}`;
       document.body.appendChild(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
     }catch(cause){setError(cause instanceof Error&&!(cause instanceof ApiError)?cause.message:messageFor(cause))}finally{setExporting(null)}
   }

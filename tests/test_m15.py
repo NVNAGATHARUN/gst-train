@@ -133,4 +133,4 @@ def test_comparison_export_is_stable_but_current_claims_expire(client):
     assert not stale['current_claims_permitted'] and stale['content']==saved['content']
     after=client.get(path+'/export',headers=auth('AUDITOR'))
     assert after.content==exported.content
-    assert after.headers['x-railsync-current-claims-permitted']=='false'
+    assert after.headers['x-rmaps-current-claims-permitted']=='false'

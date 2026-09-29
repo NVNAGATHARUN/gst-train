@@ -177,16 +177,34 @@ export default function ReviewPage(){
           <div className="review-actions"><button className="button button-outline" disabled={busy} onClick={()=>void resolvePending()}>Check saved decision</button><button className="button button-primary" disabled={busy} onClick={()=>void postPending(pending)}>Retry exact request</button></div></div>:
         <><div className="review-action-tabs">{(["APPROVE","MODIFY","REJECT","REPLAN"] as const).map(x=><button key={x} className={(x==="MODIFY"?editing:!editing&&action===x)?"selected":""}
           disabled={!controller||scenario||busy} onClick={()=>{setEditing(x==="MODIFY");if(x!=="MODIFY")setAction(x);setError(null)}}>{x==="APPROVE"?"Approve proposal":x==="MODIFY"?"Modify proposal":x==="REJECT"?"Reject proposal":"Replan"}</button>)}</div>
-          <label className="field">Controller reason<textarea value={reason} maxLength={1000} onChange={e=>setReason(e.target.value)} placeholder="Record the operational planning reason (minimum 3 characters)" disabled={!controller||scenario}/></label>
+          <label className="field">
+            <span style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span>Controller reason</span>
+              <button type="button" style={{ background: "none", border: "none", color: "var(--accent, #0284c7)", cursor: "pointer", fontSize: "11px", padding: 0 }}
+                onClick={() => setReason("Reviewed the saved proposal evidence; decision recorded for the planning workflow only.")}>
+                Fill neutral reason
+              </button>
+            </span>
+            <textarea value={reason} maxLength={1000} onChange={e=>setReason(e.target.value)} placeholder="Record the operational planning reason (minimum 3 characters)" disabled={!controller||scenario}/>
+          </label>
           {editing?<><p className="quiet-note">Choose only generated candidates. Saving creates a child revision; it does not inherit validation. The backend checks frozen work and the independent validator must run again.</p>
             <label className="field">Filter generated candidates<input value={candidateQuery} onChange={e=>setCandidateQuery(e.target.value)} placeholder="Candidate, request or track ID"/></label>
             <div className="review-candidates">{candidates.filter(x=>`${x.id} ${x.request_ids.join(" ")} ${x.track_ids.join(" ")}`.toLowerCase().includes(candidateQuery.toLowerCase())).map(x=><label key={x.id}><input type="checkbox" checked={selectedIds.includes(x.id)} onChange={e=>setSelectedIds(previous=>e.target.checked?[...previous,x.id]:previous.filter(id=>id!==x.id))}/><span><strong>{shortId(x.id)} · {x.mode}</strong><small>{x.track_ids.join(", ")} · {dateTimeAt(x.possession_start)} – {timeAt(x.possession_end)} · {x.request_ids.length} request(s)</small></span></label>)}</div>
             <button className="button button-primary" disabled={!controller||scenario||!changes||reason.trim().length<3||busy||conflict||view.source_state!=="CURRENT"} onClick={()=>void modify()}>Save child proposal</button></>:
           <><div className="review-submit-note">{action==="APPROVE"?"Approval reserves the saved blocks in this proposal's scope. It never grants railway operating authority.":action==="REJECT"?"Rejection records the reason and scope revision; it does not approve or execute work.":"Replan queues a new same-snapshot run only if current source facts still match."}</div>
-            <button className="button button-primary" disabled={!canSubmit} onClick={()=>void submit()}>{action==="APPROVE"?"Record proposal approval":action==="REJECT"?"Record rejection":"Request replan"}</button></>}
+            <button className="button button-primary" disabled={!canSubmit} onClick={()=>void submit()}>{action==="APPROVE"?"Record proposal approval":action==="REJECT"?"Record rejection":"Request replan"}</button>
+            {!canSubmit && (
+              <div style={{ fontSize: "12px", color: "var(--amber, #b45309)", marginTop: "8px", display: "flex", flexDirection: "column", gap: "4px" }}>
+                {reason.trim().length < 3 && <span>⚠️ <strong>Reason required:</strong> Type at least 3 characters in the Controller reason box above.</span>}
+                {scenario && <span>⚠️ <strong>Isolated simulation:</strong> What-If scenarios are simulations and cannot be recorded as operational decisions. Switch to the primary corridor snapshot.</span>}
+                {action === "APPROVE" && (!report || report.status !== "PASS") && <span>⚠️ <strong>Validation required:</strong> Independent safety validation must run and PASS before approval (current: {report?.status ?? "NOT RUN"}). Open Validation in sidebar.</span>}
+                {action === "APPROVE" && alreadyApproved && <span>ℹ️ <strong>Already approved:</strong> This plan revision has already been confirmed and approved.</span>}
+              </div>
+            )}
+          </>}
           {!controller&&<p className="muted">Sign in with a provisioned CONTROLLER role to submit a decision.</p>}</>}
       </div></section></div>
-      <p className="planning-disclaimer">Approval here is a controller decision on a RailSync software proposal. External railway authorization, possession grant, isolation and actual execution remain separate.</p>
+      <p className="planning-disclaimer">Approval here is a controller decision on an R-MAPS software proposal. External railway authorization, possession grant, isolation and actual execution remain separate.</p>
     </>}
   </div>;
 }

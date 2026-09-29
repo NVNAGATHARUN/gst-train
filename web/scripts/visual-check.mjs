@@ -12,7 +12,7 @@ const errors=[];
 page.on("pageerror", error=>errors.push(error.message));
 try {
   await page.goto("http://127.0.0.1:3000/login",{waitUntil:"networkidle"});
-  await page.getByLabel("Provisioned RailSync credential").fill(credential);
+  await page.getByLabel("R-MAPS access credential").fill(credential);
   await page.getByRole("button",{name:"Sign in"}).click();
   await page.getByRole("heading",{name:"Planning workspace"}).waitFor();
   const snapshot = page.getByLabel("Planning snapshot");

@@ -206,7 +206,7 @@ export default function PlanningPage(){
               })}>Run independent validation</button><Link className="session-next-link" href="/review">Controller review <RailIcon name="arrow" size={16}/></Link></div>
             </div></section></div>
         {inspectorTab==="evidence"&&<EvidenceInspector view={workspace} focus={focus}/>}</div>
-      <p className="planning-disclaimer">All visible intervals belong to snapshot <span className="mono">{shortId(chosen.id)}</span>. Validation PASS means compliance with configured prototype constraints. Operational possession authority remains external to RailSync.</p>
+      <p className="planning-disclaimer">All visible intervals belong to snapshot <span className="mono">{shortId(chosen.id)}</span>. Validation PASS means compliance with configured prototype constraints. Operational possession authority remains external to R-MAPS.</p>
     </>:null}
   </div>;
 }

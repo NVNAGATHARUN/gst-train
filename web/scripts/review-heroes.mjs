@@ -1,4 +1,4 @@
-/** Read-only browser review of the running RailSync app. No fabricated domain responses. Optional --failure-states aborts domain GETs only.
+/** Read-only browser review of the running R-MAPS app. No fabricated domain responses. Optional --failure-states aborts domain GETs only.
  * Authentication creates/revokes only this test's browser session. Planning,
  * validation, comparisons and controller writes are blocked by the harness.
  */
@@ -148,7 +148,7 @@ try{
       await settled();
       if(route==='evaluation'&&!chosenSession&&baselineRun){
         await select('First-feasible run',baselineRun.id);
-        await select('RailSync CP-SAT run',chosenRun.id);
+        await select('R-MAPS CP-SAT run',chosenRun.id);
         await settled();
       }
       const filename=`${route}-${width}.png`;
@@ -191,7 +191,7 @@ try{
     for(const route of routes.filter(route=>route!=='dashboard')){
       await page.goto(`${base.origin}/${route}`);await settled();
       if(route==='evaluation'&&!chosenSession&&baselineRun){
-        await select('First-feasible run',baselineRun.id);await select('RailSync CP-SAT run',chosenRun.id);await settled();
+        await select('First-feasible run',baselineRun.id);await select('R-MAPS CP-SAT run',chosenRun.id);await settled();
       }
       await page.setViewportSize({width:720,height:540});
       const filename=`${route}-reflow-720.png`;
@@ -223,7 +223,7 @@ try{
       }finally{injectReadFailure=false;}
       await page.goto(`${base.origin}/${route}`);await settled();
       if(route==='evaluation'&&!chosenSession&&baselineRun){
-        await select('First-feasible run',baselineRun.id);await select('RailSync CP-SAT run',chosenRun.id);await settled();
+        await select('First-feasible run',baselineRun.id);await select('R-MAPS CP-SAT run',chosenRun.id);await settled();
       }
       if(await page.locator('main [role="alert"]').count())throw new Error(`${route} retained an API error after restoring backend access`);
       if(!await page.locator('.timeline-panel').count())throw new Error(`${route} did not restore saved timeline evidence`);

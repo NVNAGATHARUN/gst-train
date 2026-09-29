@@ -1,4 +1,4 @@
-/* RailSync planning desk. Imported after legacy page layouts in RootLayout.
+/* R-MAPS planning desk. Imported after legacy page layouts in RootLayout.
    Existing business-specific layouts remain until replaced deliberately. */
 :root {
   --navy:#122f40; --navy-deep:#102733; --navy-mid:#204b60;
@@ -20,9 +20,9 @@ button:disabled {opacity:1; background:#e9eef1; color:#5c6e7a; border-color:#d6d
 .app-topbar {height:68px;background:white;color:var(--ink);grid-template-columns:218px 1fr auto;padding:0 24px 0 18px;border-bottom:1px solid var(--line);gap:24px;position:sticky;top:0;z-index:30;}
 .brand-lockup {color:var(--navy);gap:10px;}
 .brand-mark {width:35px;height:38px;display:grid;place-items:center;border-radius:6px;background:var(--navy);color:white;flex:none;}
-.brand-lockup strong {font-size:21px;font-weight:750;letter-spacing:-.7px;}
+.brand-lockup strong {font-size:21px;font-weight:750;letter-spacing:-.7px;white-space:nowrap;}
 .brand-lockup .brand-ai {display:inline;color:#4b7182;font-size:15px;font-weight:500;letter-spacing:0;}
-.brand-lockup>div>span {font-size:10px;letter-spacing:.03em;color:var(--muted);margin-top:2px;}
+.brand-lockup>div>span {font-size:9px;line-height:1.15;letter-spacing:.015em;color:var(--muted);margin-top:2px;white-space:normal;max-width:170px;}
 .topbar-breadcrumb {display:flex;align-items:center;gap:13px;font-size:12px;color:#5c6e7a;}
 .topbar-breadcrumb strong {color:#2c4655;font-weight:600;}
 .topbar-right {gap:14px;}
@@ -328,6 +328,7 @@ button:disabled {opacity:1; background:#e9eef1; color:#5c6e7a; border-color:#d6d
 .login-main {max-width:1480px;width:100%;margin:0 auto;padding:42px 5vw;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:28px;align-items:center;align-content:center;}
 .login-form-panel {grid-column:2;grid-row:1;border:1px solid #ccdbe3;border-top:4px solid #2a789d;border-radius:7px;padding:40px;background:#fff;box-shadow:0 20px 50px #17374d1b;}
 .login-form-panel h1 {font-size:28px;font-weight:650;letter-spacing:-.8px;margin:9px 0 12px;}
+.login-form-panel .login-product-name {font-size:11px;line-height:1.45;font-weight:650;letter-spacing:.025em;text-transform:uppercase;color:#28607c;margin:-5px 0 8px;}
 .login-form-panel>p {font-size:13px;line-height:1.6;margin-bottom:29px;color:#526b79;}
 .login-access-icon {display:grid;place-items:center;width:44px;height:44px;border-radius:7px;background:#e8f3f8;color:#286e90;margin-bottom:23px;}
 .login-form-panel label {font-size:12px;font-weight:700;color:#304f60;}

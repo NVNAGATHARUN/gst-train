@@ -1,4 +1,6 @@
-# RailSync AI
+# R-MAPS
+
+**Railway Maintenance Allocation & Planning System**
 
 Fixed-infrastructure maintenance decision-support prototype for SIH 2026 PS26027. Follow [CHECKLIST.md](CHECKLIST.md) for verified progress. The PDFs are reference material, not evidence that software has been implemented.
 
@@ -28,11 +30,11 @@ powershell -File scripts/test.ps1 -q
 
 The launcher writes the development URL to the ignored `.env`. The latest complete gate is `.venv/Scripts/python.exe scripts/check_m17_what_if.py`, using `RAILSYNC_TEST_PORT`. See [the M17 scenario API](docs/M17_WHAT_IF_SCENARIOS.md) and [verified evidence](docs/evidence/M17.md). M16 rolling documentation remains at [M16_ROLLING_REPLANNING_API.md](docs/M16_ROLLING_REPLANNING_API.md).
 
-## M18 frontend (H1, H2 and Optimization State technically implemented)
+## M18 frontend and decision-support workspace
 
 The Next.js app is in `web/`. Start the API on localhost:8000, configure `RAILSYNC_BROWSER_ORIGINS=["http://127.0.0.1:3000"]` and `RAILSYNC_SESSION_COOKIE_SECURE=false` for loopback HTTP development, then run `npm ci` and `npm run dev` from `web/`. Sign in with a provisioned role credential. The frontend proxies `/api/v1/*` to `RAILSYNC_API_ORIGIN` (default localhost:8000), so credentials remain in an HttpOnly browser session rather than browser storage. Use HTTPS and secure cookies outside local development.
 
-Run `npm run typecheck`, `npm run lint`, and `npm run build` for frontend checks. This Windows sandbox blocks Next.js's child-process type checker; here a separate passing TypeScript check was followed by a build with `RAILSYNC_SKIP_NEXT_TYPECHECK=1`. The flag is not needed on a normal development host. [H1 progress](docs/evidence/M18-H1-progress.md) and [H2/Optimization evidence](docs/evidence/M18-H2-Optimization-progress.md) record the current gate. Browser visual acceptance and the remaining M18 screens are still open.
+The current UI includes role-specific dashboards and 15 work areas covering maintenance intake, planning, capacity, solver state, fair comparison, validation, controller review, schedules, replanning, execution, reports, readiness and administration. Run `npm run typecheck`, `npm run lint`, and `npm run build` for frontend checks. The latest typecheck and lint pass. This managed Windows host still blocks the final Next.js build child process with `spawn EPERM`; rerun the production build on a normal host before release. Browser captures exist for the hero screens, responsive/reflow views and five role workspaces; the remaining M18 acceptance gates are listed in [CHECKLIST.md](CHECKLIST.md).
 
 ## Integrity commitments
 
@@ -50,6 +52,6 @@ Run scripts/check_m18_benchmark.py against a fresh isolated test database to rep
 
 ## Reference sources
 
-- Detailed `RailSync_AI_Solution_SRS_Build_Contract.pdf` is the source specification.
-- Earlier `RailSync_AI_SRS.pdf` is superseded where it is less specific.
+- [R-MAPS Final SRS and Build Contract](docs/R-MAPS_FINAL_SRS_BUILD_CONTRACT.md) is the current implementation baseline. The repository also includes the matching DOCX and PDF editions.
+- `RailSync_AI_Solution_SRS_Build_Contract.pdf` and `RailSync_AI_SRS.pdf` are superseded historical design references retained under their original filenames.
 - [Official PostgreSQL Windows distribution information](https://www.postgresql.org/download/windows/).

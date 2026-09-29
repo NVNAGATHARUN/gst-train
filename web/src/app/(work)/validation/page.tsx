@@ -40,7 +40,7 @@ function FindingSources({view,finding}:{view:WorkspaceView;finding:ValidationFin
 }
 function downloadReport(report:ValidationReport){
   const link=document.createElement("a"),url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:"application/json"}));
-  link.href=url;link.download=`railsync-validation-${report.id}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  link.href=url;link.download=`r-maps-validation-${report.id}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 export default function ValidationPage(){
   const data=useWorkspaceEvidence();

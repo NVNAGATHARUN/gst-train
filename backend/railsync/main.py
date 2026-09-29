@@ -6,7 +6,7 @@ from sqlalchemy import text
 from .db import session_dependency
 from .auth import current_user, require
 
-app = FastAPI(title="RailSync AI", version="0.1.0", description="SIMULATED/IMPORTED decision support. No railway control.")
+app = FastAPI(title="R-MAPS", version="0.1.0", description="Railway Maintenance Allocation & Planning System. SIMULATED/IMPORTED decision support. No railway control.")
 from .browser_sessions import router as browser_session_router
 app.include_router(browser_session_router)
 
@@ -74,7 +74,7 @@ app.include_router(system_admin_router)
 
 @app.get("/api/v1/health")
 def health():
-    return {"status": "ok", "service": "railsync", "railway_control": False}
+    return {"status": "ok", "service": "r-maps", "railway_control": False}
 
 @app.get("/api/v1/ready")
 def ready(db=Depends(session_dependency)):

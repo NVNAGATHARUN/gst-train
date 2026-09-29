@@ -4,7 +4,7 @@ import "./globals.css";
 import "./operations.css";
 
 export const metadata: Metadata = {
-  title: "RailSync AI | Integrated Maintenance Planning",
+  title: "R-MAPS | Railway Maintenance Allocation & Planning System",
   description: "SIH 2026 PS26027 prototype maintenance block planning",
 };
 
